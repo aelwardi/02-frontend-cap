@@ -1,0 +1,7 @@
+<p class="search-bar">
+  <mat-form-field appearance="fill">
+    <mat-label>Search feild</mat-label>
+    <input #myInput matInput placeholder="Search..." (keyup.enter)="doSearch(myInput.value)" />
+    <mat-icon matSuffix (click)="doSearch(myInput.value)">search</mat-icon>
+  </mat-form-field>
+</p>
