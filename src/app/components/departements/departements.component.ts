@@ -19,6 +19,7 @@ export class DepartementsComponent implements OnInit {
   departements: Departement[] = [];
   searchMode: boolean = false;
   dataSource!: MatTableDataSource<any>;
+  noRecordsFound!: boolean;
   
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -56,6 +57,7 @@ export class DepartementsComponent implements OnInit {
       data => {
         this.departements = data;
         this.dataSource =  new MatTableDataSource(data);
+        this.noRecordsFound = this.dataSource.data.length === 0;
       }
     )
   }
@@ -65,6 +67,7 @@ export class DepartementsComponent implements OnInit {
       data => {
         this.departements = data;
         this.dataSource =  new MatTableDataSource(data);
+        this.noRecordsFound = this.dataSource.data.length === 0;
         this.dataSource.paginator = this.paginator;
       }
     )
