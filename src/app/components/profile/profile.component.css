@@ -1,0 +1,41 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+.profile-image {
+  float: left;
+  width: 120px;
+  height: 100px;
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-right: 100px;
+}
+.form-container {
+  display: flex;
+  width: 900px;
+  height: 400px;
+  padding: 20px;
+  border-radius: 40px;
+  background-color: #ffffff;
+}
+
+.profile-image > img {
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+.input{
+  width: 500px;
+  height: 40px;
+  border-radius: 5px;
+  border-color: #d3d3d3;
+  margin-top: 10px;
+}
+
