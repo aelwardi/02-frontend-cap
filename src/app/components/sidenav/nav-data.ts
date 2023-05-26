@@ -10,9 +10,9 @@ export const navbarData = [
         label: ['Admins']
     },
     {
-        routeLink: 'settings',
-        icon: 'fal fa-cog',
-        label: ['Settings']
+        routeLink: 'profile',
+        icon: 'fal fa-user',
+        label: ['Profile']
     },
     {
         routeLink: 'help',

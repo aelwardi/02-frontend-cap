@@ -13,7 +13,6 @@ import { BodyComponent } from './components/body/body.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DepartementsComponent } from './components/departements/departements.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatTableDataSource} from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { SearchComponent } from './components/search/search.component';
@@ -21,6 +20,18 @@ import { AddBtnComponent } from './components/add-btn/add-btn.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { DepartementAddEditComponent } from './components/departement-add-edit/departement-add-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './components/profile/profile.component';
+import { EditdetailComponent } from './components/editdetail/editdetail.component';
+import { EditBtnComponent } from './components/edit-btn/edit-btn.component';
+import {MatMenuModule} from "@angular/material/menu";
+
+
+
+
+
+
+
+
 
 
 
@@ -34,7 +45,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchComponent,
     AddBtnComponent,
     ConfirmDialogComponent,
-    DepartementAddEditComponent
+    DepartementAddEditComponent,
+    ProfileComponent,
+    EditdetailComponent,
+    EditBtnComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +62,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
