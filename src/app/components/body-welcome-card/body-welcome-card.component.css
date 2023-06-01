@@ -1,0 +1,42 @@
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: -40px;
+}
+
+.logo {
+    width: 100%;
+}
+
+.card-height {
+    width: 15rem;
+    height: 12rem;
+}
+
+
+mat-card-title {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+mat-card-content {
+    margin-top: 2rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fouter-rights {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    color: #3C3C3C;
+}

@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    align-items: center;
+
+    .left {
+        flex: 0 0 60%;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+    }
+
+
+    .right {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .circle {
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+}

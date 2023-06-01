@@ -1,5 +1,5 @@
 .not-found-message {
-    color: var(--warn);
-    font-size: 18px;
-    margin: 2rem;
-  }
+  color: var(--warn);
+  font-size: 18px;
+  margin: 2rem;
+}

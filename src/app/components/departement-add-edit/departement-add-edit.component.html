@@ -4,10 +4,11 @@
         <mat-form-field>
             <mat-label>Name of departmet</mat-label>
             <mat-icon matPrefix>create</mat-icon>
-            <input matInput type="text" formControlName="name" required/>
+            <input matInput type="text" formControlName="name" required />
         </mat-form-field>
     </div>
     <div mat-dialog-actions class="mat-dialog-actions-align-end">
-        <button mat-raised-button color="primary" type="submit" [disabled]="departementForm.invalid">{{ data ? 'Update' : 'Submit' }}</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="departementForm.invalid">{{ data ? 'Update'
+            : 'Submit' }}</button>
     </div>
 </form>

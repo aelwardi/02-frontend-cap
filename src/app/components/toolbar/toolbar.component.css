@@ -1,0 +1,32 @@
+.mat-toolbar {
+    background: #0070AD;
+    transition: all .5s ease;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+    text-align: center;
+    padding: 0 3rem;
+    .nav-spacer {
+        flex: 1 1 auto;
+    }
+
+
+    .logo-cap {
+        max-width: 10rem;
+    }
+
+    .login-btn {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .login-btn-item {
+        color: #0070AD;
+        border-radius: 15px;
+        border: none;
+        background-color: #ffffff;
+        min-width: 120px;
+    }
+}

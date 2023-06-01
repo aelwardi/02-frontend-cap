@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  constructor (private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   doSearch(value: string) {
-    this.router.navigateByUrl(`/search/${value}`); 
+    this.router.navigateByUrl(`super-admin/departements/search/${value}`);
   }
 
 }

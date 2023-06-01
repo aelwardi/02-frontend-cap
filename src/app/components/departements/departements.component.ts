@@ -20,7 +20,7 @@ export class DepartementsComponent implements OnInit {
   searchMode: boolean = false;
   dataSource!: MatTableDataSource<any>;
   noRecordsFound!: boolean;
-  
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -28,9 +28,9 @@ export class DepartementsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private departementService: DepartementService, 
-              private dialog: MatDialog,
-              private route: ActivatedRoute) { }
+  constructor(private departementService: DepartementService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -46,18 +46,18 @@ export class DepartementsComponent implements OnInit {
     else {
       this.handleListDepartement();
     }
-    
   }
 
   handleSearchDepartement() {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
-
+    
     // now search for the departements using keyword
     this.departementService.searchDepartement(theKeyword).subscribe(
       data => {
         this.departements = data;
-        this.dataSource =  new MatTableDataSource(data);
+        this.dataSource = new MatTableDataSource(data);
         this.noRecordsFound = this.dataSource.data.length === 0;
+        this.dataSource.paginator = this.paginator;
       }
     )
   }
@@ -66,7 +66,7 @@ export class DepartementsComponent implements OnInit {
     this.departementService.getDepartementList().subscribe(
       data => {
         this.departements = data;
-        this.dataSource =  new MatTableDataSource(data);
+        this.dataSource = new MatTableDataSource(data);
         this.noRecordsFound = this.dataSource.data.length === 0;
         this.dataSource.paginator = this.paginator;
       }
@@ -77,7 +77,7 @@ export class DepartementsComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px'
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // call method delete
@@ -87,7 +87,7 @@ export class DepartementsComponent implements OnInit {
   }
 
   openEditDepartmentModal(data: any): void {
-    this.dialog.open(DepartementAddEditComponent , {
+    this.dialog.open(DepartementAddEditComponent, {
       data,
     });
   }

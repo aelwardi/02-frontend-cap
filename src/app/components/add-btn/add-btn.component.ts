@@ -15,7 +15,7 @@ export class AddBtnComponent {
     const dialogRef = this.dialog.open(DepartementAddEditComponent, {
       width: '350px'
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
       }

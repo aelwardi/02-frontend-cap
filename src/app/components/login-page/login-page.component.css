@@ -1,0 +1,30 @@
+.text-center {
+    text-align: center;
+}
+
+.form-action {
+    margin: 0 0 3rem 3rem;
+}
+
+.cnx-btn {
+    background-color: #0070AD;
+    padding: 0 3rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me-label {
+    margin-left: 8px;
+}
+
+.flex {
+    width: 100%;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
