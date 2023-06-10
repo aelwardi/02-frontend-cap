@@ -1,0 +1,45 @@
+.profile-container {
+  display: flex;
+}
+
+.profile-card {
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.profile-left {
+  width: 25%;
+}
+
+.profile-photo {
+  position: relative;
+}
+
+.profile-photo img {
+  width: 80%;
+  border-radius: 50%;
+}
+
+.photo-button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 24px;
+}
+
+.profile-right {
+  width: 75%;
+}
+
+label {
+  display: inline-block;
+  width: 120px;
+}
+
+.field mat-form-field {
+  width: 100%;
+}
