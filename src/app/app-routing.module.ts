@@ -6,6 +6,7 @@ import { SuperAdminComponent } from './components/release-super-admin/template/s
 import { HomeComponent } from './components/release-super-admin/homes/home/home.component';
 import { AdminsComponent } from './components/release-super-admin/admin/admins/admins.component';
 import { ProfileComponent } from './components/release-super-admin/profil/profile/profile.component';
+import { AdminComponent } from './components/release-admin/template/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,19 @@ const routes: Routes = [
         path: 'admins/search/:keyword',
         component: AdminsComponent,
       },
+      {
+        path: 'settings',
+        component: ProfileComponent,
+      },
+      {
+        path: 'help',
+        component: HelpComponent,
+      },
+    ],
+  },
+  {
+    path: 'admin', component: AdminComponent,
+    children: [
       {
         path: 'settings',
         component: ProfileComponent,

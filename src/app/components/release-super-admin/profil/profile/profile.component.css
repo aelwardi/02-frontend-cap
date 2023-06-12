@@ -5,6 +5,9 @@
 .profile-card {
   width: 80%;
   margin: 0 auto;
+  width: 75%;
+  padding: 10px auto;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -41,5 +44,9 @@ label {
 }
 
 .field mat-form-field {
+  width: 100%;
+}
+
+.save-btn-item {
   width: 100%;
 }

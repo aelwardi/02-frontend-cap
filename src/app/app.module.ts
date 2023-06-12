@@ -45,6 +45,9 @@ import { AdminAddEditComponent } from './components/release-super-admin/admin/ad
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProfileComponent } from './components/release-super-admin/profil/profile/profile.component';
+import { AdminComponent } from './components/release-admin/template/admin/admin.component';
+import { SidenavAdminComponent } from './components/release-admin/template/sidenav-admin/sidenav-admin.component';
+import { BodyAdminComponent } from './components/release-admin/template/body-admin/body-admin.component';
 
 
 
@@ -71,7 +74,10 @@ import { ProfileComponent } from './components/release-super-admin/profil/profil
     SuperAdminComponent,
     HomeComponent,
     AdminAddEditComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminComponent,
+    SidenavAdminComponent,
+    BodyAdminComponent
   ],
   imports: [
     BrowserModule,

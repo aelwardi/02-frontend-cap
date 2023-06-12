@@ -1,16 +1,17 @@
 export class SuperAdmin {
     constructor(
         public id: number,
-        public firstName: string = '',
-        public lastName: string = '',
-        public dateBirth: any = null,
-        public phone: string = '',
-        public sexe: string = '',
-        public photo: string = '',
-        public email: string = '',
-        public password: string = '',
-        public etat: boolean = false,
-        public role: string = ''
+        public firstName?: string,
+        public lastName?: string,
+        //public dateOfBirth: any = null,
+        public dateOfBirth?: Date,
+        public phone?: string,
+        public sexe?: string,
+        public photo?: any,
+        public email?: string,
+        public password?: string,
+        public etat?: boolean,
+        public role?: string
     ) { }
 
     toJSON() {
