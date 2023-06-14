@@ -48,6 +48,11 @@ import { ProfileComponent } from './components/release-super-admin/profil/profil
 import { AdminComponent } from './components/release-admin/template/admin/admin.component';
 import { SidenavAdminComponent } from './components/release-admin/template/sidenav-admin/sidenav-admin.component';
 import { BodyAdminComponent } from './components/release-admin/template/body-admin/body-admin.component';
+import { ListManagerComponent } from './components/release-admin/manager/list-manager/list-manager.component';
+import { AddBtnManagerComponent } from './components/release-admin/manager/add-btn-manager/add-btn-manager.component';
+import { SearchManagerComponent } from './components/release-admin/manager/search-manager/search-manager.component';
+import { ManagerAddEditComponent } from './components/release-admin/manager/manager-add-edit/manager-add-edit.component';
+import { ManagerDetailsComponent } from './components/release-admin/manager/manager-details/manager-details.component';
 
 
 
@@ -77,7 +82,12 @@ import { BodyAdminComponent } from './components/release-admin/template/body-adm
     ProfileComponent,
     AdminComponent,
     SidenavAdminComponent,
-    BodyAdminComponent
+    BodyAdminComponent,
+    ListManagerComponent,
+    AddBtnManagerComponent,
+    SearchManagerComponent,
+    ManagerAddEditComponent,
+    ManagerDetailsComponent
   ],
   imports: [
     BrowserModule,

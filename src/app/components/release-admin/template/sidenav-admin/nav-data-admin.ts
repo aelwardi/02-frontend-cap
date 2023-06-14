@@ -1,5 +1,10 @@
 export const navbarDataAdmin = [
     {
+        routeLink: 'managers',
+        icon: 'fa-solid fa-people-roof',
+        label: ['Manager']
+    },
+    {
         routeLink: 'settings',
         icon: 'fal fa-cog',
         label: ['Settings']

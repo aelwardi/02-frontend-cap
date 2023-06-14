@@ -7,6 +7,8 @@ import { HomeComponent } from './components/release-super-admin/homes/home/home.
 import { AdminsComponent } from './components/release-super-admin/admin/admins/admins.component';
 import { ProfileComponent } from './components/release-super-admin/profil/profile/profile.component';
 import { AdminComponent } from './components/release-admin/template/admin/admin.component';
+import { ListManagerComponent } from './components/release-admin/manager/list-manager/list-manager.component';
+import { ManagerDetailsComponent } from './components/release-admin/manager/manager-details/manager-details.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,18 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminComponent,
     children: [
+      {
+        path: 'managers',
+        component: ListManagerComponent,
+      },
+      {
+        path: 'managers/search/:keyword',
+        component: ListManagerComponent,
+      },
+      {
+        path: 'managers/details/:id',
+        component: ManagerDetailsComponent,
+      },
       {
         path: 'settings',
         component: ProfileComponent,

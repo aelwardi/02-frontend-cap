@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +14,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   templateUrl: './admin-add-edit.component.html',
   styleUrls: ['./admin-add-edit.component.css']
 })
-export class AdminAddEditComponent {
+export class AdminAddEditComponent implements OnInit {
 
   departements: any[] = [];
   password: string = '';
@@ -63,13 +63,13 @@ export class AdminAddEditComponent {
     }
 
     else {
-      const superAdmin = new SuperAdmin(1);
+      const superAdmin = new SuperAdmin(6);
       const json = JSON.stringify(superAdmin.toJSON());
       const adminData: Admin = {
         id: null,
         firstName: this.adminForm.value.firstName,
         lastName: this.adminForm.value.lastName,
-        DateBirth: this.adminForm.value.dateBirth,
+        DateBirth: this.adminForm.value.DateBirth,
         phone: this.adminForm.value.phone,
         sexe: this.adminForm.value.sexe,
         photo: 'assets/images/profile/placeholder.png',
@@ -78,12 +78,12 @@ export class AdminAddEditComponent {
         etat: true,
         role: 'ADMIN',
         departement: this.adminForm.value.departement,
-        superAdmin: json
+        superAdmin: superAdmin
       };
+      console.log(adminData);
       this.adminService.addAdmin(adminData).subscribe(
         response => {
           console.log('Admin added');
-          //console.log(adminData);
           this.dialogRef.close(true);
         },
         error => {

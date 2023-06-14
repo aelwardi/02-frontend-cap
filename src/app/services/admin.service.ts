@@ -14,6 +14,13 @@ export class AdminService {
   constructor(private httpClient: HttpClient,
     private tokenStorage: TokenStorageService
     ) { }
+    
+
+    getDepartementByAdmin(adminId: number) {
+      const url = `${this.baseUrl}/${adminId}/departements`;
+      return this.httpClient.get(url);
+    }
+
     getAdminList(): Observable<Admin[]> {
       return this.httpClient.get<Admin[]>(this.baseUrl);
   
