@@ -9,6 +9,8 @@ import { ProfileComponent } from './components/release-super-admin/profil/profil
 import { AdminComponent } from './components/release-admin/template/admin/admin.component';
 import { ListManagerComponent } from './components/release-admin/manager/list-manager/list-manager.component';
 import { ManagerDetailsComponent } from './components/release-admin/manager/manager-details/manager-details.component';
+import { ApprenantsComponent } from './components/release-admin/apprenant/apprenants/apprenants.component';
+import { ApprenantDetailsComponent } from './components/release-admin/apprenant/apprenant-details/apprenant-details.component';
 
 const routes: Routes = [
   {
@@ -54,6 +56,18 @@ const routes: Routes = [
       {
         path: 'managers/details/:id',
         component: ManagerDetailsComponent,
+      },
+      {
+        path: 'apprenants',
+        component: ApprenantsComponent,
+      },
+      {
+        path: 'apprenants/search-apprenant/:keyword',
+        component: ApprenantsComponent,
+      },
+      {
+        path: 'apprenants/details/:id',
+        component: ApprenantDetailsComponent,
       },
       {
         path: 'settings',
