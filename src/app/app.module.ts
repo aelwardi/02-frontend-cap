@@ -53,6 +53,11 @@ import { AddBtnManagerComponent } from './components/release-admin/manager/add-b
 import { SearchManagerComponent } from './components/release-admin/manager/search-manager/search-manager.component';
 import { ManagerAddEditComponent } from './components/release-admin/manager/manager-add-edit/manager-add-edit.component';
 import { ManagerDetailsComponent } from './components/release-admin/manager/manager-details/manager-details.component';
+import { ApprenantsComponent } from './components/release-admin/apprenant/apprenants/apprenants.component';
+import { AddBtnApprenantComponent } from './components/release-admin/apprenant/add-btn-apprenant/add-btn-apprenant.component';
+import { ApprenantAddEditComponent } from './components/release-admin/apprenant/apprenant-add-edit/apprenant-add-edit.component';
+import { ApprenantDetailsComponent } from './components/release-admin/apprenant/apprenant-details/apprenant-details.component';
+import { SearchApprenantComponent } from './components/release-admin/apprenant/search-apprenant/search-apprenant.component';
 
 
 
@@ -87,7 +92,13 @@ import { ManagerDetailsComponent } from './components/release-admin/manager/mana
     AddBtnManagerComponent,
     SearchManagerComponent,
     ManagerAddEditComponent,
-    ManagerDetailsComponent
+    ManagerDetailsComponent,
+    ApprenantsComponent,
+    ApprenantsComponent,
+    AddBtnApprenantComponent,
+    ApprenantAddEditComponent,
+    ApprenantDetailsComponent,
+    SearchApprenantComponent
   ],
   imports: [
     BrowserModule,
