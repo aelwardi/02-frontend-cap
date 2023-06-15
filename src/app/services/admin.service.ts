@@ -4,6 +4,7 @@ import { Admin } from '../common/admin';
 import { EMPTY, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TokenStorageService } from './token-storage.service';
+import { Manager } from '../common/manager';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,11 @@ export class AdminService {
     private tokenStorage: TokenStorageService
     ) { }
     
+
+    getManagerList(adminId: number): Observable<Manager[]> {
+      const managerAdminUrl = `${this.baseUrl}/${adminId}/managers`
+      return this.httpClient.get<Manager[]>(managerAdminUrl);
+    }
 
     getDepartementByAdmin(adminId: number) {
       const url = `${this.baseUrl}/${adminId}/departements`;

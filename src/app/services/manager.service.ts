@@ -23,9 +23,8 @@ export class ManagerService {
     return this.httpClient.post(this.baseUrl, theAdmin);
   }
   
-  searchManager(theKeyword: string): Observable<Manager[]> {
-    // need build URL based on the keyword
-    const searchUrl = `${this.baseUrl}/search?term=${theKeyword}`;
+  searchManager(adminId: number, theKeyword: string): Observable<Manager[]> {
+    const searchUrl = `${this.baseUrl}/search?adminId=${adminId}&term=${theKeyword}`;
     return this.httpClient.get<Manager[]>(searchUrl);
   }
 
@@ -36,7 +35,13 @@ export class ManagerService {
   }
 
   updateManager(id: number, theManager: any): Observable<any> {
-    console.log(theManager);
+    //console.log(theManager);
     return this.httpClient.put(`${this.baseUrl}/${id}`, theManager);
+  }
+
+  getManagerDetails(theAdminId: number ,theManagerId: number): Observable<Manager> {
+    // need to build URL based on product id
+    const managerUrl = `${this.baseUrl}/details?adminId=${theAdminId}&id=${theManagerId}`;
+    return this.httpClient.get<Manager>(managerUrl);
   }
 }

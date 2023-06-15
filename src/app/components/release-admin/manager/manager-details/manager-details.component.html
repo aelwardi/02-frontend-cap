@@ -1,1 +1,65 @@
-<p>manager-details works!</p>
+<h1>Profile Details</h1>
+<mat-card class="profile-card">
+    <mat-card-content>
+        <button mat-icon-button color="primary" routerLink="/admin/managers">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <form [formGroup]="detailsForm" class="profile-container">
+            <div class="profile-left">
+                <div class="profile-photo">
+                    <img [src]="manager?.photo ? 'data:image/jpeg;base64,' + manager.photo : '/assets/images/img-profil.jpg'"
+                        alt="Photo de profil" />
+                    <div class="department">{{ manager?.departement?.name }}</div>
+                </div>
+            </div>
+            <div class="profile-right">
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstName" readonly/>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName" readonly/>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>Date Birth</mat-label>
+                        <input matInput [matDatepicker]="datePicker" formControlName="dateBirth" readonly />
+                        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datePicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>Phone</mat-label>
+                        <input matInput formControlName="phone" readonly/>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-select placeholder="Genre" formControlName="sexe" required readonly>
+                            <mat-option value="M">Male</mat-option>
+                            <mat-option value="F">Female</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" readonly/>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>Active</mat-label>
+                        <input matInput formControlName="etat" readonly/>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
