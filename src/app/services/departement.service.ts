@@ -9,37 +9,101 @@ import { map } from 'rxjs/operators';
 })
 export class DepartementService {
 
-  private baseUrl = 'http://localhost:8080/api/departements';
-  constructor(private httpClient: HttpClient) { }
+  private baseUrl = 'http://localhost:8080/departements';
+  constructor(private httpClient: HttpClient,
+    //private tokenStorage: TokenStorageService
+    ) { }
 
+    getDepartementList(): Observable<Departement[]> {
+      return this.httpClient.get<Departement[]>(this.baseUrl);
+  
+    }
+/*
   getDepartementList(): Observable<Departement[]> {
-    return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
-      map(response => response._embedded.departements)
-    )
-  }
+
+    const token = this.tokenStorage.getTokenValue();
+    if (token) {
+      const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      const options = { headers };
+      //console.log(token);
+      return this.httpClient.get<GetResponse>(this.baseUrl, options).pipe(
+        map(response => response._embedded.departements)
+      )
+    }
+    else {
+      return EMPTY;
+    }
+  }*/
 
   searchDepartement(theKeyword: string): Observable<Departement[]> {
     // need build URL based on the keyword
     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
     return this.httpClient.get<GetResponse>(searchUrl).pipe(
-      map(reponse => reponse._embedded.departements)
-    );
+      map(response => response._embedded.departements)
+    )
+    /*
+    const token = this.tokenStorage.getTokenValue();
+
+    if (token) {
+      const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      const options = { headers };
+      //console.log(token);
+      return this.httpClient.get<GetResponse>(searchUrl, options).pipe(
+        map(response => response._embedded.departements)
+      )
+    }
+    else {
+      return EMPTY;
+    }*/
   }
 
 
-  addDepartement(theDepartement: Object): Observable<Object> {
-    console.log(theDepartement);
-    return this.httpClient.post('http://localhost:8080/api/departements', theDepartement);
+  addDepartement(theDepartement: any): Observable<any> {
+    return this.httpClient.post<GetResponse>(this.baseUrl, theDepartement);
+    /*
+    const token = this.tokenStorage.getTokenValue();
+    if (token) {
+      const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      const options = { headers };
+      //console.log(token);
+      return this.httpClient.post<GetResponse>(this.baseUrl, theDepartement, options);
+    }
+    else {
+      return EMPTY;
+    }*/
   }
 
   updateDepartement(id: number, theDepartement: any): Observable<any> {
-    return this.httpClient.put(`http://localhost:8080/api/departements/${id}`, theDepartement);
+    return this.httpClient.put(`${this.baseUrl}/${id}`, theDepartement);
+    /*
+    const token = this.tokenStorage.getTokenValue();
+    if (token) {
+      const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      const options = { headers };
+      //console.log(token);
+      return this.httpClient.put(`${this.baseUrl}/${id}`, theDepartement, options);
+    }
+    else {
+      return EMPTY;
+    }*/
   }
 
   deleteDepartement(id: number): Observable<any> {
     // need build URL based on the id
     const deleteUrl = `${this.baseUrl}/${id}`;
     return this.httpClient.delete(deleteUrl);
+    /*
+    const token = this.tokenStorage.getTokenValue();
+
+    if (token) {
+      const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      const options = { headers };
+      //console.log(token);
+      return this.httpClient.delete(deleteUrl, options);
+    }
+    else {
+      return EMPTY;
+    }*/
   }
 }
 

@@ -1,0 +1,30 @@
+<div>
+  <h2 class="text-center" mat-dialog-title>Sign in</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{errorMessage}}
+  </div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div mat-dialog-content>
+      <mat-form-field appearance="fill" class="flex">
+        <mat-icon matPrefix>person</mat-icon>
+        <input matInput placeholder="Enter your email..." type="email" formControlName="email" id="email">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="flex">
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput placeholder="Password" type="password" formControlName="password" id="password" type="password">
+      </mat-form-field>
+      <!--
+          <div class="remember-me">
+            <mat-checkbox [(ngModel)]="rememberMe" name="rememberMe" checkedcolor="accent" color="primary"></mat-checkbox>
+            <span class="remember-me-label">Remember me</span>
+          </div>
+          -->
+    </div>
+    <div mat-dialog-actions class="form-action">
+      <button mat-raised-button color="primary" class="cnx-btn" type="submit">Log in</button>
+    </div>
+  </form>
+  <!--
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+    -->
+</div>

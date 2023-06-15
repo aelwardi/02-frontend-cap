@@ -1,0 +1,65 @@
+<h1>Profile Details</h1>
+<mat-card class="profile-card">
+    <mat-card-content>
+        <form [formGroup]="profileForm" class="profile-container" (ngSubmit)="onFormSubmit()">
+            <div class="profile-left">
+                <div class="profile-photo" *ngIf="superAdmin || currentPhotoUrl">
+                    <img [src]="currentPhotoUrl ? currentPhotoUrl : 'data:image/jpeg;base64,' + superAdmin.photo"
+                        alt="Photo de profil" />
+                    <button mat-icon-button class="photo-button" (click)="uploadPhoto()" type="button">
+                        <mat-icon class="white-icon">camera_alt</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="profile-right">
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstName" />
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName" />
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>Date Birth</mat-label>
+                        <input matInput [matDatepicker]="datePicker" formControlName="dateOfBirth" />
+                        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datePicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>Phone</mat-label>
+                        <input matInput formControlName="phone" />
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-select placeholder="Genre" formControlName="sexe" required>
+                            <mat-option value="M">Male</mat-option>
+                            <mat-option value="F">Female</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" />
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field>
+                        <mat-label>État du compte</mat-label>
+                        <input matInput formControlName="etat" />
+                    </mat-form-field>
+                </div>
+                <button mat-raised-button color="primary" class="save-btn-item" type="submit">Save</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
