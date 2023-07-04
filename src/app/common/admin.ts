@@ -5,15 +5,15 @@ export class Admin {
         public id: any,
         public firstName?: string,
         public lastName?: string,
-        public DateBirth?: Date,
+        public dateBirth?: Date,
         public phone?: string,
         public sexe?: string,
-        public photo?: string,
+        public photo?: any,
         public email?: string,
         public password?: string,
         public etat?: boolean,
         public role?: string,
-        public departement?: Departement,
+        public departement?: any,
         public superAdmin?: any) {
     }
 

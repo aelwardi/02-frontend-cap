@@ -19,9 +19,10 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="DateBirth">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-label>Date Birth</mat-label>
+        <input matInput [matDatepicker]="datePicker" formControlName="dateBirth" readonly />
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>

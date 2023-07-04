@@ -1,0 +1,23 @@
+.large-icon-button {
+  width: 80px;
+  height: 80px;
+  padding: 0;
+}
+
+.large-icon-button .mat-icon {
+  transform: scale(3.5);
+}
+
+.large-icon-button-act .mat-icon {
+  transform: scale(2);
+}
+
+.icon-blue {
+  color: #0070AD;
+}
+
+.btn-add {
+  background-color: #0070AD;
+  border-radius: 8px;
+  color: #FFFFFF;
+}

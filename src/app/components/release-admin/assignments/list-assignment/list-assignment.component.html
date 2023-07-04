@@ -1,0 +1,83 @@
+<h1>Assignments</h1>
+<div class="card">
+    <div class="card-body">
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Manager Column -->
+                <ng-container matColumnDef="Manager">
+                    <th mat-header-cell *matHeaderCellDef> Manager </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.manager.firstName }} {{ element.manager.lastName
+                    }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Apprenants">
+                    <th mat-header-cell *matHeaderCellDef> List Apprenants </th>
+                    <td mat-cell *matCellDef="let element">
+                      <mat-select placeholder="List of apprenants...">
+                        <mat-option *ngFor="let apprenant of element.manager.apprenants" [value]="apprenant">
+                          <div class="apprenant-container">
+                            <span class="apprenant-name">{{ apprenant.firstName }} {{ apprenant.lastName }}</span>
+                            <span class="option-icons">
+                              <button mat-icon-button color="warn" (click)="deleteAssignment(apprenant.id, element.manager.id)">
+                                <mat-icon>delete</mat-icon>
+                              </button>
+                            </span>
+                          </div>
+                        </mat-option>
+                        <mat-option *ngIf="element.manager.apprenants.length === 0">No records found</mat-option>
+                      </mat-select>
+                    </td>
+                  </ng-container>
+                   
+                
+                <!-- Apprenants Column 
+                <ng-container matColumnDef="Apprenants">
+                    <th mat-header-cell *matHeaderCellDef> List Apprenants </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="custom-select">
+                            <select>
+                                <option>---------------</option>
+                                <option *ngFor="let apprenant of element.manager.apprenants" [value]="apprenant">
+                                    <span>
+                                        {{ apprenant.firstName }} {{ apprenant.lastName }}
+                                        <button mat-icon-button color="warn">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </span>
+                                </option>
+                                <option *ngIf="element.manager.apprenants.length === 0">No records found</option>
+                            </select>
+                            <div class="select-arrow"></div>
+                        </div>
+                    </td>
+                </ng-container>-->
+
+                 <!-- Action Colummn -->
+                 <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="primary" (click)="openAddAssignmentModal(element.manager)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <!--
+                        <button mat-icon-button color="warn">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        -->
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <!-- if assignment empty the display a message -->
+            <div *ngIf="noRecordsFound" class="not-found-message">
+                <p>Not found record....</p>
+            </div>
+            <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

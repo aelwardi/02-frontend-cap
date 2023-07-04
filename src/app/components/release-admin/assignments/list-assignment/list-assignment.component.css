@@ -1,0 +1,10 @@
+.apprenant-container {
+  display: flex;
+  align-items: center;
+}
+
+.option-icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

@@ -17,6 +17,11 @@ export class AdminService {
     private tokenStorage: TokenStorageService
   ) { }
 
+  getAdmin(theAdminId: number): Observable<Admin> {
+    // need to build URL based on product id
+    const adminUrl = `${this.baseUrl}/${theAdminId}`;
+    return this.httpClient.get<Admin>(adminUrl);
+  }
 
   getManagerList(adminId: number): Observable<Manager[]> {
     const managerAdminUrl = `${this.baseUrl}/${adminId}/managers`

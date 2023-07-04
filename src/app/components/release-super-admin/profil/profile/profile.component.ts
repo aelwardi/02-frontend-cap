@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
 
   handleSuperAdminDetails() {
 
-    const theSuperAdminId: number = +6;
+    const theSuperAdminId: number = +1;
 
     this.superAdminService.getSuperAdmin(theSuperAdminId).subscribe(
       data => {
@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit {
         this.superAdmin.dateOfBirth = this.profileForm.value.dateOfBirth;
         this.superAdmin.phone = this.profileForm.value.phone;
         this.superAdmin.sexe = this.profileForm.value.sexe;
-        this.superAdmin.photo = this.profileForm.value.photo.substring(this.profileForm.value.photo.indexOf(',') + 1);;
+        this.superAdmin.photo = this.profileForm.value.photo.substring(this.profileForm.value.photo.indexOf(',') + 1);
         //console.log(this.superAdmin.photo);
         
         this.superAdminService.updateSuperAdmin(this.superAdmin.id, this.superAdmin).subscribe(
