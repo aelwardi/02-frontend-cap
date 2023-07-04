@@ -8,7 +8,7 @@ export class Apprenant {
     public DateBirth?: Date,
     public phone?: string,
     public sexe?: string,
-    public photo?: string,
+    public photo?: any,
     public email?: string,
     public password?: string,
     public etat?: boolean,
