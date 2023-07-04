@@ -58,6 +58,7 @@ import { AddBtnApprenantComponent } from './components/release-admin/apprenant/a
 import { ApprenantAddEditComponent } from './components/release-admin/apprenant/apprenant-add-edit/apprenant-add-edit.component';
 import { ApprenantDetailsComponent } from './components/release-admin/apprenant/apprenant-details/apprenant-details.component';
 import { SearchApprenantComponent } from './components/release-admin/apprenant/search-apprenant/search-apprenant.component';
+import { AdminDetailsComponent } from './components/release-super-admin/admin/admin-details/admin-details.component';
 
 
 
@@ -98,7 +99,8 @@ import { SearchApprenantComponent } from './components/release-admin/apprenant/s
     AddBtnApprenantComponent,
     ApprenantAddEditComponent,
     ApprenantDetailsComponent,
-    SearchApprenantComponent
+    SearchApprenantComponent,
+    AdminDetailsComponent
   ],
   imports: [
     BrowserModule,

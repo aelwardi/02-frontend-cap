@@ -118,6 +118,12 @@ getAdminList(): Observable<Admin[]> {
     return this.httpClient.delete(deleteUrl);
   }*/
 
+  getAdminDetails(theAdminId: number): Observable<Admin> {
+    const adminUrl = `${this.baseUrl}/details?theId=${theAdminId}`;
+    return this.httpClient.get<Admin>(adminUrl);
+  }
+
+
 }
 
 interface GetResponse {

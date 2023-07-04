@@ -11,6 +11,7 @@ import { ListManagerComponent } from './components/release-admin/manager/list-ma
 import { ManagerDetailsComponent } from './components/release-admin/manager/manager-details/manager-details.component';
 import { ApprenantsComponent } from './components/release-admin/apprenant/apprenants/apprenants.component';
 import { ApprenantDetailsComponent } from './components/release-admin/apprenant/apprenant-details/apprenant-details.component';
+import { AdminDetailsComponent } from './components/release-super-admin/admin/admin-details/admin-details.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'admins/search/:keyword',
         component: AdminsComponent,
+      },
+      {
+        path: 'admins/details/:id',
+        component: AdminDetailsComponent,
       },
       {
         path: 'settings',
