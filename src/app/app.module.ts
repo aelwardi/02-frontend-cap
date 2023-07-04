@@ -34,6 +34,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoginPageComponent } from './components/release-super-admin/homes/login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { HelpComponent } from './components/release-super-admin/helps/help/help.component';
 import { SuperAdminComponent } from './components/release-super-admin/template/super-admin/super-admin.component';
@@ -58,8 +59,19 @@ import { AddBtnApprenantComponent } from './components/release-admin/apprenant/a
 import { ApprenantAddEditComponent } from './components/release-admin/apprenant/apprenant-add-edit/apprenant-add-edit.component';
 import { ApprenantDetailsComponent } from './components/release-admin/apprenant/apprenant-details/apprenant-details.component';
 import { SearchApprenantComponent } from './components/release-admin/apprenant/search-apprenant/search-apprenant.component';
-
-
+import { ListAssignmentComponent } from './components/release-admin/assignments/list-assignment/list-assignment.component';
+import { AssignmentAddComponent } from './components/release-admin/assignments/assignment-add/assignment-add.component';
+import { ProfilComponent } from './components/release-admin/profil/profil/profil.component';
+import { NavBarComponent } from './components/release-manager/template/nav-bar/nav-bar.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
+import { ManagerComponent } from './components/release-manager/template/manager/manager.component';
+import { BannerComponent } from './components/release-manager/template/banner/banner.component';
+import { BodyManagerComponent } from './components/release-manager/template/body-manager/body-manager.component';
+import { ListProjetComponent } from './components/release-manager/projects/list-projet/list-projet.component';
+import { AddEditProjectComponent } from './components/release-manager/projects/add-edit-project/add-edit-project.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -98,7 +110,16 @@ import { SearchApprenantComponent } from './components/release-admin/apprenant/s
     AddBtnApprenantComponent,
     ApprenantAddEditComponent,
     ApprenantDetailsComponent,
-    SearchApprenantComponent
+    SearchApprenantComponent,
+    ListAssignmentComponent,
+    AssignmentAddComponent,
+    ProfilComponent,
+    NavBarComponent,
+    ManagerComponent,
+    BannerComponent,
+    BodyManagerComponent,
+    ListProjetComponent,
+    AddEditProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -113,6 +134,7 @@ import { SearchApprenantComponent } from './components/release-admin/apprenant/s
     MatIconModule,
     MatButtonModule,
     MatSelectModule,
+    NgSelectModule,
     MatDatepickerModule,
     MatDialogModule,
     MatNativeDateModule,
@@ -123,7 +145,11 @@ import { SearchApprenantComponent } from './components/release-admin/apprenant/s
     MatCheckboxModule,
     NgxExtendedPdfViewerModule,
     MatStepperModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule,
+    MatBadgeModule,
+    MatGridListModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

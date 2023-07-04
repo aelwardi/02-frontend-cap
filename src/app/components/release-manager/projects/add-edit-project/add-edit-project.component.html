@@ -1,0 +1,56 @@
+<mat-card [formGroup]="projectForm">
+    <mat-card-header>
+        <mat-card-title>{{ data ? 'Edit' : 'Add new' }} Project</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="image-upload" (click)="uploadPhoto()">
+            <ng-container *ngIf="currentPhotoUrl">
+                <div class="image-container d-flex align-items-center justify-content-center">
+                    <img [src]="currentPhotoUrl" alt="Entreprise Image" class="img-fluid">
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!currentPhotoUrl">
+                <mat-icon>filter</mat-icon>
+                <div>Add an illustrative image</div>
+            </ng-container>
+        </div>
+
+        <!-- Champ pour le nom du projet -->
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Project Name</mat-label>
+                <mat-icon matPrefix>create</mat-icon>
+                <input matInput placeholder="Enter project name" formControlName="name" required>
+            </mat-form-field>
+        </div>
+
+        <!-- Champ pour le nom du client -->
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Client Name</mat-label>
+                <mat-icon matPrefix>create</mat-icon>
+                <input matInput placeholder="Enter client name" formControlName="nameClient" required>
+            </mat-form-field>
+        </div>
+        <!-- Champ pour la description -->
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Description
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{panelOpenState ? 'open' : 'closed'}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field class="example-full-width">
+                <mat-label>Write a description of project</mat-label>
+                <textarea matInput placeholder="..." formControlName="description"></textarea>
+            </mat-form-field>
+        </mat-expansion-panel>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button   class="submit-button"  (click)="onFormSubmit()">
+            {{ data ? 'Update' : 'Submit' }}
+        </button>
+    </mat-card-actions>
+</mat-card>

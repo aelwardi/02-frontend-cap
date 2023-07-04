@@ -4,7 +4,11 @@
         <form [formGroup]="profileForm" class="profile-container" (ngSubmit)="onFormSubmit()">
             <div class="profile-left">
                 <div class="profile-photo" *ngIf="superAdmin || currentPhotoUrl">
-                    <img [src]="currentPhotoUrl ? currentPhotoUrl : 'data:image/jpeg;base64,' + superAdmin.photo"
+                    <!--
+                    <img [src]="superAdmin?.photo ? 'data:image/jpeg;base64,' + superAdmin.photo : '/assets/images/img-profil.jpg'"
+                            alt="Photo de profil" />
+                            -->
+                    <img [src]="currentPhotoUrl ? currentPhotoUrl : (superAdmin?.photo ? 'data:image/jpeg;base64,' + superAdmin.photo : '/assets/images/img-profil.jpg')"
                         alt="Photo de profil" />
                     <button mat-icon-button class="photo-button" (click)="uploadPhoto()" type="button">
                         <mat-icon class="white-icon">camera_alt</mat-icon>

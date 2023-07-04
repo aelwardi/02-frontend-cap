@@ -73,7 +73,7 @@ export class ApprenantAddEditComponent {
         DateBirth: this.apprenantForm.value.dateBirth,
         phone: this.apprenantForm.value.phone,
         sexe: this.apprenantForm.value.sexe,
-        photo: 'assets/images/profile/placeholder.png',
+        photo: null,
         email: this.apprenantForm.value.email,
         password: this.apprenantForm.value.password,
         etat: true,

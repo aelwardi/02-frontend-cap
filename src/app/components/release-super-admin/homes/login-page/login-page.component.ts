@@ -42,7 +42,10 @@ export class LoginPageComponent implements OnInit {
 
   }
 
-  submit() {/*
+  submit() {
+    this.dialogRef.close(true);
+    this.router.navigateByUrl(`super-admin/departements`);
+    /*
     if (this.form.status === 'VALID') {
       
       this.authService.login(this.form.controls['email'].value, this.form.controls['password'].value).subscribe(

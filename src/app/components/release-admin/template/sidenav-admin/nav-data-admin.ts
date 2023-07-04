@@ -10,6 +10,11 @@ export const navbarDataAdmin = [
     label: ['Apprenants']
   },
   {
+    routeLink: 'assignments',
+    icon: 'fas fa-tasks',
+    label: ['Assignment']
+  },
+  {
     routeLink: 'settings',
     icon: 'fal fa-cog',
     label: ['Settings']

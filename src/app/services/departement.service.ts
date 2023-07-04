@@ -3,6 +3,7 @@ import { Departement } from '../common/departement';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Projet } from '../common/projet';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class DepartementService {
     getDepartementList(): Observable<Departement[]> {
       return this.httpClient.get<Departement[]>(this.baseUrl);
   
+    }
+
+    getProjetsByDepartement(depId: number): Observable<Projet[]> {
+      const urlProjects = `${this.baseUrl}/${depId}/projets`;
+      return this.httpClient.get<Projet[]>(urlProjects);
     }
 /*
   getDepartementList(): Observable<Departement[]> {
