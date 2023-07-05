@@ -14,8 +14,8 @@ import { MatDialog } from '@angular/material/dialog';
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
   superAdmin!: SuperAdmin;
-  photoFile: File | undefined;
-  currentPhotoUrl: string | undefined;
+  photoFile!: File | null;
+  currentPhotoUrl!: string | null;
 
   constructor(
     private dialog: MatDialog,

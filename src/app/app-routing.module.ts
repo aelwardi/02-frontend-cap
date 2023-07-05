@@ -16,6 +16,7 @@ import { ProfilComponent } from './components/release-admin/profil/profil/profil
 import { NavBarComponent } from './components/release-manager/template/nav-bar/nav-bar.component';
 import { ManagerComponent } from './components/release-manager/template/manager/manager.component';
 import { ListProjetComponent } from './components/release-manager/projects/list-projet/list-projet.component';
+import { ProfilManagerComponent } from './components/release-manager/profil/profil-manager/profil-manager.component';
 
 const routes: Routes = [
   {
@@ -98,6 +99,10 @@ const routes: Routes = [
       {
         path: 'projects/search/:keyword',
         component: ListProjetComponent,
+      },
+      {
+        path: 'settings',
+        component: ProfilManagerComponent,
       }
     ],
   },

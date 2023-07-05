@@ -72,6 +72,7 @@ import { ListProjetComponent } from './components/release-manager/projects/list-
 import { AddEditProjectComponent } from './components/release-manager/projects/add-edit-project/add-edit-project.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ProfilManagerComponent } from './components/release-manager/profil/profil-manager/profil-manager.component';
 
 
 @NgModule({
@@ -119,7 +120,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     BannerComponent,
     BodyManagerComponent,
     ListProjetComponent,
-    AddEditProjectComponent
+    AddEditProjectComponent,
+    ProfilManagerComponent
   ],
   imports: [
     BrowserModule,

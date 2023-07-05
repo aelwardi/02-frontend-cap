@@ -8,7 +8,7 @@
                     <img [src]="superAdmin?.photo ? 'data:image/jpeg;base64,' + superAdmin.photo : '/assets/images/img-profil.jpg'"
                             alt="Photo de profil" />
                             -->
-                    <img [src]="currentPhotoUrl ? currentPhotoUrl : (admin?.photo ? 'data:image/jpeg;base64,' + admin.photo : '/assets/images/img-profil.jpg')"
+                    <img [src]="currentPhotoUrl ? currentPhotoUrl : (admin.photo ? 'data:image/jpeg;base64,' + admin.photo : '/assets/images/img-profil.jpg')"
                         alt="Photo de profil" />
                     <button mat-icon-button class="photo-button" (click)="uploadPhoto()" type="button">
                         <mat-icon class="white-icon">camera_alt</mat-icon>
