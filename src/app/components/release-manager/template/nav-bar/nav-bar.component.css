@@ -52,8 +52,9 @@ mat-toolbar
 :host * {
   color: #0070AD;
 }
-
-
+.profil img{
+  transform: scale(1.8);
+}
 /*
 .search-field {
   display: flex;

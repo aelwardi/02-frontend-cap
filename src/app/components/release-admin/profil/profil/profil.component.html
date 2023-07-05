@@ -1,21 +1,17 @@
-<h1>Profile Details</h1>
-<mat-card class="profile-card">
-    <mat-card-content>
-        <form [formGroup]="profileForm" class="profile-container" (ngSubmit)="onFormSubmit()">
-            <div class="profile-left">
+<h1>Profil Details</h1>
+<mat-card>
+    <mat-card-content class="mb-3">
+        <form [formGroup]="profileForm" class="row no-gutters" [ngClass]="{'vertical-layout d-flex align-items-center justify-content-center': isMobile}" (ngSubmit)="onFormSubmit()">
+            <div class="col-md-3 col-6 mb-4">
                 <div class="profile-photo" *ngIf="admin || currentPhotoUrl">
-                    <!--
-                    <img [src]="superAdmin?.photo ? 'data:image/jpeg;base64,' + superAdmin.photo : '/assets/images/img-profil.jpg'"
-                            alt="Photo de profil" />
-                            -->
-                    <img [src]="currentPhotoUrl ? currentPhotoUrl : (admin?.photo ? 'data:image/jpeg;base64,' + admin.photo : '/assets/images/img-profil.jpg')"
-                        alt="Photo de profil" />
+                    <img [src]="currentPhotoUrl ? currentPhotoUrl : (admin.photo ? 'data:image/jpeg;base64,' + admin.photo : '/assets/images/img-profil.jpg')"
+                        alt="Photo de profil"  class="img-fluid" />
                     <button mat-icon-button class="photo-button" (click)="uploadPhoto()" type="button">
                         <mat-icon class="white-icon">camera_alt</mat-icon>
                     </button>
                 </div>
             </div>
-            <div class="profile-right">
+            <div class="col-md-9">
                 <div class="field">
                     <mat-form-field>
                         <mat-label>Name</mat-label>

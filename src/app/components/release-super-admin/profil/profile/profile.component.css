@@ -1,26 +1,8 @@
-.profile-container {
-  display: flex;
-}
-
-.profile-card {
-  width: 80%;
-  margin: 0 auto;
-  width: 75%;
-  padding: 10px auto;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-
-.profile-left {
-  width: 25%;
-}
-
 .profile-photo {
   position: relative;
 }
 
 .profile-photo img {
-  width: 80%;
   border-radius: 50%;
 }
 
@@ -34,10 +16,6 @@
   font-size: 24px;
 }
 
-.profile-right {
-  width: 75%;
-}
-
 label {
   display: inline-block;
   width: 120px;
@@ -49,4 +27,15 @@ label {
 
 .save-btn-item {
   width: 100%;
+  background-color: #0070AD;
+  color: #FFFFFF;
+}
+
+.vertical-layout {
+  flex-direction: column;
+  .save-btn-item {
+   width: 100%;
+   background-color: #0070AD;
+   color: #FFFFFF;
+ }
 }
