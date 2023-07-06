@@ -58,6 +58,8 @@ export class ListProjetComponent implements OnInit {
       this.projetService.searchProjects(theKeyword, this.departementid).subscribe(
         data => {
           this.projets = data;
+          this.projects = data.slice(0, 3);
+          this.initializePaginator();
         },
         error => {
           console.log(error);
@@ -90,7 +92,7 @@ export class ListProjetComponent implements OnInit {
     this.paginator.pageSize = 3; // Nombre d'éléments par page
     this.paginator.pageIndex = 0; // Page actuelle (commence à 0)
     this.paginator.length = this.projets.length; // Nombre total d'éléments
-  
+
     this.paginator.page.subscribe(() => {
       // Lorsque l'utilisateur change de page
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;

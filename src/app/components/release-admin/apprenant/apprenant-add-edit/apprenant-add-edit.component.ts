@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +14,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   templateUrl: './apprenant-add-edit.component.html',
   styleUrls: ['./apprenant-add-edit.component.css']
 })
-export class ApprenantAddEditComponent {
+export class ApprenantAddEditComponent implements OnInit {
 
   departements: any[] = [];
   password: string = '';
