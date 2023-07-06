@@ -59,11 +59,7 @@ import { AddBtnApprenantComponent } from './components/release-admin/apprenant/a
 import { ApprenantAddEditComponent } from './components/release-admin/apprenant/apprenant-add-edit/apprenant-add-edit.component';
 import { ApprenantDetailsComponent } from './components/release-admin/apprenant/apprenant-details/apprenant-details.component';
 import { SearchApprenantComponent } from './components/release-admin/apprenant/search-apprenant/search-apprenant.component';
-<<<<<<< HEAD
-import { AdminDetailsComponent } from './components/release-super-admin/admin/admin-details/admin-details.component';
 
-
-=======
 import { ListAssignmentComponent } from './components/release-admin/assignments/list-assignment/list-assignment.component';
 import { AssignmentAddComponent } from './components/release-admin/assignments/assignment-add/assignment-add.component';
 import { ProfilComponent } from './components/release-admin/profil/profil/profil.component';
@@ -77,7 +73,7 @@ import { ListProjetComponent } from './components/release-manager/projects/list-
 import { AddEditProjectComponent } from './components/release-manager/projects/add-edit-project/add-edit-project.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
->>>>>>> 48f41a9944d24aa2a4dbfb63c123ae9a90937d9a
+
 
 
 @NgModule({
@@ -117,9 +113,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ApprenantAddEditComponent,
     ApprenantDetailsComponent,
     SearchApprenantComponent,
-<<<<<<< HEAD
-    AdminDetailsComponent
-=======
+
+    AdminDetailsComponent,
+
     ListAssignmentComponent,
     AssignmentAddComponent,
     ProfilComponent,
@@ -129,7 +125,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
     BodyManagerComponent,
     ListProjetComponent,
     AddEditProjectComponent
->>>>>>> 48f41a9944d24aa2a4dbfb63c123ae9a90937d9a
   ],
   imports: [
     BrowserModule,
