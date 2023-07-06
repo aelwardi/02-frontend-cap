@@ -65,7 +65,7 @@ export class ApprenantsComponent implements OnInit {
   }
 
   handleListApprenant() {
-    this.adminService.getApprenantList(1).subscribe(
+    this.adminService.getApprenantList(2).subscribe(
       data => {
         this.apprenents = data;
         this.dataSource = new MatTableDataSource(data);

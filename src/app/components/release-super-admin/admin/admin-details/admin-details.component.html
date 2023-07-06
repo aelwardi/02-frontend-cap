@@ -7,9 +7,9 @@
     <form [formGroup]="detailsForm" class="profile-container">
       <div class="profile-left">
         <div class="profile-photo">
-          <img [src]="admin?.photo ? 'data:image/jpeg;base64,' + admin.photo : '/assets/images/img-profil.jpg'"
+          <img [src]="admin.photo ? 'data:image/jpeg;base64,' + admin.photo : '/assets/images/img-profil.jpg'"
             alt="Photo de profil" />
-          <div class="departement">{{ admin?.departement?.name }}</div>
+          <div class="departement">{{ admin.departement!.name }}</div>
         </div>
       </div>
       <div class="profile-right">

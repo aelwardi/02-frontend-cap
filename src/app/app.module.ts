@@ -72,10 +72,8 @@ import { ListProjetComponent } from './components/release-manager/projects/list-
 import { AddEditProjectComponent } from './components/release-manager/projects/add-edit-project/add-edit-project.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ProfilManagerComponent } from './components/release-manager/profil/profil-manager/profil-manager.component';
 import { AdminDetailsComponent } from './components/release-super-admin/admin/admin-details/admin-details.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -88,6 +86,7 @@ import { AdminDetailsComponent } from './components/release-super-admin/admin/ad
     ConfirmDialogComponent,
     DepartementAddEditComponent,
     AdminsComponent,
+    AdminDetailsComponent,
     AddBtnAdminComponent,
     SearchAdminComponent,
     ToolbarComponent,
@@ -114,7 +113,6 @@ import { AdminDetailsComponent } from './components/release-super-admin/admin/ad
     ApprenantAddEditComponent,
     ApprenantDetailsComponent,
     SearchApprenantComponent,
-    AdminDetailsComponent,
     ListAssignmentComponent,
     AssignmentAddComponent,
     ProfilComponent,
@@ -123,13 +121,11 @@ import { AdminDetailsComponent } from './components/release-super-admin/admin/ad
     BannerComponent,
     BodyManagerComponent,
     ListProjetComponent,
-    AddEditProjectComponent
+    AddEditProjectComponent,
+    ProfilManagerComponent
   ],
   imports: [
-    NgModule,
     BrowserModule,
-    AppRoutingModule,
-    AppComponent,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,

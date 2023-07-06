@@ -63,7 +63,7 @@ export class AdminAddEditComponent implements OnInit {
     }
 
     else {
-      const superAdmin = new SuperAdmin(6);
+      const superAdmin = new SuperAdmin(1);
       const json = JSON.stringify(superAdmin.toJSON());
       const adminData: Admin = {
         id: null,
