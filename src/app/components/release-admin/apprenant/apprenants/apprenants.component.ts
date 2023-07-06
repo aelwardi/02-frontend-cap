@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Apprenant } from 'src/app/common/apprenant';
 import { ApprenantService } from 'src/app/services/apprenant.service';
 import { ApprenantAddEditComponent } from '../apprenant-add-edit/apprenant-add-edit.component';
+import { AdminService } from 'src/app/services/admin.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class ApprenantsComponent implements OnInit {
   constructor(private apprenantService: ApprenantService,
     private dialog: MatDialog,
     private route: ActivatedRoute,
+    private adminService: AdminService,
     private router: Router) {
   }
 
@@ -63,7 +65,7 @@ export class ApprenantsComponent implements OnInit {
   }
 
   handleListApprenant() {
-    this.apprenantService.getApprenantList().subscribe(
+    this.adminService.getApprenantList(1).subscribe(
       data => {
         this.apprenents = data;
         this.dataSource = new MatTableDataSource(data);

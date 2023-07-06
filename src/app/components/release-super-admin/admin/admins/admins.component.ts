@@ -14,7 +14,7 @@ import { AdminAddEditComponent } from '../admin-add-edit/admin-add-edit.componen
 })
 export class AdminsComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'details' , 'action'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'details', 'action'];
   admins: Admin[] = [];
   searchMode: boolean = false;
   dataSource!: MatTableDataSource<any>;
@@ -70,7 +70,7 @@ export class AdminsComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       }
     )
-  } 
+  }
 
   openEditAdminModal(data: any): void {
     this.dialog.open(AdminAddEditComponent, {
@@ -80,6 +80,6 @@ export class AdminsComponent implements OnInit {
   }
 
   redirectToDetails(id: number) {
-    this.router.navigate(['/details', id]);
+    this.router.navigate(['super-admin/admins/details', id]);
   }
 }

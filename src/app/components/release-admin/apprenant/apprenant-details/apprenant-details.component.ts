@@ -34,11 +34,11 @@ export class ApprenantDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
-      this.handleManagerDetails();
+      this.handleApprenantDetails();
     })
   }
 
-  handleManagerDetails() {
+  handleApprenantDetails() {
 
     const theAdminId: number = +2;
     const theApprenantId: number = +this.route.snapshot.paramMap.get('id')!;
