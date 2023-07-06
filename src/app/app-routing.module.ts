@@ -11,15 +11,17 @@ import { ListManagerComponent } from './components/release-admin/manager/list-ma
 import { ManagerDetailsComponent } from './components/release-admin/manager/manager-details/manager-details.component';
 import { ApprenantsComponent } from './components/release-admin/apprenant/apprenants/apprenants.component';
 import { ApprenantDetailsComponent } from './components/release-admin/apprenant/apprenant-details/apprenant-details.component';
-<<<<<<< HEAD
+
 import { AdminDetailsComponent } from './components/release-super-admin/admin/admin-details/admin-details.component';
-=======
+
 import { ListAssignmentComponent } from './components/release-admin/assignments/list-assignment/list-assignment.component';
 import { ProfilComponent } from './components/release-admin/profil/profil/profil.component';
 import { NavBarComponent } from './components/release-manager/template/nav-bar/nav-bar.component';
 import { ManagerComponent } from './components/release-manager/template/manager/manager.component';
 import { ListProjetComponent } from './components/release-manager/projects/list-projet/list-projet.component';
->>>>>>> 48f41a9944d24aa2a4dbfb63c123ae9a90937d9a
+
+import { ProfilManagerComponent } from './components/release-manager/profil/profil-manager/profil-manager.component';
+
 
 const routes: Routes = [
   {
@@ -106,6 +108,10 @@ const routes: Routes = [
       {
         path: 'projects/search/:keyword',
         component: ListProjetComponent,
+      },
+      {
+        path: 'settings',
+        component: ProfilManagerComponent,
       }
     ],
   },

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -16,6 +16,17 @@ export class ProfilComponent implements OnInit {
   admin!: Admin;
   photoFile: File | undefined;
   currentPhotoUrl: string | undefined;
+  isMobile = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  checkScreenSize() {
+    this.isMobile = window.innerWidth < 768; // Modifier la valeur de 768 selon votre besoin
+  }
+
 
   constructor(
     private dialog: MatDialog,
