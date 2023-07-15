@@ -1,0 +1,41 @@
+.profile-photo {
+  position: relative;
+}
+
+.profile-photo img {
+  border-radius: 50%;
+}
+
+.photo-button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 24px;
+}
+
+label {
+  display: inline-block;
+  width: 120px;
+}
+
+.field mat-form-field {
+  width: 100%;
+}
+
+.save-btn-item {
+  width: 100%;
+  background-color: #0070AD;
+  color: #FFFFFF;
+}
+
+.vertical-layout {
+  flex-direction: column;
+  .save-btn-item {
+   width: 100%;
+   background-color: #0070AD;
+   color: #FFFFFF;
+ }
+}

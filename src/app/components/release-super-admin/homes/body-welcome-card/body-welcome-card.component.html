@@ -1,0 +1,14 @@
+<div fxLayout="row" fxLayoutGap="100">
+    <mat-card class="card-height" *ngFor="let card of cardsData" fxFlex="50">
+        <div class="circle">
+            <img class="logo" [src]="card.ico" alt="Logo" />
+        </div>
+        <mat-card-title [matTooltip]="card.title" [title]="card.title">
+            {{ card.title }}
+        </mat-card-title>
+        <mat-card-content [matTooltip]="card.paragraph" [title]="card.paragraph">
+            {{ card.paragraph }}
+        </mat-card-content>
+    </mat-card>
+</div>
+<div class="fouter-rights">© 2023 Inc. All rights reserved.</div>

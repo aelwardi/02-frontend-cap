@@ -1,0 +1,24 @@
+.body {
+    height: 100vh;
+    z-index: 0;
+    position: relative;
+    transition: all .5s ease;
+    padding: 3rem;
+
+    margin-top: 2rem;
+    background-image: url('/assets/images/background/bg-02.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+
+}
+.content-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px;
+  }

@@ -1,0 +1,15 @@
+.banner {
+    background-color: #0070AD;
+    color: white;
+    padding: 20px; /* Ajoutez un padding si nécessaire pour l'espace autour du contenu */
+  }
+  
+  .banner h1 {
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  .banner p {
+    font-size: 16px;
+  }
+  

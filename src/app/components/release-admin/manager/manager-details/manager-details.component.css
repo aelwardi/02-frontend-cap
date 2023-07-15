@@ -1,0 +1,62 @@
+.profile-container {
+    display: flex;
+  }
+  
+  .profile-card {
+    width: 80%;
+    margin: 0 auto;
+    width: 75%;
+    padding: 10px auto;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  .profile-left {
+    width: 25%;
+    text-align: center;
+  }
+  
+  .profile-photo {
+    position: relative;
+  }
+  
+  .profile-photo img {
+    width: 80%;
+    border-radius: 50%;
+  }
+  
+  .photo-button {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 24px;
+  }
+  
+  .profile-right {
+    width: 75%;
+  }
+  
+  label {
+    display: inline-block;
+    width: 120px;
+  }
+  
+  .field mat-form-field {
+    width: 100%;
+  }
+  
+  .save-btn-item {
+    width: 100%;
+  }
+
+  .department {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

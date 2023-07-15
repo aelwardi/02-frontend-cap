@@ -1,0 +1,21 @@
+<h2 mat-dialog-title> Add new Assignment</h2>
+<form [formGroup]="assignmentForm" (ngSubmit)="onFormSubmit()" >
+    <div mat-dialog-content>
+        <mat-form-field>
+            <mat-label> Manager </mat-label>
+            <mat-icon matPrefix>create</mat-icon>
+            <input matInput type="text" [value]="getManagerName()" required readonly/>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label> Apprenants </mat-label>
+            <mat-select name="apprenant" formControlName="apprenant">
+              <mat-option *ngFor="let apprenant of apprenants" [value]="apprenant">
+                {{ apprenant.firstName }} {{ apprenant.lastName }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="mat-dialog-actions-align-end">
+        <button mat-raised-button color="primary" type="submit" [disabled]="assignmentForm.invalid"> Submit </button>
+    </div>
+</form>

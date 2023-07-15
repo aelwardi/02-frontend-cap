@@ -1,0 +1,144 @@
+.content {
+  position: absolute;
+  top: 65px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+
+}
+
+.content-mob {
+  position: absolute;
+  top: 113px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+
+}
+
+.example-card {
+  max-width: 320px;
+  margin: 0px 5px 5px 0px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+mat-drawer {
+
+  position: fixed;
+  background-color: rgb(236, 236, 236);
+}
+
+.example-sidenav-content:first-child {
+  margin: 10px 5px 5px 5px;
+}
+
+.list-width {
+  width: 200px;
+
+}
+
+.list-item:hover {
+  background-color: rgba(83, 83, 83, 0.178);
+  cursor: pointer;
+}
+
+.add-card {
+  display: flex;
+  justify-content: center;
+  /* margin-bottom: 100px; */
+  /* Comment or adjust this line */
+}
+
+.course-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+mat-card {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.add-card-container {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.plus-icon {
+  font-size: 50px;
+
+}
+
+project-name {
+  align-items: center;
+}
+
+
+
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  align-items: center;
+}
+
+.mdc-card__actions {
+  flex-direction: row-reverse;
+}
+
+.btn-primary {
+  background-color: #0070AD;
+}
+
+.h1,
+h1 {
+  text-align: center;
+  font-style: bold;
+}
+
+.example-card {
+  margin: 20px;
+  width: 500px;
+  height: 190px;
+}
+
+.card-image {
+  /* display: block; */
+  margin: 0 auto;
+  width: 140px;
+  height: 140px;
+
+}
+
+.center-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 315px;
+  height: 180px;
+}
+
+menu-item {
+  flex-direction: row-reverse;
+}
+
+.custom-menu {
+  transform-origin: top right;
+  right: 0;
+}
+
+.menu-item {
+  position: absolute;
+  left: 273px;
+  top: 10px;
+}
+
+.btn-custom {
+  margin-right: 14px;
+}

@@ -1,0 +1,97 @@
+<mat-toolbar class="bg-white container">
+    <div *ngIf="!showSearchBar">
+        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isHandset$ | async">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+
+    <a mat-toolbar-row class="navbar-brand mt-2 mt-lg-0" href="#" *ngIf="!showSearchBar">
+        <img src="assets/images/logos/capLogol.png" height="50" alt="Cap Logo" loading="lazy" />
+    </a>
+
+    <div class="container-fluid" *ngIf="!(isHandset$ | async)">
+        <div class="search-field-container">
+            <div class="search-field">
+                <input #myInput matInput placeholder="Search..." class="search-input" (keyup.enter)="searchProjects(myInput.value)">
+                <button mat-icon-button type="button" class="search-button square-button"
+                (click)="searchProjects(myInput.value)">
+                    <span class="search-icon material-icons">search</span>
+                </button>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <button mat-button>Home</button>
+            <button mat-button>Helps</button>
+        </div>
+    </div>
+    <span class="spacer"></span>
+
+    <div *ngIf="isHandset$ | async">
+        <button mat-icon-button (click)="showSearchBar = !showSearchBar" *ngIf="!showSearchBar">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+    <button mat-icon-button (click)="showSearchBar = !showSearchBar" *ngIf="showSearchBar">
+        <mat-icon>close</mat-icon>
+    </button>
+    <div class="search-field-container" *ngIf="showSearchBar">
+        <div class="search-field">
+            <input #myInput matInput placeholder="Search..." class="search-input" 
+                (keyup.enter)="searchProjects(myInput.value)">
+            <button mat-icon-button type="button" class="search-button square-button"
+                (click)="searchProjects(myInput.value)">
+                <span class="search-icon material-icons">search</span>
+            </button>
+        </div>
+    </div>
+    <button class="profil" mat-icon-button [matMenuTriggerFor]="avatar" *ngIf="!showSearchBar">
+        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="100%"
+            alt="photo profile" loading="lazy" />
+    </button>
+</mat-toolbar>
+<mat-menu #avatar="matMenu">
+    <button mat-menu-item >
+        <a class="dropdown-item" routerLink="/manager/settings">Settings</a>
+    </button>
+    <button mat-menu-item>
+        <a class="dropdown-item" href="">Logout</a>
+    </button>
+</mat-menu>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>
+        <a class="dropdown-item" href="">
+            <a mat-toolbar-row class="navbar-brand mt-2 mt-lg-0" href="#">
+                <img src="assets/images/logos/capLogol.png" height="50" alt="Cap Logo" loading="lazy" />
+            </a>
+        </a>
+    </button>
+    <button mat-menu-item>
+        <a class="dropdown-item" href="">Home</a>
+    </button>
+    <button mat-menu-item>
+        <a class="dropdown-item" href="">Helps</a>
+    </button>
+</mat-menu>
+
+<!--<mat-toolbar color="primary">
+    <div class="navbar-logo">
+    </div>
+    <div class="search-field">
+        <input matInput placeholder="Rechercher" class="search-input">
+        <button mat-icon-button type="button" class="search-button square-button">
+            <span class="search-icon material-icons">search</span>
+        </button>
+    </div>
+    <div class="navbar-buttons">
+        <button mat-button>Accueil</button>
+        <button mat-button>Apropos</button>
+        <button mat-button [matMenuTriggerFor]="userMenu">
+            <mat-icon>person</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+            <button mat-menu-item>Settings</button>
+            <button mat-menu-item>Logout</button>
+        </mat-menu>
+    </div>
+</mat-toolbar>-->
