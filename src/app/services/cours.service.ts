@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { cours } from '../common/cours';
 
 @Injectable({
@@ -17,13 +17,17 @@ export class CoursService {
   }
 
   addCours(projectId: any, coursData: any): Observable<Object> {
-    console.log(projectId);
+    //console.log(projectId);
     return this.httpClient.post(`${this.apiUrl}?projetId=${projectId}`, coursData);
   }
 
-  updateCours(id: number, theCours: any): Observable<any> {
-    console.log(theCours);
-    return this.httpClient.put(`${this.apiUrl}/${id}`, theCours);
+  getProjectById(idProject:number):Observable<any>{
+    return this.httpClient.get(`http://localhost:8080/projects/${idProject}`)
+  }
+
+  updateCours(id: number,projectId:number ,theCours: cours): Observable<any> {
+    console.log("cours avec project " , theCours)
+    return this.httpClient.put(`${this.apiUrl}/${id}/project/${projectId}`, theCours);
   }
 
   deleteCours(id: number): Observable<any> {

@@ -7,16 +7,18 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span>
-      Courses >>
+      Courses /
     </span>
 
     <mat-toolbar class="project-name">
       <button *ngIf="deviceXs" type="button" mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <mat-list role="list" class="list-width" *ngFor="let project of projects">
+        {{this.nameProject}}
+
+      <!-- <mat-list role="list" class="list-width" *ngFor="let project of projects">
         {{project.name }} >>All
-      </mat-list>
+      </mat-list> -->
     </mat-toolbar>
   </mat-toolbar>
 
@@ -24,8 +26,8 @@
 
 
     <mat-drawer #drawer [mode]="deviceXs?'over':'side'" [opened]="deviceXs?false:true" position="start" fxFlex="20"
-      fxLayout="column" fxLayoutAlign="start space-between" [style.marginTop.px]="4" [style.top.px]="sideBarScroll()">
-      <h1 class="h1-project">Projects</h1>
+      fxLayout="column" fxLayoutAlign="start space-between"  [style.top.px]="sideBarScroll()">
+      <h1 class="h1-project" style="margin-top: 20px;">Projects</h1>
       <mat-list role="list" class="list-width" *ngFor="let project of projects">
         <mat-list-item role="listitem" class="list-item" matRipple>
           <a [routerLink]="['/project', project.id, 'cours']">
@@ -62,9 +64,7 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu" class="custom-menu ">
-              <button mat-menu-item (click)="openEditCoursModal(cours)">
-
-
+              <button mat-menu-item (click)="openEditCoursModal(course)">
                 <mat-icon>edit</mat-icon>
                 <span>Edit</span>
               </button>

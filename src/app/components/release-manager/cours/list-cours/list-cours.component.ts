@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/departement/confirm-dialog/confirm-dialog.component';
 import { ManagerService } from 'src/app/services/manager.service';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -28,6 +29,9 @@ export class ListCoursComponent implements OnInit {
   depId?: any;
   route: any;
   idProject?: any;
+  nameProject:string | undefined = "name of projet";
+
+  dialogRefSubscription: Subscription | undefined;
 
 
 
@@ -44,14 +48,29 @@ export class ListCoursComponent implements OnInit {
 
     this.listProjet();
     this.routee.params.subscribe(params => {
-      const idProject = params['idProject'];
-      console.log(idProject)
-      this.getCoursesByProject(idProject);
+       this.idProject = params['idProject'];
+      console.log("##ng on init",this.idProject)
+      this.getCoursesByProject(this.idProject);
 
+      this.coursService.getProjectById(this.idProject).subscribe(
+        result => {
+          this.nameProject = result.name
+        }
+      )
+      //this.nameProject = idProject;
     })
     this.handleSearchCours();
 
 
+  }
+
+  getNameProject(idProject :number):string {
+
+    return "test"
+  }
+
+  ngOnDestroy(){
+    this.unsubscribeDialogRef()
   }
   listProjet() {
     if (!this.depId) {
@@ -113,34 +132,29 @@ export class ListCoursComponent implements OnInit {
   }
 
   openAddCoursModal(): void {
-    this.routee.params.subscribe(params => {
-      const idpr = params['idProject'];
-      //console.log(idProject)
-      //this.getCoursesByProject(idProject);
-
-
       const dialogRef = this.dialog.open(AddEditCoursComponent, {
         width: '540px',
-        data: { idpr: idpr }
+        data: { idpr: this.idProject }
       });
+      this.dialogRefSubscription = dialogRef.afterClosed().subscribe((result: any) => {
+        this.getCoursesByProject(this.idProject);
+      });
+  }
 
-      //console.log("from pop up method ", this.data)
-      dialogRef.afterClosed().subscribe((result: any) => {
-        // if (result) {
-        //   console.log("fin")
-        this.getCoursesByProject(idpr);
-        // }
-        // else {
-        //   console.log(result);
-        // }
-      });
-    })
+  unsubscribeDialogRef(): void {
+    if (this.dialogRefSubscription) {
+      this.dialogRefSubscription.unsubscribe();
+    }
   }
   openEditCoursModal(dataUpdated: any): void {
-    this.dialog.open(AddEditCoursComponent, {
+   const dialogRef=  this.dialog.open(AddEditCoursComponent, {
       width: '540px',
       data: { dataUpdated: dataUpdated },
     });
+    this.dialogRefSubscription = dialogRef.afterClosed().subscribe((result: any) => {
+      this.getCoursesByProject(this.idProject);
+    });
+
   }
 
   openConfirmationDialog(id: number): void {
@@ -159,19 +173,20 @@ export class ListCoursComponent implements OnInit {
   deleteCours(id: number): void {
     this.coursService.deleteCours(id).subscribe({
       next: (res) => {
-        this.getCoursesByProject(this.idProject!);
+        this.getCoursesByProject(this.idProject);
       },
-      error: console.log,
+      error: () => {console.log("ttttt")},
     })
   }
   handleSearchCours() {
-    const theKeyword: string = this.route.snapshot?.paramMap.get('keyword')!;
-
+     const theKeyword: string = this.routee.snapshot?.paramMap.get('keyword')!;
+    console.log("keyword",theKeyword)
 
     if (this.coursService) {
       this.coursService.searchCours(theKeyword).subscribe(
         data => {
           this.cours = data;
+          console.log("#cours",this.cours)
           //this.projects = data.slice(0, 3);
           //this.initializePaginator();
           console.log(data);

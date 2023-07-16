@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -13,9 +13,10 @@ export class HeaderComponent {
   isHandset$: Observable<boolean>;
   showNavbarContent = false;
   showSearchBar = false;
-
+  idProject:number | undefined;
   constructor(
     private router: Router,
+    private routee:ActivatedRoute,
     // private projetService: ProjetService,
     private breakpointObserver: BreakpointObserver) {
     this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -29,7 +30,11 @@ export class HeaderComponent {
   }
 
   searchCours(term: string): void {
-    this.router.navigateByUrl(`/cours/search/${term}`);
+    console.log("test from search")
+    this.routee.params.subscribe(params => {
+       this.idProject = params['idProject'];
+    })
+    this.router.navigateByUrl(`/project/${this.idProject}/cours/search/${term}`)
   }
 
 

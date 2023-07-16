@@ -129,6 +129,7 @@ const routes: Routes = [
   { path: 'cours/search/:keyword', component: ListCoursComponent },
 
   { path: 'project/:idProject/cours', component: ListCoursComponent },
+  { path: 'project/:idProject/cours/search/:keyword', component: ListCoursComponent },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }

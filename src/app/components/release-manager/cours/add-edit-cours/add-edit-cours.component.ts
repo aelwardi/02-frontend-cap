@@ -29,7 +29,7 @@ export class AddEditCoursComponent implements OnInit {
     private formBuilder: FormBuilder) {
     this.idProject = this.data.idpr;
     console.log("###", this.idProject);
-
+    console.log("data :",data)
     this.coursForm = this.formBuilder.group({
       title: ['', Validators.required],
       dateMAJ: [new Date()],
@@ -42,28 +42,38 @@ export class AddEditCoursComponent implements OnInit {
 
     });
   }
-  private getManagerFullName(managerId: number): Observable<string> {
-    return this.managerService.getManager(managerId).pipe(
-      map(manager => `${manager.firstName} ${manager.lastName}`)
-    );
-  }
+
   ngOnInit(): void {
+    this.initUpdateForm();
+  }
+  initUpdateForm():void {
+    if(this.data.dataUpdated){
+      this.coursForm.patchValue(this.data.dataUpdated)
+    }else{
+      this.managerService.getManager(1).subscribe(
+        result => {
+          this.coursForm.patchValue({
+            actor:result.firstName +" "+ result.lastName
+          });
+        }
+      )
 
-    this.getManagerFullName(1).subscribe(fullName => {
-      this.coursForm.patchValue({
-        actor: fullName
-      });
-    });
+    }
+
 
   }
+
+
 
   onFormSubmit(): void {
+    if(this.coursForm.valid){
     if (this.data.dataUpdated) {
+      console.log("test update")
       this.coursForm.patchValue({
         dateMAJ: new Date() // Set the current date as the new value for dateMAJ
       });
 
-      this.coursService.updateCours(this.data.id, this.coursForm.value).subscribe(
+      this.coursService.updateCours(this.data.dataUpdated.id,this.data.dataUpdated.projet.id, this.coursForm.value).subscribe(
         response => {
           console.log('Cours updated');
           this.dialogRef.close(true);
@@ -85,14 +95,16 @@ export class AddEditCoursComponent implements OnInit {
         actor: this.coursForm.value.actor,
 
       }
-      this.coursService.addCours(this.idProject, coursData).subscribe(
-        response => {
-          console.log('Cours added');
-          this.dialogRef.close(true);
-        },
-        error => {
-          console.log(error);
-        });
+
+        this.coursService.addCours(this.idProject, coursData).subscribe(
+          response => {
+            console.log('Cours added');
+            this.dialogRef.close(true);
+          },
+          error => {
+            console.log(error);
+          });
+      }
     }
   }
 

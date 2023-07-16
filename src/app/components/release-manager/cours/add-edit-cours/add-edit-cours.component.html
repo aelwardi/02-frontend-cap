@@ -13,6 +13,9 @@
           <mat-label>Title</mat-label>
           <mat-icon matPrefix>create</mat-icon>
           <input matInput placeholder="Enter Title of course" formControlName="title" required>
+          <mat-error *ngIf="coursForm.get('title')?.invalid && (coursForm.get('title')?.dirty || coursForm.get('title')?.touched)">
+            Title is required.
+          </mat-error>
         </mat-form-field>
       </div>
       <!-- Champ pour la date de mise a jour -->

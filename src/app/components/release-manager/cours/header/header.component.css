@@ -31,6 +31,7 @@
   background: none;
   margin-right: 8px;
   outline: none;
+  color: black !important;
 
 }
 
@@ -39,6 +40,7 @@
   border: none;
   padding: 0;
   outline: none;
+
 }
 
 .square-button {
@@ -47,7 +49,11 @@
 }
 
 .search-icon {
-  color: #0070AD;
+  color: black !important;
+  position: absolute;
+  top: 4px;
+  left: 6px;
+
 }
 
 .container-fluid {
