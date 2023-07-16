@@ -46,7 +46,22 @@ mat-drawer {
 .list-item:hover {
   background-color: rgba(83, 83, 83, 0.178);
   cursor: pointer;
+
 }
+
+.router-link {
+  text-decoration: none;
+  /* Remove underline */
+  color: inherit;
+  /* Use the default text color */
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
 
 .add-card {
   display: flex;

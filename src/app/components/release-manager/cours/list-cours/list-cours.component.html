@@ -14,7 +14,9 @@
       <button *ngIf="deviceXs" type="button" mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      Changing the Trajectory >>All
+      <mat-list role="list" class="list-width" *ngFor="let project of projects">
+        {{project.name }} >>All
+      </mat-list>
     </mat-toolbar>
   </mat-toolbar>
 
@@ -26,11 +28,11 @@
       <h1 class="h1-project">Projects</h1>
       <mat-list role="list" class="list-width" *ngFor="let project of projects">
         <mat-list-item role="listitem" class="list-item" matRipple>
-          <a
-          [routerLink]="['/project', project.id, 'cours']"
-          >
-          {{project.name}}
-
+          <a [routerLink]="['/project', project.id, 'cours']">
+            <span mat-menu-item>
+              <mat-icon>chevron_right</mat-icon>
+              {{ project.name}}
+            </span>
           </a></mat-list-item>
       </mat-list>
     </mat-drawer>
@@ -39,7 +41,7 @@
 
     <mat-drawer-content>
 
-      <div class="example-sidenav-content" fxLayout="row wrap" fxLayoutAlign="start start" style="margin-left: 50px;">
+      <div class="example-sidenav-content" fxLayout="row wrap" fxLayoutAlign="start start" style="margin-left: 175px;">
 
         <mat-card class="example-card">
 

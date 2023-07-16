@@ -60,7 +60,17 @@
 
 mat-toolbar:host,
 :host * {
-  color: #0070AD;
+  color: #fff;
+  text-decoration: none;
+}
+
+.buttons-container {
+  color: #fff;
+
+}
+
+.link-corses {
+  color: #fff;
 }
 
 .profil img {

@@ -27,7 +27,7 @@ export class ListCoursComponent implements OnInit {
   projets: string[] = [];
   depId?: any;
   route: any;
-  idProject?:any;
+  idProject?: any;
 
 
 
@@ -49,6 +49,7 @@ export class ListCoursComponent implements OnInit {
       this.getCoursesByProject(idProject);
 
     })
+    this.handleSearchCours();
 
 
   }
@@ -101,7 +102,7 @@ export class ListCoursComponent implements OnInit {
   // Define the drawer property
   drawer: MatDrawer | undefined;
 
-  getCoursesByProject(id : number) {
+  getCoursesByProject(id: number) {
 
 
     this.coursService.getCoursesByProject(id)
@@ -118,27 +119,27 @@ export class ListCoursComponent implements OnInit {
       //this.getCoursesByProject(idProject);
 
 
-    const dialogRef = this.dialog.open(AddEditCoursComponent, {
-      width: '540px',
-      data: { idpr: idpr }
-    });
+      const dialogRef = this.dialog.open(AddEditCoursComponent, {
+        width: '540px',
+        data: { idpr: idpr }
+      });
 
-    //console.log("from pop up method ", this.data)
-    dialogRef.afterClosed().subscribe((result: any) => {
-      // if (result) {
-      //   console.log("fin")
-      this.getCoursesByProject(idpr);
-      // }
-      // else {
-      //   console.log(result);
-      // }
-    });
-  })
+      //console.log("from pop up method ", this.data)
+      dialogRef.afterClosed().subscribe((result: any) => {
+        // if (result) {
+        //   console.log("fin")
+        this.getCoursesByProject(idpr);
+        // }
+        // else {
+        //   console.log(result);
+        // }
+      });
+    })
   }
   openEditCoursModal(dataUpdated: any): void {
     this.dialog.open(AddEditCoursComponent, {
       width: '540px',
-      data:{dataUpdated:dataUpdated},
+      data: { dataUpdated: dataUpdated },
     });
   }
 
@@ -164,7 +165,9 @@ export class ListCoursComponent implements OnInit {
     })
   }
   handleSearchCours() {
-    const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
+    const theKeyword: string = this.route.snapshot?.paramMap.get('keyword')!;
+
+
     if (this.coursService) {
       this.coursService.searchCours(theKeyword).subscribe(
         data => {

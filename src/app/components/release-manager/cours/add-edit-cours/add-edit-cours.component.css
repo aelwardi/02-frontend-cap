@@ -1,7 +1,15 @@
+.page-wrapper {
+  height: 100vh;
+  /* Set the height of the wrapper to 100% of the viewport height */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
+}
+
 .mat-form-field {
   width: 100%;
   background-color: white;
 }
+
 
 mat-card-actions {
   justify-content: flex-end;

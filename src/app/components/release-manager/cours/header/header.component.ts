@@ -29,8 +29,9 @@ export class HeaderComponent {
   }
 
   searchCours(term: string): void {
-    this.router.navigateByUrl(`cours/search/${term}`);
+    this.router.navigateByUrl(`/cours/search/${term}`);
   }
+
 
 }
 

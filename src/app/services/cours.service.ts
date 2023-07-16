@@ -16,7 +16,7 @@ export class CoursService {
     return this.httpClient.get<cours[]>(`${this.apiUrl}?projetId=${projectId}`);
   }
 
-  addCours(projectId: any , coursData:any): Observable<Object> {
+  addCours(projectId: any, coursData: any): Observable<Object> {
     console.log(projectId);
     return this.httpClient.post(`${this.apiUrl}?projetId=${projectId}`, coursData);
   }
@@ -32,7 +32,7 @@ export class CoursService {
     return this.httpClient.delete(deleteUrl);
   }
 
-  searchCours(term: string): Observable<cours[]> {
-    return this.httpClient.get<cours[]>(`${this.apiUrl}/search?term=${term}`);
+  searchCours(term: string): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.apiUrl}/search?term=${term}`);
   }
 }
