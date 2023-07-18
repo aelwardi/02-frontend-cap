@@ -74,11 +74,17 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProfilManagerComponent } from './components/release-manager/profil/profil-manager/profil-manager.component';
 import { AdminDetailsComponent } from './components/release-super-admin/admin/admin-details/admin-details.component';
+
+import { HeaderComponent } from './components/release-manager/cours/header/header.component';
+import { ListCoursComponent } from './components/release-manager/cours/list-cours/list-cours.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { AddEditCoursComponent } from './components/release-manager/cours/add-edit-cours/add-edit-cours.component';
+
 import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/list-quiz.component';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list';
-import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit-quiz/add-edit-quiz.component'
 
+import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit-quiz/add-edit-quiz.component'
 
 
 @NgModule({
@@ -129,8 +135,14 @@ import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit
     ListProjetComponent,
     AddEditProjectComponent,
     ProfilManagerComponent,
+
+    HeaderComponent,
+    ListCoursComponent,
+    AddEditCoursComponent,
+
     ListQuizComponent,
     AddEditQuizComponent
+
   ],
   imports: [
     BrowserModule,
@@ -161,8 +173,13 @@ import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit
     MatBadgeModule,
     MatGridListModule,
     MatExpansionModule,
+
+    MatSidenavModule,
+    MatListModule,
+
     MatDividerModule,
     MatListModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
