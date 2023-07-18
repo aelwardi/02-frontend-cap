@@ -21,7 +21,11 @@ import { ManagerComponent } from './components/release-manager/template/manager/
 import { ListProjetComponent } from './components/release-manager/projects/list-projet/list-projet.component';
 
 import { ProfilManagerComponent } from './components/release-manager/profil/profil-manager/profil-manager.component';
+
 import { ListCoursComponent } from './components/release-manager/cours/list-cours/list-cours.component';
+
+import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/list-quiz.component';
+
 
 
 const routes: Routes = [
@@ -113,6 +117,7 @@ const routes: Routes = [
       {
         path: 'settings',
         component: ProfilManagerComponent,
+
       },
       {
         path: 'cours',
@@ -122,14 +127,22 @@ const routes: Routes = [
         path: 'cours/search/:keyword',
         component: ListCoursComponent,
       },
+      {
+        path: 'quiz',
+        component: ListQuizComponent,
+      },
 
     ],
   },
   { path: 'cours', component: ListCoursComponent },
   { path: 'cours/search/:keyword', component: ListCoursComponent },
-
   { path: 'project/:idProject/cours', component: ListCoursComponent },
   { path: 'project/:idProject/cours/search/:keyword', component: ListCoursComponent },
+
+
+
+
+
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }

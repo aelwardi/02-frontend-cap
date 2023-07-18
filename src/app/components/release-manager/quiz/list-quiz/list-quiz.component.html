@@ -1,0 +1,37 @@
+<h1>Pharma - Name Projects...</h1>
+
+<mat-card class="shadow">
+  <mat-card-header>
+    <mat-card-title>Chapter - name....</mat-card-title>
+    <div>
+      <button mat-button class="btn-add" (click)="openAddQuizModal()">
+        <mat-icon>add</mat-icon> Add new Quiz
+      </button>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card *ngFor="let quizer of quizDto" class="mb-3 shadow">
+      <mat-card-header>
+        <mat-card-title>{{ quizer.quiz!.question}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list *ngFor="let prospal of quizer.propositions">
+          <div class="d-flex align-items-center">
+            <mat-icon class="mr-2" [ngClass]="{'icon-green': prospal.correcte, 'icon-warn': !prospal.correcte}">{{
+              prospal.correcte ? 'task_alt' : 'cancel' }} </mat-icon>
+            <mat-list-item>{{ prospal.response }}</mat-list-item>
+          </div>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button color="warn" (click)="openConfirmationDialog(quizer.quiz!.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button class="icon-blue" (click)="openEditQuizModal(quizer)">
+          <mat-icon>edit_square</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-card-content>
+</mat-card>

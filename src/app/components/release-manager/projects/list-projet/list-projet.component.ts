@@ -10,7 +10,6 @@ import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/d
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 
-
 @Component({
   selector: 'app-list-projet',
   templateUrl: './list-projet.component.html',
