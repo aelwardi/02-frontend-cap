@@ -36,14 +36,14 @@
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Description
+                    Quetion
                 </mat-panel-title>
                 <mat-panel-description>
                     {{panelOpenState ? 'open' : 'closed'}}
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-form-field class="example-full-width">
-                <mat-label>Write a description of project</mat-label>
+                <mat-label>Write a proposal of quetion</mat-label>
                 <textarea matInput placeholder="..." formControlName="description"></textarea>
             </mat-form-field>
         </mat-expansion-panel>

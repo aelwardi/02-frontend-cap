@@ -1,0 +1,21 @@
+.icon-blue {
+    color: #0070AD;
+}
+
+.icon-green {
+    color: green;
+}
+
+.icon-warn {
+    color: #F44336;
+}
+
+.btn-add {
+    background-color: #0070AD;
+    border-radius: 8px;
+    color: #FFFFFF;
+}
+
+mat-card-actions {
+    justify-content: flex-end;
+}

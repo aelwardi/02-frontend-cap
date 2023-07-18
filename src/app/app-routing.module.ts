@@ -21,6 +21,7 @@ import { ManagerComponent } from './components/release-manager/template/manager/
 import { ListProjetComponent } from './components/release-manager/projects/list-projet/list-projet.component';
 
 import { ProfilManagerComponent } from './components/release-manager/profil/profil-manager/profil-manager.component';
+import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/list-quiz.component';
 
 
 const routes: Routes = [
@@ -112,6 +113,11 @@ const routes: Routes = [
       {
         path: 'settings',
         component: ProfilManagerComponent,
+      }
+      ,
+      {
+        path: 'quiz',
+        component: ListQuizComponent,
       }
     ],
   },

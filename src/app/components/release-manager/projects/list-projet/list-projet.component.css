@@ -5,11 +5,11 @@
 }
 
 .large-icon-button .mat-icon {
-  transform: scale(3.5);
+  transform: scale(1);
 }
 
 .large-icon-button-act .mat-icon {
-  transform: scale(2);
+  transform: scale(1);
 }
 
 .icon-blue {
