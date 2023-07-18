@@ -29,7 +29,7 @@ export class ListCoursComponent implements OnInit {
   depId?: any;
   route: any;
   idProject?: any;
-  nameProject:string | undefined = "name of projet";
+  nameProject: string | undefined = "Name of project";
 
   dialogRefSubscription: Subscription | undefined;
 
@@ -48,8 +48,8 @@ export class ListCoursComponent implements OnInit {
 
     this.listProjet();
     this.routee.params.subscribe(params => {
-       this.idProject = params['idProject'];
-      console.log("##ng on init",this.idProject)
+      this.idProject = params['idProject'];
+      console.log("##ng on init", this.idProject)
       this.getCoursesByProject(this.idProject);
 
       this.coursService.getProjectById(this.idProject).subscribe(
@@ -64,12 +64,12 @@ export class ListCoursComponent implements OnInit {
 
   }
 
-  getNameProject(idProject :number):string {
+  getNameProject(idProject: number): string {
 
     return "test"
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.unsubscribeDialogRef()
   }
   listProjet() {
@@ -132,13 +132,13 @@ export class ListCoursComponent implements OnInit {
   }
 
   openAddCoursModal(): void {
-      const dialogRef = this.dialog.open(AddEditCoursComponent, {
-        width: '540px',
-        data: { idpr: this.idProject }
-      });
-      this.dialogRefSubscription = dialogRef.afterClosed().subscribe((result: any) => {
-        this.getCoursesByProject(this.idProject);
-      });
+    const dialogRef = this.dialog.open(AddEditCoursComponent, {
+      width: '540px',
+      data: { idpr: this.idProject }
+    });
+    this.dialogRefSubscription = dialogRef.afterClosed().subscribe((result: any) => {
+      this.getCoursesByProject(this.idProject);
+    });
   }
 
   unsubscribeDialogRef(): void {
@@ -147,7 +147,7 @@ export class ListCoursComponent implements OnInit {
     }
   }
   openEditCoursModal(dataUpdated: any): void {
-   const dialogRef=  this.dialog.open(AddEditCoursComponent, {
+    const dialogRef = this.dialog.open(AddEditCoursComponent, {
       width: '540px',
       data: { dataUpdated: dataUpdated },
     });
@@ -175,18 +175,18 @@ export class ListCoursComponent implements OnInit {
       next: (res) => {
         this.getCoursesByProject(this.idProject);
       },
-      error: () => {console.log("ttttt")},
+      error: () => { console.log("ttttt") },
     })
   }
   handleSearchCours() {
-     const theKeyword: string = this.routee.snapshot?.paramMap.get('keyword')!;
-    console.log("keyword",theKeyword)
+    const theKeyword: string = this.routee.snapshot?.paramMap.get('keyword')!;
+    console.log("keyword", theKeyword)
 
     if (this.coursService) {
       this.coursService.searchCours(theKeyword).subscribe(
         data => {
           this.cours = data;
-          console.log("#cours",this.cours)
+          console.log("#cours", this.cours)
           //this.projects = data.slice(0, 3);
           //this.initializePaginator();
           console.log(data);

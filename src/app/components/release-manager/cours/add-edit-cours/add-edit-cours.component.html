@@ -13,7 +13,8 @@
           <mat-label>Title</mat-label>
           <mat-icon matPrefix>create</mat-icon>
           <input matInput placeholder="Enter Title of course" formControlName="title" required>
-          <mat-error *ngIf="coursForm.get('title')?.invalid && (coursForm.get('title')?.dirty || coursForm.get('title')?.touched)">
+          <mat-error
+            *ngIf="coursForm.get('title')?.invalid && (coursForm.get('title')?.dirty || coursForm.get('title')?.touched)">
             Title is required.
           </mat-error>
         </mat-form-field>
@@ -22,7 +23,7 @@
       <div class="form-group">
         <mat-form-field>
           <mat-label>date Update</mat-label>
-          <mat-icon matPrefix>date</mat-icon>
+          <mat-icon matPrefix>create</mat-icon>
           <input matInput formControlName="dateMAJ" [readonly]="data.dataUpdated" required>
         </mat-form-field>
       </div>
@@ -31,7 +32,7 @@
         <mat-form-field>
           <mat-label>date create</mat-label>
           <mat-icon matPrefix>create</mat-icon>
-          <input matInput formControlName="dateCreate" required>
+          <input matInput formControlName="dateCreate" required readonly>
         </mat-form-field>
       </div>
       <!-- Champ pour actor  -->
