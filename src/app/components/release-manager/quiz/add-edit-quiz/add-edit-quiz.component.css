@@ -1,0 +1,16 @@
+.submit-button {
+    background-color: #0070AD;
+    color: #FFFFFF;
+  }
+
+  mat-card-actions {
+    justify-content: flex-end;
+}
+
+mat-form-field {
+  width: 100%;
+  background-color: white;
+}
+.color-warn{
+  color: #FF0000;
+}

@@ -74,6 +74,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProfilManagerComponent } from './components/release-manager/profil/profil-manager/profil-manager.component';
 import { AdminDetailsComponent } from './components/release-super-admin/admin/admin-details/admin-details.component';
+import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/list-quiz.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit-quiz/add-edit-quiz.component'
+
+
 
 @NgModule({
   declarations: [
@@ -122,7 +128,9 @@ import { AdminDetailsComponent } from './components/release-super-admin/admin/ad
     BodyManagerComponent,
     ListProjetComponent,
     AddEditProjectComponent,
-    ProfilManagerComponent
+    ProfilManagerComponent,
+    ListQuizComponent,
+    AddEditQuizComponent
   ],
   imports: [
     BrowserModule,
@@ -152,7 +160,9 @@ import { AdminDetailsComponent } from './components/release-super-admin/admin/ad
     MatMenuModule,
     MatBadgeModule,
     MatGridListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
