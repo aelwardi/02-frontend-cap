@@ -120,6 +120,7 @@ export class AddEditQuizComponent implements OnInit {
         this.quizService.updateQuiz(chapitreId, this.data.quiz.id, theQuiz).subscribe(
           data => {
             console.log("Quiz updated");
+            this.dialogRef.close(true);
           }
         )
       }
@@ -129,11 +130,20 @@ export class AddEditQuizComponent implements OnInit {
           this.propositionService.addProposition(quizId, proposal).subscribe(
             data => {
               console.log("Proposal added");
+              this.dialogRef.close(true);
             }
           )
-        } else {{
-          
-        }}
+        } else {
+          const element = this.quizData.propositions.find((propo: { id: number; response: string; correcte: boolean; }) => propo.id === proposal.id);
+          if((proposal.correcte !== element.correcte) || (proposal.response !== element.response)){
+            this.propositionService.updateProposition(element.id, quizId, proposal).subscribe(
+              data => {
+                console.log("Proposal updated");
+                this.dialogRef.close(true);
+              }
+            )
+          }
+        }
       });
 
     } else {
