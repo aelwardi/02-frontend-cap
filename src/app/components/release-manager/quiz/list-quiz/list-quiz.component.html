@@ -2,13 +2,14 @@
 
 <mat-card class="shadow">
   <mat-card-header>
-    <mat-card-title>Chapter - name....</mat-card-title>
+    <mat-card-title class="mb-0">Chapter - name....</mat-card-title>
+    <div class="spacer"></div>
     <div>
       <button mat-button class="btn-add" (click)="openAddQuizModal()">
         <mat-icon>add</mat-icon> Add new Quiz
       </button>
     </div>
-  </mat-card-header>
+  </mat-card-header><br/>
   <mat-card-content>
     <mat-card *ngFor="let quizer of quizDto" class="mb-3 shadow">
       <mat-card-header>

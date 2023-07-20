@@ -13,9 +13,23 @@
 .btn-add {
     background-color: #0070AD;
     border-radius: 8px;
-    color: #FFFFFF;
+    color: #FFFFFF!important;
 }
 
 mat-card-actions {
     justify-content: flex-end;
 }
+
+.mat-card-header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .spacer {
+    flex-grow: 1;
+  }
+  
+  .btn-add {
+    margin-left: 8px;
+  }
+  
