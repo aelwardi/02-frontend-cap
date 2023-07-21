@@ -25,6 +25,7 @@ import { ProfilManagerComponent } from './components/release-manager/profil/prof
 import { ListCoursComponent } from './components/release-manager/cours/list-cours/list-cours.component';
 
 import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/list-quiz.component';
+import {ChapitreComponent} from "./components/release-manager/chapitre/chapitre/chapitre.component";
 
 
 
@@ -131,6 +132,10 @@ const routes: Routes = [
         path: 'quiz',
         component: ListQuizComponent,
       },
+      {
+        path: 'chapitre',
+        component: ChapitreComponent,
+      }
 
     ],
   },
