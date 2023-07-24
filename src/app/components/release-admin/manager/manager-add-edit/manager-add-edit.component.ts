@@ -62,13 +62,13 @@ export class ManagerAddEditComponent implements OnInit {
   onFormSubmit(): void {
     // if (this.managerForm.valid) {
     if (this.data) {
-      this.manager.firstName=this.managerForm.value.firstName;
-      this.manager.lastName=this.managerForm.value.lastName;
-      this.manager.dateBirth=this.managerForm.value.dateBirth;
-      this.manager.email=this.managerForm.value.email;
-      this.manager.phone=this.managerForm.value.phone;
-      this.manager.sexe=this.managerForm.value.sexe;
-      this.manager.password=this.managerForm.value.password;
+      this.manager.firstName = this.managerForm.value.firstName;
+      this.manager.lastName = this.managerForm.value.lastName;
+      this.manager.dateBirth = this.managerForm.value.dateBirth;
+      this.manager.email = this.managerForm.value.email;
+      this.manager.phone = this.managerForm.value.phone;
+      this.manager.sexe = this.managerForm.value.sexe;
+      this.manager.password = this.managerForm.value.password;
       this.managerService.updateManager(this.manager.id, this.manager).subscribe(
         response => {
           console.log('Manager updated');
@@ -81,7 +81,7 @@ export class ManagerAddEditComponent implements OnInit {
     }
 
     else {
-      const admin = new Admin(2);
+      const admin = new Admin(1);
       const managerData: Manager = {
         id: null,
         firstName: this.managerForm.value.firstName,

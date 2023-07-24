@@ -3,7 +3,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Admin } from 'src/app/common/admin';
 import { Apprenant } from 'src/app/common/apprenant';
+import { AdminService } from 'src/app/services/admin.service';
 import { ApprenantService } from 'src/app/services/apprenant.service';
 import { DepartementService } from 'src/app/services/departement.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -16,10 +18,11 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 })
 export class ApprenantAddEditComponent implements OnInit {
 
-  departements: any[] = [];
+  departement: any;
   password: string = '';
   apprenantForm!: FormGroup;
   passwordHidden: boolean = true;
+  apprenant!: Apprenant;
 
   constructor(private _FormBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ApprenantAddEditComponent>,
@@ -27,14 +30,14 @@ export class ApprenantAddEditComponent implements OnInit {
     private apprenantService: ApprenantService,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private departmentService: DepartementService,
+    private adminService: AdminService,
     private tokenStorage: TokenStorageService
   ) {
     this.apprenantForm = this._FormBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
-      DateBirth: ['', Validators.required],
+      dateBirth: ['', Validators.required],
       phone: ['', Validators.required],
       sexe: ['', Validators.required],
       password: ['', Validators.required],
@@ -46,14 +49,44 @@ export class ApprenantAddEditComponent implements OnInit {
     this.apprenantForm.patchValue(this.data);
     this.generatePassword();
     this.fetchDepartments();
+    this.handleApprenantById();
+
   }
+
+  handleApprenantById(): void {
+    if (this.data && this.data.id) { // Check if this.data and this.data.id are not null or undefined
+      this.apprenantService.getApprenantById(this.data.id).subscribe(
+        data => {
+          this.apprenant = data;
+          this.apprenantForm.patchValue(this.apprenant);
+          console.log(this.apprenant);
+        },
+        error => {
+          console.log('Error occurred while fetching apprenant:', error);
+        }
+      );
+    } else {
+      console.log('Data or ID is null or undefined.');
+      // Handle the case when this.data or this.data.id is null or undefined.
+    }
+  }
+
+
+
 
   onFormSubmit(): void {
     // if (this.adminForm.valid) {
     if (this.data) {
-      this.apprenantService.updateApprenant(this.data.id, this.apprenantForm.value).subscribe(
+      this.apprenant.firstName = this.apprenantForm.value.firstName;
+      this.apprenant.lastName = this.apprenantForm.value.lastName;
+      this.apprenant.dateBirth = this.apprenantForm.value.dateBirth;
+      this.apprenant.email = this.apprenantForm.value.email;
+      this.apprenant.phone = this.apprenantForm.value.phone;
+      this.apprenant.sexe = this.apprenantForm.value.sexe;
+      this.apprenant.password = this.apprenantForm.value.password;
+      this.apprenantService.updateApprenant(this.apprenant.id, this.apprenant).subscribe(
         response => {
-          console.log('Apprenants updated');
+          console.log('apprenant updated');
           this.dialogRef.close(true);
         },
         error => {
@@ -64,13 +97,12 @@ export class ApprenantAddEditComponent implements OnInit {
     //}
 
     else {
-      //const superAdmin = new SuperAdmin(1);
-      //const json = JSON.stringify(superAdmin.toJSON());
+      const admin = new Admin(1);
       const apprenantData: Apprenant = {
-        // id: null,
+        id: null,
         firstName: this.apprenantForm.value.firstName,
         lastName: this.apprenantForm.value.lastName,
-        DateBirth: this.apprenantForm.value.dateBirth,
+        dateBirth: this.apprenantForm.value.dateBirth,
         phone: this.apprenantForm.value.phone,
         sexe: this.apprenantForm.value.sexe,
         photo: null,
@@ -79,12 +111,13 @@ export class ApprenantAddEditComponent implements OnInit {
         etat: true,
         role: 'APPRENANT',
         departement: this.apprenantForm.value.departement,
-        //superAdmin: superAdmin
+        admin: admin
       };
+      console.log(apprenantData);
       this.apprenantService.addApprenant(apprenantData).subscribe(
         response => {
           console.log('Apprenant added');
-          console.log(apprenantData);
+          //console.log(apprenantData);
           this.dialogRef.close(true);
         },
         error => {
@@ -117,11 +150,11 @@ export class ApprenantAddEditComponent implements OnInit {
 
   // pour assigner chaque apprenant a une departement
   fetchDepartments(): void {
-    this.departmentService.getDepartementList()
-      .subscribe(departements => {
+    this.adminService.getDepartementByAdmin(+1)
+      .subscribe(data => {
 
-        this.departements = departements;
-        console.log(departements);
+        this.departement = data;
+        console.log(data);
       },
         error => {
           console.log('Error occurred while loading departments:', error);

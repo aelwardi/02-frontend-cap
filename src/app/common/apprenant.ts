@@ -2,10 +2,10 @@ import { Departement } from "./departement";
 
 export class Apprenant {
   constructor(
-    public id?: number,
+    public id: any,
     public firstName?: string,
     public lastName?: string,
-    public DateBirth?: Date,
+    public dateBirth?: Date,
     public phone?: string,
     public sexe?: string,
     public photo?: any,

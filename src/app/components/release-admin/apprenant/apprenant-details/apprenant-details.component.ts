@@ -40,7 +40,7 @@ export class ApprenantDetailsComponent implements OnInit {
 
   handleApprenantDetails() {
 
-    const theAdminId: number = +2;
+    const theAdminId: number = +1;
     const theApprenantId: number = +this.route.snapshot.paramMap.get('id')!;
     this.apprenantService.getApprenantDetails(theAdminId, theApprenantId).subscribe(
       data => {

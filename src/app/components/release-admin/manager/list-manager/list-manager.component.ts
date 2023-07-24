@@ -15,7 +15,7 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class ListManagerComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'details' , 'action'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'details', 'action'];
   managers: Manager[] = [];
   searchMode: boolean = false;
   dataSource!: MatTableDataSource<any>;
@@ -52,7 +52,7 @@ export class ListManagerComponent implements OnInit {
   }
 
   handleListManager() {
-    this.adminService.getManagerList(2).subscribe(
+    this.adminService.getManagerList(1).subscribe(
       data => {
         this.managers = data;
         this.dataSource = new MatTableDataSource(data);

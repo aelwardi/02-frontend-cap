@@ -48,19 +48,21 @@ export class ListCoursComponent implements OnInit {
 
     this.listProjet();
     this.routee.params.subscribe(params => {
-      this.idProject = params['idProject'];
-      console.log("##ng on init", this.idProject)
-      this.getCoursesByProject(this.idProject);
+      this.idProject = +params['idProject']; // Convert the parameter to a number using +
+      if (!isNaN(this.idProject)) {
+        this.getCoursesByProject(this.idProject);
+        this.coursService.getProjectById(this.idProject).subscribe(
+          result => {
+            this.nameProject = result.name
+          }
+        );
+      } else {
+        console.log('Invalid project ID:', this.idProject);
+      }
 
-      this.coursService.getProjectById(this.idProject).subscribe(
-        result => {
-          this.nameProject = result.name
-        }
-      )
       //this.nameProject = idProject;
-    })
+    });
     this.handleSearchCours();
-
 
   }
 
