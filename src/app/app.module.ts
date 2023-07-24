@@ -84,7 +84,9 @@ import { AddEditCoursComponent } from './components/release-manager/cours/add-ed
 import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/list-quiz.component';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit-quiz/add-edit-quiz.component'
+import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit-quiz/add-edit-quiz.component';
+import { ChapitreComponent } from './components/release-manager/chapitre/chapitre/chapitre.component';
+import { NavBarBlueComponent } from './components/release-manager/template/nav-bar-blue/nav-bar-blue.component'
 
 
 @NgModule({
@@ -141,7 +143,9 @@ import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit
     AddEditCoursComponent,
 
     ListQuizComponent,
-    AddEditQuizComponent
+    AddEditQuizComponent,
+    ChapitreComponent,
+    NavBarBlueComponent
 
   ],
   imports: [

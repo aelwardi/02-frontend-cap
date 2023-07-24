@@ -1,0 +1,213 @@
+.mat-toolbar {
+  background: #0070AD;
+  transition: all .5s ease;
+  position: relative;
+  z-index: 1;
+  top: 0;
+  box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+  text-align: center;
+  padding: 0 3rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+}
+
+.logo-container {
+  flex: 0 0 auto;
+}
+.logo-cap {
+  max-width: 13rem;
+  height: auto;
+}
+.nav-spacer {
+  flex: 1 1 auto;
+}
+
+.search-bar {
+  flex: 1 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.search-icon {
+  position: absolute;
+  right: 0rem;
+  background-color:#0070AD;
+  color:#ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  padding: 0.3rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  display: flex;
+  align-items: center;
+}
+.search-icon:hover {
+  background-color: #ffffff;
+  color: #0070AD;
+}
+
+.search-icon i {
+  font-size: 1.2rem;
+}
+
+.search-bar input {
+  flex: 1 1 auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ffffff;
+  background-color: #f1f1f1;
+  color: #333;
+  outline: none;
+}
+
+.search-bar input::placeholder {
+  color: #888;
+}
+
+
+.home-link a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: normal;
+  transition: color 0.3s ease;
+}
+
+.home-link a:hover {
+  color: #ddd;
+}
+
+.profile-photo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.arrow-icon {
+  position: absolute;
+  right: -1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow-icon i {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.profile-photo img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+
+.sidenav-container {
+  height: calc(100vh - 6rem);
+  /* margin-top: 6rem;*/
+  display: flex;
+}
+
+
+.sidenav {
+  width: 15rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+li {
+  cursor: pointer;
+}
+
+li:hover {
+  background-color: #f5f5f5;
+}
+
+.modifier-icon {
+  float: right;
+  margin-right: 10px;
+}
+
+.add-chapter {
+  cursor: pointer;
+}
+
+.add-chapter:hover {
+  background-color: #f5f5f5;
+}
+
+.add-chapter i {
+  margin-right: 5px;
+}
+
+
+
+.mat-sidenav-content {
+  flex: 1;
+  overflow: auto;
+}
+
+.main-content{
+  margin-left: 30px;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+}
+
+
+.main-content h1 {
+  border-bottom: 1px solid #ccc;
+}
+
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.buttons-right {
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-cancel {
+  background-color: #ccc;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.btn-submit {
+  background-color: #0070AD;
+  color: #fff;
+}
+
+
+
+
+
+
+
