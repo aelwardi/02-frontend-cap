@@ -17,18 +17,18 @@ export class ManagerDetailsComponent implements OnInit {
     private managerService: ManagerService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder) {
-      this.detailsForm = this.formBuilder.group({
-        firstName: [''],
-        lastName: [''],
-        dateBirth: [''],
-        phone: [''],
-        sexe: [''],
-        email: [''],
-        etat: [''],
-        photo: [''],
-        departement: ['']
-      });
-     }
+    this.detailsForm = this.formBuilder.group({
+      firstName: [''],
+      lastName: [''],
+      dateBirth: [''],
+      phone: [''],
+      sexe: [''],
+      email: [''],
+      etat: [''],
+      photo: [''],
+      departement: ['']
+    });
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
@@ -38,9 +38,9 @@ export class ManagerDetailsComponent implements OnInit {
 
   handleManagerDetails() {
 
-    const theAdminId: number = +2;
+    const theAdminId: number = +1;
     const theManagerId: number = +this.route.snapshot.paramMap.get('id')!;
-    this.managerService.getManagerDetails(theAdminId , theManagerId).subscribe(
+    this.managerService.getManagerDetails(theAdminId, theManagerId).subscribe(
       data => {
         this.manager = data;
         if (this.manager?.departement) {

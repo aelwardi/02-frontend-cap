@@ -20,6 +20,7 @@ export class AdminAddEditComponent implements OnInit {
   password: string = '';
   adminForm!: FormGroup;
   passwordHidden: boolean = true;
+  admin!: Admin;
 
   constructor(private _FormBuilder: FormBuilder,
     public dialogRef: MatDialogRef<AdminAddEditComponent>,
@@ -50,8 +51,19 @@ export class AdminAddEditComponent implements OnInit {
 
   onFormSubmit(): void {
     // if (this.adminForm.valid) {
+    if (!this.admin) {
+      this.admin = new Admin(1);
+    }
+
+    this.admin.firstName = this.adminForm.value.firstName;
+    this.admin.lastName = this.adminForm.value.lastName;
+    this.admin.dateBirth = this.adminForm.value.dateBirth;
+    this.admin.email = this.adminForm.value.email;
+    this.admin.phone = this.adminForm.value.phone;
+    this.admin.sexe = this.adminForm.value.sexe;
+    this.admin.password = this.adminForm.value.password;
     if (this.data) {
-      this.adminService.updateAdmin(this.data.id, this.adminForm.value).subscribe(
+      this.adminService.updateAdmin(this.admin.id, this.admin).subscribe(
         response => {
           console.log('Admins updated');
           this.dialogRef.close(true);
@@ -64,7 +76,7 @@ export class AdminAddEditComponent implements OnInit {
 
     else {
       const superAdmin = new SuperAdmin(1);
-      const json = JSON.stringify(superAdmin.toJSON());
+      //const json = JSON.stringify(superAdmin.toJSON());
       const adminData: Admin = {
         id: null,
         firstName: this.adminForm.value.firstName,

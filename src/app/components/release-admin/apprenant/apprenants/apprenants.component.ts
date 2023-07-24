@@ -54,7 +54,7 @@ export class ApprenantsComponent implements OnInit {
   handleSearchApprenant() {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
     // now search for the departements using keyword
-    this.apprenantService.searchApprenant(theKeyword).subscribe(
+    this.apprenantService.searchApprenant(1, theKeyword).subscribe(
       data => {
         this.apprenents = data;
         this.dataSource = new MatTableDataSource(data);
@@ -65,12 +65,12 @@ export class ApprenantsComponent implements OnInit {
   }
 
   handleListApprenant() {
-    this.adminService.getApprenantList(2).subscribe(
+    this.adminService.getApprenantList(1).subscribe(
       data => {
         this.apprenents = data;
         this.dataSource = new MatTableDataSource(data);
         this.noRecordsFound = this.dataSource.data.length === 0;
-        //this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator = this.paginator;
       }
     )
   }

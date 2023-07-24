@@ -139,8 +139,7 @@ const routes: Routes = [
 
     ],
   },
-  { path: 'cours', component: ListCoursComponent },
-  { path: 'cours/search/:keyword', component: ListCoursComponent },
+  { path: 'cours', component: ListCoursComponent, },
   { path: 'project/:idProject/cours', component: ListCoursComponent },
   { path: 'project/:idProject/cours/search/:keyword', component: ListCoursComponent },
 

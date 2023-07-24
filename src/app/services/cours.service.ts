@@ -21,12 +21,12 @@ export class CoursService {
     return this.httpClient.post(`${this.apiUrl}?projetId=${projectId}`, coursData);
   }
 
-  getProjectById(idProject:number):Observable<any>{
+  getProjectById(idProject: number): Observable<any> {
     return this.httpClient.get(`http://localhost:8080/projects/${idProject}`)
   }
 
-  updateCours(id: number,projectId:number ,theCours: cours): Observable<any> {
-    console.log("cours avec project " , theCours)
+  updateCours(id: number, projectId: number, theCours: cours): Observable<any> {
+    console.log("cours avec project ", theCours)
     return this.httpClient.put(`${this.apiUrl}/${id}/project/${projectId}`, theCours);
   }
 
