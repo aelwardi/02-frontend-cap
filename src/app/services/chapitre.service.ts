@@ -23,17 +23,19 @@ export class ChapitreService {
     return this.httpClient.get<Chapitre[]>(this.baseUrl);
   }
 
-  getChapitreById(id: number): Observable<Chapitre> {
-    return this.httpClient.get<Chapitre>(`${this.baseUrl}/${id}`);
+  // Récupérer les chapitres par ID de cours
+  getChapitresByCoursId(coursId: number): Observable<Chapitre[]> {
+    return this.httpClient.get<Chapitre[]>(`${this.baseUrl}/cours/${coursId}`);
   }
 
   addChapitreToCours(coursId: number, chapitre: Chapitre): Observable<Chapitre> {
-    return this.httpClient.post<Chapitre>(`${this.baseUrl}?coursId=${coursId}`, chapitre);
+    return this.httpClient.post<Chapitre>(`${this.baseUrl}/cours/${coursId}`, chapitre);
   }
 
   updateChapitre(id: number, theChapitre: Chapitre): Observable<Chapitre> {
     return this.httpClient.put<Chapitre>(`${this.baseUrl}/${id}`, theChapitre);
   }
+
 
   deleteChapitre(id: number, coursId: number): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}/${id}/${coursId}`);

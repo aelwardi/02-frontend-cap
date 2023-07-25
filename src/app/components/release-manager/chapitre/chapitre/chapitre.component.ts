@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Chapitre} from "../../../../common/chapitre";
 import {ChapitreService} from "../../../../services/chapitre.service";
 
@@ -64,7 +64,7 @@ export class ChapitreComponent {
     this.displayForm = false;
   }
 
-  submitUpdate(): void {
+  submitUpdate(coursId: number, chapitreId: number, theChapitre: Chapitre): void {
     this.chapitreService.updateChapitre(this.selectedChapitre.id, this.selectedChapitre).subscribe(
       (data) => {
         console.log('Chapitre mis à jour avec succès :', data);
@@ -78,6 +78,7 @@ export class ChapitreComponent {
       }
     );
   }
+
 
   deleteChapitre(): void {
     // Récupérer l'ID du cours associé au chapitre
@@ -103,26 +104,17 @@ export class ChapitreComponent {
     this.displayForm = false;
   }
 
-  submitAdd(): void {
-    // Vérifier si l'ID du cours est défini pour le nouveau chapitre
-    if (!this.nouveauChapitre.cours || this.nouveauChapitre.cours.id === null) {
-      console.log('ID du cours manquant pour le nouveau chapitre');
-      return;
-    }
-
-    // Récupérer l'ID du cours associé au nouveau chapitre
-    const coursId = this.nouveauChapitre.cours.id;
-
+  submitAdd(coursId: number): void {
+    //Appelez le service pour ajouter le chapitre
     this.chapitreService.addChapitreToCours(coursId, this.nouveauChapitre).subscribe(
-      (data) => {
-        console.log('Nouveau chapitre ajouté avec succès :', data);
-        this.displayForm = false;
-        // Réinitialiser le formulaire et recharger la liste des chapitres
+      chapitre => {
+        // Mettez à jour la liste des chapitres après l'ajout
+        this.chapitres.push(chapitre);
+        // Réinitialisez l'objet "nouveauChapitre" pour le formulaire
         this.nouveauChapitre = new Chapitre();
-        this.loadChapitres();
       },
-      (error) => {
-        console.log('Une erreur s\'est produite lors de l\'ajout du chapitre :', error);
+      error => {
+        console.log('Erreur lors de l\'ajout du chapitre :', error);
       }
     );
   }

@@ -1,3 +1,4 @@
-<div class="container">
-    <router-outlet></router-outlet>
+<div class="container" *ngIf="isProfilComponent() || isAddEditProjectComponent() || isListProjectComponent()">
+  <router-outlet></router-outlet>
 </div>
+<router-outlet *ngIf="!isProfilComponent() && !isAddEditProjectComponent() && !isListProjectComponent()"></router-outlet>
