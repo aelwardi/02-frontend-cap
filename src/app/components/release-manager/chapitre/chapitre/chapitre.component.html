@@ -29,7 +29,7 @@
         <input type="text" id="description" name="description" class="form-control input-description" placeholder="Chapter Description" [(ngModel)]="selectedChapitre.description">
         <div class="buttons d-flex justify-content-end">
           <button type="button" class="btn btn-cancel" (click)="deleteChapitre()">Delete</button>
-          <button type="button" class="btn btn-submit" (click)="submitUpdate()">Update</button>
+          <button type="button" class="btn btn-submit" (click)="submitUpdate(1, selectedChapitre.id, selectedChapitre)">Update</button>
         </div>
       </div>
       <div *ngIf="displayForm && selectedChapitre && selectedChapitre.titre === 'Nouveau chapitre'">
@@ -37,7 +37,7 @@
         <input type="text" id="nouvelleDescription" name="nouvelleDescription" class="form-control input-description" placeholder="Nouvelle description" [(ngModel)]="nouveauChapitre.description">
         <div class="buttons d-flex justify-content-end">
           <button type="button" class="btn btn-cancel" (click)="cancelAdd()">Cancel</button>
-          <button type="button" class="btn btn-submit" (click)="submitAdd()">Submit</button>
+          <button type="button" class="btn btn-submit" (click)="submitAdd(1)">Submit</button>
         </div>
       </div>
     </div>
