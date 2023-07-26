@@ -32,8 +32,8 @@ export class ChapitreService {
     return this.httpClient.post<Chapitre>(`${this.baseUrl}/cours/${coursId}`, chapitre);
   }
 
-  updateChapitre(id: number, theChapitre: Chapitre): Observable<Chapitre> {
-    return this.httpClient.put<Chapitre>(`${this.baseUrl}/${id}`, theChapitre);
+  updateChapitre(theId: number, theChapitre: Chapitre): Observable<Chapitre> {
+    return this.httpClient.put<Chapitre>(`${this.baseUrl}/${theId}`, theChapitre);
   }
 
 
