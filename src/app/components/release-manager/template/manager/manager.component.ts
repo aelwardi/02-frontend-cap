@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ProfilManagerComponent} from "../../profil/profil-manager/profil-manager.component";
 import {AddEditProjectComponent} from "../../projects/add-edit-project/add-edit-project.component";
 import {ListProjetComponent} from "../../projects/list-projet/list-projet.component";
+import { ListQuizComponent } from '../../quiz/list-quiz/list-quiz.component';
 
 @Component({
   selector: 'app-manager',
@@ -22,6 +23,10 @@ export class ManagerComponent {
 
   isListProjectComponent(): boolean {
     return this.route.firstChild?.snapshot.component === ListProjetComponent;
+  }
+
+  isQuizComponent(): boolean {
+    return this.route.firstChild?.snapshot.component === ListQuizComponent;
   }
 
 
