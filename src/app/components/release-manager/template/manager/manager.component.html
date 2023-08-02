@@ -1,7 +1,7 @@
-<ng-container *ngIf="isProfilComponent() || isAddEditProjectComponent() || isListProjectComponent()">
+<ng-container *ngIf="isProfilComponent() || isAddEditProjectComponent() || isListProjectComponent() || isQuizComponent()">
   <app-nav-bar></app-nav-bar>
   <app-banner></app-banner>
   <br>
 </ng-container>
-<app-nav-bar-blue *ngIf="!isProfilComponent() && !isAddEditProjectComponent() && !isListProjectComponent()"></app-nav-bar-blue>
+<app-nav-bar-blue *ngIf="!isProfilComponent() && !isAddEditProjectComponent() && !isListProjectComponent() && !isQuizComponent()"></app-nav-bar-blue>
 <app-body-manager></app-body-manager>

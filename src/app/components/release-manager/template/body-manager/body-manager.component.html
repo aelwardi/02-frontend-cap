@@ -1,4 +1,4 @@
-<div class="container" *ngIf="isProfilComponent() || isAddEditProjectComponent() || isListProjectComponent()">
+<div class="container" *ngIf="isProfilComponent() || isAddEditProjectComponent() || isListProjectComponent() || isQuizComponent()">
   <router-outlet></router-outlet>
 </div>
-<router-outlet *ngIf="!isProfilComponent() && !isAddEditProjectComponent() && !isListProjectComponent()"></router-outlet>
+<router-outlet *ngIf="!isProfilComponent() && !isAddEditProjectComponent() && !isListProjectComponent() && !isQuizComponent()"></router-outlet>

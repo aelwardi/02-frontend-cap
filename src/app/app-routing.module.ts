@@ -26,6 +26,8 @@ import { ListCoursComponent } from './components/release-manager/cours/list-cour
 
 import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/list-quiz.component';
 import {ChapitreComponent} from "./components/release-manager/chapitre/chapitre/chapitre.component";
+import { SidNavChapitreComponent } from './components/release-manager/sections/sid-nav-chapitre/sid-nav-chapitre.component';
+import { ListSectionComponent } from './components/release-manager/sections/list-section/list-section.component';
 
 
 
@@ -133,9 +135,27 @@ const routes: Routes = [
         component: ListQuizComponent,
       },
       {
+        path: 'chapitre/:id', component: SidNavChapitreComponent,
+        children: [
+          {
+            path: ':id', component: ListSectionComponent
+          }
+        ]
+      }/*
+      {
         path: 'chapitre',
-        component: ChapitreComponent,
-      }
+        component: SidNavChapitreComponent,
+        children: [
+          {
+            path: ':id',
+            children: [
+              {
+                path: ':id', component: ListSectionComponent
+              }
+            ]
+          }
+        ]
+      }*/
 
     ],
   },

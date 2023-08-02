@@ -86,7 +86,13 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit-quiz/add-edit-quiz.component';
 import { ChapitreComponent } from './components/release-manager/chapitre/chapitre/chapitre.component';
-import { NavBarBlueComponent } from './components/release-manager/template/nav-bar-blue/nav-bar-blue.component'
+import { NavBarBlueComponent } from './components/release-manager/template/nav-bar-blue/nav-bar-blue.component';
+import { ListSectionComponent } from './components/release-manager/sections/list-section/list-section.component';
+import { SidNavChapitreComponent } from './components/release-manager/sections/sid-nav-chapitre/sid-nav-chapitre.component';
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 
 
 @NgModule({
@@ -145,7 +151,9 @@ import { NavBarBlueComponent } from './components/release-manager/template/nav-b
     ListQuizComponent,
     AddEditQuizComponent,
     ChapitreComponent,
-    NavBarBlueComponent
+    NavBarBlueComponent,
+    ListSectionComponent,
+    SidNavChapitreComponent
 
   ],
   imports: [
@@ -177,12 +185,14 @@ import { NavBarBlueComponent } from './components/release-manager/template/nav-b
     MatBadgeModule,
     MatGridListModule,
     MatExpansionModule,
-
     MatSidenavModule,
     MatListModule,
-
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
 
   ],
   providers: [],

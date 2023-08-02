@@ -1,0 +1,24 @@
+<div *ngIf="section">
+    <mat-card-title class="mb-2">{{ section.titre }}</mat-card-title>
+    <mat-divider class="mb-2"></mat-divider>
+    <mat-card-subtitle>{{ section.titre }}</mat-card-subtitle>
+    <mat-card-content>
+        <p>
+            {{ section.description }}
+        </p>
+        <div class="video-player-wrapper">
+            <vg-player *ngIf="section.type == 'video'">
+                <vg-overlay-play></vg-overlay-play>
+                <vg-buffering></vg-buffering>
+                <video [vgMedia]="$any(media)" #media id="singleVideo" controls>
+                    <source [src]="section.file" type="video/mp4">
+                </video>
+            </vg-player>
+            <img class="img-fluid" *ngIf="section.type == 'img'" [src]="section.file" alt="">
+            <ngx-extended-pdf-viewer *ngIf="section.type == 'pdf'" [src]="section.file" [height]="'95 %'"
+                [useBrowserLocale]="true">
+            </ngx-extended-pdf-viewer>
+        </div>
+    </mat-card-content>
+    
+</div>

@@ -30,6 +30,7 @@ export class ListQuizComponent implements OnInit {
     this.quizService.getQuizWithProspal(this.chapitreId).subscribe(
       data => {
         this.quizDto = data;
+        console.log(data);
       }
     )
   }
