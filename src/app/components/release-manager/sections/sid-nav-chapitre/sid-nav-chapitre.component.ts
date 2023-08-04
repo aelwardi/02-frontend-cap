@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ChapitreDTO } from 'src/app/common/chapitre-dto';
 import { SectionService } from 'src/app/services/section.service';
 import { NavigationSectionService } from 'src/app/services/navigation-section.service';
+import { AddEditSectionComponent } from '../add-edit-section/add-edit-section.component';
 
 @Component({
   selector: 'app-sid-nav-chapitre',
@@ -38,6 +39,10 @@ export class SidNavChapitreComponent implements OnInit {
     this.sectionService.getChapitreWithSection(this.cousId).subscribe(
       data => {
         this.chapitreDTO = data;
+        const chapitreId = +this.route.snapshot.paramMap.get('id')!;
+        this.chapitredtoCurrent = this.chapitreDTO.find((chapitre) => chapitre.chapitre!.id === chapitreId);
+        this.navigationSection.chapitredto = this.chapitredtoCurrent.chapitre;
+        //console.log(this.navigationSection.chapitredto);
       }
     )
   }
@@ -49,6 +54,13 @@ export class SidNavChapitreComponent implements OnInit {
   toggleHomeSubmenu(event: Event) {
     event.preventDefault();
     this.showSections = !this.showSections;
+  }
+
+  addSection(data: any): void {
+    const dialogRef = this.dialog.open(AddEditSectionComponent, {
+      width: '550px',
+      data,
+    })
   }
 
   next() {

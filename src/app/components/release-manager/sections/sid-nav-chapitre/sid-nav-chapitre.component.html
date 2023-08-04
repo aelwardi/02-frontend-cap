@@ -17,6 +17,10 @@
                         <li *ngFor="let section  of chapitredto.sections">
                             <a href="manager/chapitre/{{chapitredto.chapitre!.id}}/{{section!.id}}">{{ section!.titre }}</a>
                         </li>
+                        <li class="d-flex align-items-center">
+                            <mat-icon>add</mat-icon>
+                            <a class="ml-2" (click)="addSection(chapitredto.chapitre)">add new section</a>
+                        </li>
                     </ul>
                 </li>
             </ul>

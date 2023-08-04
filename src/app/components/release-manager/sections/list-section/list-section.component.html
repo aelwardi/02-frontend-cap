@@ -1,7 +1,21 @@
-<div *ngIf="section">
-    <mat-card-title class="mb-2">{{ section.titre }}</mat-card-title>
-    <mat-divider class="mb-2"></mat-divider>
-    <mat-card-subtitle>{{ section.titre }}</mat-card-subtitle>
+<mat-card-title class="mb-2"><!--{{ currentChapitre.titre }}--> hello</mat-card-title>
+<mat-divider class="mb-2"></mat-divider>
+<div *ngIf="section && !editMode">
+    <mat-card-subtitle class="d-flex justify-content-between align-items-center">
+        <div>
+            {{ section.titre }}
+        </div>
+        <div class="d-flex align-items-center">
+            <button mat-icon-button color="primary" class="large-icon-button-act"
+            (click)="editSection()">
+                <mat-icon class="large-icon icon-blue">edit_square</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" class="large-icon-button-act"
+                (click)="openConfirmationDialog(section.id)">
+                <mat-icon class="large-icon">delete</mat-icon>
+            </button>
+        </div>
+    </mat-card-subtitle>
     <mat-card-content>
         <p>
             {{ section.description }}
@@ -11,7 +25,7 @@
                 <vg-overlay-play></vg-overlay-play>
                 <vg-buffering></vg-buffering>
                 <video [vgMedia]="$any(media)" #media id="singleVideo" controls>
-                    <source [src]="section.file" type="video/mp4">
+                    <source [src]="section.file">
                 </video>
             </vg-player>
             <img class="img-fluid" *ngIf="section.type == 'img'" [src]="section.file" alt="">
@@ -20,5 +34,40 @@
             </ngx-extended-pdf-viewer>
         </div>
     </mat-card-content>
-    
+</div>
+<div *ngIf="editMode">
+    <form (ngSubmit)="onSubmit()" [formGroup]="sectionForm">
+        <mat-card-subtitle>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput placeholder="Enter the title" formControlName="titre" required>
+                </mat-form-field>
+            </div>
+        </mat-card-subtitle>
+        <mat-card-content>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <input matInput placeholder="Enter the description" formControlName="description" required>
+                </mat-form-field>
+            </div>
+            <!-- Remove the mat-form-field wrapper for the file input -->
+            <div class="form-group mb-4">
+                <input type="file" (change)="onFileSelected($event)" required>
+            </div>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Time</mat-label>
+                    <input matInput placeholder="Time" formControlName="tempsestimer" required>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-divider class="mb-2"></mat-divider>
+        <mat-card-actions class="btn-container">
+            <button mat-raised-button class="submit-button" type="submit">
+                Submit
+            </button>
+        </mat-card-actions>
+    </form>
 </div>

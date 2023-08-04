@@ -20,3 +20,42 @@ li.selected {
     background: #03A9F4 !important;
 }
 
+.large-icon-button {
+    width: 80px;
+    height: 80px;
+    padding: 0;
+  }
+  
+  .large-icon-button .mat-icon {
+  
+  
+    transform: scale(1);
+  }
+  
+  .large-icon-button-act .mat-icon {
+    transform: scale(1);
+  
+  }
+  
+  .icon-blue {
+    color: #0070AD;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    background-color: white;
+  }
+  
+  mat-card-actions {
+    justify-content: flex-end;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    background-color: white;
+    margin-bottom: 20px;
+  }
+  
+  mat-icon {
+    cursor: pointer;
+  }

@@ -93,6 +93,8 @@ import {VgCoreModule} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+import { AddEditSectionComponent } from './components/release-manager/sections/add-edit-section/add-edit-section.component';
+import { EditSectionComponent } from './components/release-manager/sections/edit-section/edit-section.component';
 
 
 @NgModule({
@@ -153,7 +155,9 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
     ChapitreComponent,
     NavBarBlueComponent,
     ListSectionComponent,
-    SidNavChapitreComponent
+    SidNavChapitreComponent,
+    AddEditSectionComponent,
+    EditSectionComponent
 
   ],
   imports: [

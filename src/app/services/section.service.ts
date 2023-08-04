@@ -21,4 +21,20 @@ export class SectionService {
 
     return this.httpClient.get(sectionURL);
   }
+
+  addSection(chapitreId: number, theSection: any): Observable<any> {
+    const addURL = `${this.baseUrl}?chapitreId=${chapitreId}`;
+    return this.httpClient.post(addURL, theSection);
+  }
+
+  deleteSection(id: number, chapitreId: number): Observable<any> {
+    const deleteUrl = `${this.baseUrl}/${id}/${chapitreId}`;
+    return this.httpClient.delete(deleteUrl);
+  }
+
+  updateSection(id: number, chapitreId: number, theSection: any): Observable<any> {
+    const updateUrl = `${this.baseUrl}/${chapitreId}/${id}`;
+    console.log(updateUrl);
+    return this.httpClient.put(updateUrl, theSection);
+  }
 }
