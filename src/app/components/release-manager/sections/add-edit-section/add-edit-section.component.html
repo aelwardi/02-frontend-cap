@@ -1,0 +1,38 @@
+<mat-card class="container">
+    <mat-card-title class="mb-2">{{ data.titre }}</mat-card-title>
+    <mat-divider class="mb-2"></mat-divider>
+    <form (ngSubmit)="onSubmit()" [formGroup]="sectionForm">
+        <mat-card-subtitle>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput placeholder="Enter the title" formControlName="titre" required>
+                </mat-form-field>
+            </div>
+        </mat-card-subtitle>
+        <mat-card-content>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <input matInput placeholder="Enter the description" formControlName="description" required>
+                </mat-form-field>
+            </div>
+            <!-- Remove the mat-form-field wrapper for the file input -->
+            <div class="form-group mb-4">
+                <input type="file" (change)="onFileSelected($event)" required>
+            </div>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Time</mat-label>
+                    <input matInput placeholder="Time" formControlName="tempsestimer" required>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-divider class="mb-2"></mat-divider>
+        <mat-card-actions class="btn-container">
+            <button mat-raised-button class="submit-button" type="submit">
+                Submit
+            </button>
+        </mat-card-actions>
+    </form>
+</mat-card>

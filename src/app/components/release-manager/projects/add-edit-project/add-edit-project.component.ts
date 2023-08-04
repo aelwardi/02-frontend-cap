@@ -1,8 +1,7 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component,  Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Departement } from 'src/app/common/departement';
 import { Projet } from 'src/app/common/projet';
 import { AdminService } from 'src/app/services/admin.service';
 import { ProjetService } from 'src/app/services/projet.service';

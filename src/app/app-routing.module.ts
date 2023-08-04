@@ -28,6 +28,7 @@ import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/l
 import {ChapitreComponent} from "./components/release-manager/chapitre/chapitre/chapitre.component";
 import { SidNavChapitreComponent } from './components/release-manager/sections/sid-nav-chapitre/sid-nav-chapitre.component';
 import { ListSectionComponent } from './components/release-manager/sections/list-section/list-section.component';
+import { AddEditSectionComponent } from './components/release-manager/sections/add-edit-section/add-edit-section.component';
 
 
 
@@ -137,6 +138,9 @@ const routes: Routes = [
       {
         path: 'chapitre/:id', component: SidNavChapitreComponent,
         children: [
+          {
+            path: 'addSection', component: AddEditSectionComponent
+          },
           {
             path: ':id', component: ListSectionComponent
           }

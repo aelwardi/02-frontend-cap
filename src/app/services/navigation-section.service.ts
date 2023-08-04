@@ -8,5 +8,6 @@ export class NavigationSectionService {
   constructor() { }
 
   public sectionId!: number;
+  public chapitredto: any;
   
 }
