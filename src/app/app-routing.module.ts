@@ -144,22 +144,6 @@ const routes: Routes = [
       {
         path: 'cours/:id', component: ChapitresComponent,
       }
-      /*
-      {
-        path: 'chapitre',
-        component: SidNavChapitreComponent,
-        children: [
-          {
-            path: ':id',
-            children: [
-              {
-                path: ':id', component: ListSectionComponent
-              }
-            ]
-          }
-        ]
-      }*/
-
     ],
   },
   { path: 'home', component: HomeComponent },

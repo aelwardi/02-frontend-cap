@@ -11,6 +11,7 @@ import { ManagerCoursService } from 'src/app/services/manager-cours.service';
   styleUrls: ['./add-manager-cours.component.css']
 })
 export class AddManagerCoursComponent implements OnInit {
+  isLoading: boolean = false;
   managerInfo: ManagerInfo[] = [];
   assignmentForm!: FormGroup;
 
@@ -40,13 +41,23 @@ export class AddManagerCoursComponent implements OnInit {
   }
   
   onFormSubmit(): void{
+    this.isLoading = true;
     if(this.assignmentForm.valid){
       this.managerCoursService.addNewAssignment(this.assignmentForm.value.manager.id, this.gestionChapitreService.coursId).subscribe(
-        data => {
-          console.log("manager assigned");
+        response => {
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log("Apprenant assigned");
           this.dialogRef.close(true);
-        }
-      )
+          }, 1000);
+        },
+        error => {
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log(error);
+          }, 1000);
+
+        });
     }
   }
 }

@@ -91,12 +91,12 @@ export class CoursComponent implements OnInit {
           this.getProjetsAndCours();
         }, 1000);
       },
-      error: () => { 
+      error: () => {
         setTimeout(() => {
           this.isLoading = false;
           console.log("erreur");
         }, 1000);
-       },
+      },
     })
   }
 
@@ -110,7 +110,7 @@ export class CoursComponent implements OnInit {
         this.getProjetsAndCours();
       }
       else {
-        
+
       }
     });
   }
@@ -125,7 +125,7 @@ export class CoursComponent implements OnInit {
         this.getProjetsAndCours();
       }
       else {
-        
+
       }
     });
 
@@ -142,7 +142,7 @@ export class CoursComponent implements OnInit {
         this.getAssignmentApprenantProjet();
       }
       else {
-        
+
       }
     });
   }
@@ -161,11 +161,21 @@ export class CoursComponent implements OnInit {
   }
 
   removeApprenant(apprenantId: number) {
-    this.apprenantProjetService.deleteApprenantProjet(apprenantId, this.sharedProjetService.projetId).subscribe(
-      data => {
-        console.log("Apprenant removed");
-        this.getAssignmentApprenantProjet();
+    this.isLoading = true;
+    this.apprenantProjetService.deleteApprenantProjet(apprenantId, this.sharedProjetService.projetId).subscribe({
+      next: (res) => {
+        setTimeout(() => {
+          this.isLoading = false;
+          console.log("Apprenant removed");
+          this.getAssignmentApprenantProjet();
+        }, 1000);
+      },
+      error: (err) => {
+        setTimeout(() => {
+          console.log("Apprenant removed");
+          this.isLoading = false;
+        }, 1000);
       }
-    )
+    })
   }
 }
