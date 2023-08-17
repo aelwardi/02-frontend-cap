@@ -1,5 +1,9 @@
 <h2>{{ data ? 'Edit' : 'Add' }} Manager</h2>
-
+<div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+        <div class="spinners"></div>
+    </div>
+</div>
 <mat-vertical-stepper [formGroup]="managerForm">
     <!-- Étape 1 -->
     <mat-step>
@@ -84,8 +88,8 @@
         <div>
             <button mat-button matStepperPrevious>Back</button>
         </div>
-        <mat-dialog-actions class="mat-dialog-actions-align-end">
-            <button mat-raised-button color="primary" (click)="onFormSubmit()">{{ data ? 'Update' : 'Submit' }}</button>
+        <mat-dialog-actions class="d-flex justify-content-end">
+            <button mat-raised-button color="primary" class="save-btn-item" (click)="onFormSubmit()">{{ data ? 'Update' : 'Submit' }}</button>
         </mat-dialog-actions>
     </mat-step>
 </mat-vertical-stepper>

@@ -60,3 +60,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.icon-blue {
+  color: #0070AD;
+}

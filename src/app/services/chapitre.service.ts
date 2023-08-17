@@ -28,11 +28,11 @@ export class ChapitreService {
     return this.httpClient.get<Chapitre[]>(`${this.baseUrl}/cours/${coursId}`);
   }
 
-  addChapitreToCours(coursId: number, chapitre: Chapitre): Observable<Chapitre> {
+  addChapitreToCours(coursId: number, chapitre: any): Observable<any> {
     return this.httpClient.post<Chapitre>(`${this.baseUrl}/cours/${coursId}`, chapitre);
   }
 
-  updateChapitre(theId: number, theChapitre: Chapitre): Observable<Chapitre> {
+  updateChapitre(theId: number, theChapitre: any): Observable<any> {
     return this.httpClient.put<Chapitre>(`${this.baseUrl}/${theId}`, theChapitre);
   }
 

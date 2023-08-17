@@ -16,10 +16,10 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./list-projet.component.css']
 })
 export class ListProjetComponent implements OnInit {
+  isLoading: boolean = false;
   projets: Projet[] = [];
   projects: Projet[] = [];
   noRecordsFound!: boolean;
-  departementid!: any;
   searchMode: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -39,36 +39,11 @@ export class ListProjetComponent implements OnInit {
     });
   }
 
+  redirectToProject(projetId: number) {
+    this.router.navigate([`/manager/projects/${projetId}`]);
+  }
+
   listProjet() {
-    if (!this.departementid) {
-      this.managerService.getManager(1).subscribe(
-        data => {
-          this.departementid = +data.departement!.id;
-          this.fetchProjetsByDepartement();
-        }
-      );
-    } else {
-      this.fetchProjetsByDepartement();
-    }
-  }
-
-  handleSearchProject() {
-    const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
-    if (this.projetService && this.departementid) {
-      this.projetService.searchProjects(theKeyword, this.departementid).subscribe(
-        data => {
-          this.projets = data;
-          this.projects = data.slice(0, 3);
-          this.initializePaginator();
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
-  }
-
-  fetchProjetsByDepartement() {
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
     if (this.searchMode) {
       this.handleSearchProject();
@@ -78,14 +53,31 @@ export class ListProjetComponent implements OnInit {
     }
   }
 
-  handleListProject() {
-    this.departementService.getProjetsByDepartement(this.departementid).subscribe(
+  handleSearchProject() {
+    const managerId = 2;
+    const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
+    this.projetService.searchProjects(theKeyword, managerId).subscribe(
       data => {
+        this.projets = data;
+        this.projects = data.slice(0, 3);
+        this.initializePaginator();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  handleListProject() {
+    const managerId = 2;
+    this.projetService.getProjetsByDepartement(managerId).subscribe(
+      data => {
+        //console.log(data);
         this.projets = data;
         this.projects = data.slice(0, 3);
         this.initializePaginator(); // Appel de la méthode ici
       }
-    );
+    )
   }
 
   initializePaginator() {
@@ -102,9 +94,17 @@ export class ListProjetComponent implements OnInit {
   }
 
   openEditProjectModal(data: any): void {
-    this.dialog.open(AddEditProjectComponent, {
+    const dialogRef = this.dialog.open(AddEditProjectComponent, {
       width: '540px',
       data,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.handleListProject();
+      }
+      else {
+        console.log(result);
+      }
     });
   }
 
@@ -122,11 +122,19 @@ export class ListProjetComponent implements OnInit {
   }
 
   deleteProject(id: number): void {
+    this.isLoading = true;
     this.projetService.deleteProject(id).subscribe({
       next: (res) => {
-        this.listProjet();
+        setTimeout(() => {
+          this.isLoading = false;
+          this.listProjet();
+        }, 1000);
       },
-      error: console.log,
+      error: (err) => {
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
+      }
     })
   }
 
@@ -139,6 +147,7 @@ export class ListProjetComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.handleListProject();
       }
       else {
         console.log(result);

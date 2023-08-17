@@ -96,7 +96,7 @@ export class AddEditQuizComponent implements OnInit {
   }
   
   submitQuiz(): void {
-    const chapitreId= +7;
+    const chapitreId= +17;
     const quizQuestion = this.quizForm.value.question;
     const proposals = this.quizForm.value.propositions;
     if (this.quizForm.invalid) {

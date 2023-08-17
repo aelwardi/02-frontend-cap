@@ -12,9 +12,6 @@ h2 {
     background-color: white;
   }
   
-  
-  
-  
   mat-card-actions {
     justify-content: center;
     margin-top: 20px;
@@ -29,34 +26,11 @@ h2 {
   mat-icon {
     cursor: pointer;
   }
+  .save-btn-item {
+    background-color: #0070AD!important;
+    color: #FFFFFF;
+  }
   
-  /*
-  form {
-    width: 900px;
-    height: 400px;
-  
-  } */
-  
-  
-  /* .mat-dialog-actions-align-end {
-    justify-content: flex-end;
-    margin: 0 3rem;
-  
-  
-  
-  } */
-  
-  /* .custom-form-field {
-    width: 100px;
-    height: 100px;
-  } */
-  
-  /* .mdc-text-field {
-    background-color: white;
-  } */
-  
-  /* .ng-star-inserted {
-    width: 100px;
-    height: 100px;
-  
-  } */
+  .icon-blue {
+    color: #0070AD;
+  }

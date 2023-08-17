@@ -15,7 +15,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   styleUrls: ['./manager-add-edit.component.css']
 })
 export class ManagerAddEditComponent implements OnInit {
-
+  isLoading: boolean = false;
   departement: any;
   password: string = '';
   managerForm!: FormGroup;
@@ -51,15 +51,19 @@ export class ManagerAddEditComponent implements OnInit {
   }
 
   handleManagerById(): void {
-    this.managerService.getManager(this.data.id).subscribe(
-      data => {
-        this.manager = data;
-        this.managerForm.patchValue(this.manager);
-        console.log(this.manager);
-      }
-    );
+    if (this.data) {
+      this.managerService.getManager(this.data.id).subscribe(
+        data => {
+          this.manager = data;
+          this.managerForm.patchValue(this.manager);
+          //console.log(this.manager);
+        }
+      );
+    }
   }
   onFormSubmit(): void {
+    this.isLoading = true;
+    const adminId = 2;
     // if (this.managerForm.valid) {
     if (this.data) {
       this.manager.firstName = this.managerForm.value.firstName;
@@ -69,19 +73,25 @@ export class ManagerAddEditComponent implements OnInit {
       this.manager.phone = this.managerForm.value.phone;
       this.manager.sexe = this.managerForm.value.sexe;
       this.manager.password = this.managerForm.value.password;
-      this.managerService.updateManager(this.manager.id, this.manager).subscribe(
+      this.managerService.updateManager(adminId ,this.manager.id, this.manager).subscribe(
         response => {
-          console.log('Manager updated');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Manager updated');
           this.dialogRef.close(true);
+          }, 1000);
         },
         error => {
-          console.log('Error');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Error');
+          }, 1000);
+          
         }
       );
     }
 
     else {
-      const admin = new Admin(1);
       const managerData: Manager = {
         id: null,
         firstName: this.managerForm.value.firstName,
@@ -95,19 +105,25 @@ export class ManagerAddEditComponent implements OnInit {
         etat: true,
         role: 'MANAGER',
         departement: this.managerForm.value.departement,
-        admin: admin
       };
-      console.log(managerData);
-      this.managerService.addManager(managerData).subscribe(
+      //console.log(managerData);
+      this.managerService.addManager(adminId, managerData).subscribe(
         response => {
-          console.log('Admin added');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Admin added');
           this.dialogRef.close(true);
+          }, 1000);
+          
         },
         error => {
-          console.log('Error');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Error');
+          }, 1000);
         }
       );
-      console.log(managerData);
+      //console.log(managerData);
     }
     // }
 
@@ -132,15 +148,14 @@ export class ManagerAddEditComponent implements OnInit {
   }
 
   fetchDepartments(): void {
-    this.adminService.getDepartementByAdmin(+1)
-      .subscribe(data => {
-
+    this.adminService.getDepartementByAdmin(+2).subscribe(
+      data => {
         this.departement = data;
         // console.log(departements);
       },
-        error => {
-          console.log('Error occurred while loading departments:', error);
-        }
-      );
+      error => {
+        console.log('Error occurred while loading departments:', error);
+      }
+    );
   }
 }

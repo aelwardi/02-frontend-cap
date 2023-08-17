@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,11 +16,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SearchComponent } from './components/release-super-admin/departement/search/search.component';
-import { AddBtnComponent } from './components/release-super-admin/departement/add-btn/add-btn.component';
 import { ConfirmDialogComponent } from './components/release-super-admin/departement/confirm-dialog/confirm-dialog.component';
 import { DepartementAddEditComponent } from './components/release-super-admin/departement/departement-add-edit/departement-add-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddBtnAdminComponent } from './components/release-super-admin/admin/add-btn-admin/add-btn-admin.component';
 import { SearchAdminComponent } from './components/release-super-admin/admin/search-admin/search-admin.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ToolbarComponent } from './components/release-super-admin/homes/toolbar/toolbar.component';
@@ -50,12 +47,10 @@ import { AdminComponent } from './components/release-admin/template/admin/admin.
 import { SidenavAdminComponent } from './components/release-admin/template/sidenav-admin/sidenav-admin.component';
 import { BodyAdminComponent } from './components/release-admin/template/body-admin/body-admin.component';
 import { ListManagerComponent } from './components/release-admin/manager/list-manager/list-manager.component';
-import { AddBtnManagerComponent } from './components/release-admin/manager/add-btn-manager/add-btn-manager.component';
 import { SearchManagerComponent } from './components/release-admin/manager/search-manager/search-manager.component';
 import { ManagerAddEditComponent } from './components/release-admin/manager/manager-add-edit/manager-add-edit.component';
 import { ManagerDetailsComponent } from './components/release-admin/manager/manager-details/manager-details.component';
 import { ApprenantsComponent } from './components/release-admin/apprenant/apprenants/apprenants.component';
-import { AddBtnApprenantComponent } from './components/release-admin/apprenant/add-btn-apprenant/add-btn-apprenant.component';
 import { ApprenantAddEditComponent } from './components/release-admin/apprenant/apprenant-add-edit/apprenant-add-edit.component';
 import { ApprenantDetailsComponent } from './components/release-admin/apprenant/apprenant-details/apprenant-details.component';
 import { SearchApprenantComponent } from './components/release-admin/apprenant/search-apprenant/search-apprenant.component';
@@ -74,18 +69,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProfilManagerComponent } from './components/release-manager/profil/profil-manager/profil-manager.component';
 import { AdminDetailsComponent } from './components/release-super-admin/admin/admin-details/admin-details.component';
-
-import { HeaderComponent } from './components/release-manager/cours/header/header.component';
-import { ListCoursComponent } from './components/release-manager/cours/list-cours/list-cours.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { AddEditCoursComponent } from './components/release-manager/cours/add-edit-cours/add-edit-cours.component';
-
+import { AddEditCoursComponent } from './components/release-manager/courses/add-edit-cours/add-edit-cours.component';
 import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/list-quiz.component';
 import { MatDividerModule } from '@angular/material/divider';
-
 import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit-quiz/add-edit-quiz.component';
-import { ChapitreComponent } from './components/release-manager/chapitre/chapitre/chapitre.component';
 import { NavBarBlueComponent } from './components/release-manager/template/nav-bar-blue/nav-bar-blue.component';
 import { ListSectionComponent } from './components/release-manager/sections/list-section/list-section.component';
 import { SidNavChapitreComponent } from './components/release-manager/sections/sid-nav-chapitre/sid-nav-chapitre.component';
@@ -95,7 +84,12 @@ import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { AddEditSectionComponent } from './components/release-manager/sections/add-edit-section/add-edit-section.component';
 import { EditSectionComponent } from './components/release-manager/sections/edit-section/edit-section.component';
-
+import { ChapitresComponent } from './components/release-manager/chapitre/chapitres/chapitres.component';
+import { AddEditChapitreComponent } from './components/release-manager/chapitre/add-edit-chapitre/add-edit-chapitre.component';
+import { AddManagerCoursComponent } from './components/release-manager/chapitre/add-manager-cours/add-manager-cours.component';
+import { CoursComponent } from './components/release-manager/courses/cours/cours.component';
+import { AddApprenantProjetComponent } from './components/release-manager/courses/add-apprenant-projet/add-apprenant-projet.component';
+import {MatTreeModule} from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -104,12 +98,10 @@ import { EditSectionComponent } from './components/release-manager/sections/edit
     SidenavComponent,
     DepartementsComponent,
     SearchComponent,
-    AddBtnComponent,
     ConfirmDialogComponent,
     DepartementAddEditComponent,
     AdminsComponent,
     AdminDetailsComponent,
-    AddBtnAdminComponent,
     SearchAdminComponent,
     ToolbarComponent,
     BodyWelcomeComponent,
@@ -125,13 +117,11 @@ import { EditSectionComponent } from './components/release-manager/sections/edit
     SidenavAdminComponent,
     BodyAdminComponent,
     ListManagerComponent,
-    AddBtnManagerComponent,
     SearchManagerComponent,
     ManagerAddEditComponent,
     ManagerDetailsComponent,
     ApprenantsComponent,
     ApprenantsComponent,
-    AddBtnApprenantComponent,
     ApprenantAddEditComponent,
     ApprenantDetailsComponent,
     SearchApprenantComponent,
@@ -145,19 +135,19 @@ import { EditSectionComponent } from './components/release-manager/sections/edit
     ListProjetComponent,
     AddEditProjectComponent,
     ProfilManagerComponent,
-
-    HeaderComponent,
-    ListCoursComponent,
     AddEditCoursComponent,
-
     ListQuizComponent,
     AddEditQuizComponent,
-    ChapitreComponent,
     NavBarBlueComponent,
     ListSectionComponent,
     SidNavChapitreComponent,
     AddEditSectionComponent,
-    EditSectionComponent
+    EditSectionComponent,
+    ChapitresComponent,
+    AddEditChapitreComponent,
+    AddManagerCoursComponent,
+    CoursComponent,
+    AddApprenantProjetComponent,
 
   ],
   imports: [
@@ -197,7 +187,7 @@ import { EditSectionComponent } from './components/release-manager/sections/edit
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-
+    MatTreeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

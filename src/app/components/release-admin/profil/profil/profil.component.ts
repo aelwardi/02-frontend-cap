@@ -12,6 +12,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+  isLoading: boolean = false;
   profileForm!: FormGroup;
   admin!: Admin;
   photoFile: File | undefined;
@@ -24,7 +25,7 @@ export class ProfilComponent implements OnInit {
   }
 
   checkScreenSize() {
-    this.isMobile = window.innerWidth < 768; // Modifier la valeur de 768 selon votre besoin
+    this.isMobile = window.innerWidth < 768; 
   }
 
 
@@ -55,17 +56,17 @@ export class ProfilComponent implements OnInit {
 
       const theAdminId: number = +2;
   
-      this.adminService.getAdmin(theAdminId).subscribe(
+      this.adminService.getAdminDetails(theAdminId).subscribe(
         data => {
           this.admin = data;
           this.profileForm.patchValue(this.admin);
-          console.log(this.admin);
+          //console.log(this.admin);
         }
       );
     }
 
     onFormSubmit(): void {
-
+      this.isLoading = true;
       const dialogRef = this.dialog.open(ConfirmDialogComponent, {
         width: '300px'
       });
@@ -78,14 +79,20 @@ export class ProfilComponent implements OnInit {
           this.admin.sexe = this.profileForm.value.sexe;
           this.admin.photo = this.profileForm.value.photo.substring(this.profileForm.value.photo.indexOf(',') + 1);;
           //console.log(this.superAdmin.photo);
-          
-          this.adminService.updateAdmin(this.admin.id, this.admin).subscribe(
+          this.adminService.updateProfile(this.admin.id, this.admin).subscribe(
             response => {
-              this.handleAdminDetails();
+              setTimeout(() => {
+                this.isLoading = false;
+                this.handleAdminDetails();
               console.log('Admin updated');
+              }, 1000);
             },
             error => {
-              console.log('Error');
+              setTimeout(() => {
+                this.isLoading = false;
+                console.log('Error');
+              }, 1000);
+              
             }
           );
         }

@@ -1,0 +1,54 @@
+<div>
+  <div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+      <div class="spinners"></div>
+    </div>
+  </div>
+  <mat-card [formGroup]="coursForm">
+    <mat-card-header>
+      <mat-card-title>{{ data.dataUpdated ? 'Edit' : 'Add new' }} Cours</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- Champ pour le titre de cours -->
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <mat-icon matPrefix>create</mat-icon>
+          <input matInput placeholder="Enter Title of course" formControlName="title" required>
+          <mat-error
+            *ngIf="coursForm.get('title')?.invalid && (coursForm.get('title')?.dirty || coursForm.get('title')?.touched)">
+            Title is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- Champ pour actor  -->
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>actor</mat-label>
+          <mat-icon matPrefix>create</mat-icon>
+          <input matInput placeholder="Enter actor name" formControlName="actor" readonly>
+        </mat-form-field>
+      </div>
+      <!-- Champ pour la description -->
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Description
+          </mat-panel-title>
+          <mat-panel-description>
+            {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field class="example-full-width">
+          <mat-label>Write a description of project</mat-label>
+          <textarea matInput placeholder="..." formControlName="description"></textarea>
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button class="submit-button" (click)="onFormSubmit()">
+        {{ data.dataUpdated ? 'Update' : 'Submit' }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

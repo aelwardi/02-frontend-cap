@@ -50,20 +50,24 @@ export class AdminService {
 
   }
 
-  addAdmin(theAdmin: Object): Observable<Object> {
-
-    return this.httpClient.post(this.baseUrl, theAdmin);
-
-  }
-
-  updateAdmin(id: number, theAdmin: any): Observable<any> {
-    //console.log(theAdmin);
-    return this.httpClient.put(`${this.baseUrl}/${id}`, theAdmin);
+  addAdmin(superAdminId: number, theAdmin: Object): Observable<Object> {
+    const addURL = `${this.baseUrl}?superAdminId=${superAdminId}`;
+    return this.httpClient.post(addURL, theAdmin);
 
   }
 
+  updateAdmin(superAdminId: number, id: number, theAdmin: any): Observable<any> {
+    const updateADMIN = `${this.baseUrl}/${id}?superAdminId=${superAdminId}`;
+    return this.httpClient.put(updateADMIN, theAdmin);
+  }
 
-  getAdminDetails(theAdminId: number): Observable<Admin> {
+  updateProfile(id: number, theAdmin: any): Observable<any> {
+    const updateADMIN = `${this.baseUrl}/profile/${id}`;
+    return this.httpClient.put(updateADMIN, theAdmin);
+  }
+
+
+  getAdminDetails(theAdminId: number): Observable<any> {
     const adminUrl = `${this.baseUrl}/details?theId=${theAdminId}`;
     return this.httpClient.get<Admin>(adminUrl);
   }

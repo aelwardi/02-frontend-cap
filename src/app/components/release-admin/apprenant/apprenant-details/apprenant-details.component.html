@@ -2,15 +2,24 @@
 <mat-card class="profile-card">
   <mat-card-content>
     <button mat-icon-button color="primary" routerLink="/admin/apprenants">
-      <mat-icon>arrow_back</mat-icon>
+      <mat-icon class="icon-blue">arrow_back</mat-icon>
     </button>
     <form [formGroup]="detailsForm" class="profile-container">
       <div class="profile-left">
         <div class="profile-photo">
+          <ng-container *ngIf="apprenant?.photo; else defaultPhoto">
+            <img [src]="'data:image/jpeg;base64,' + apprenant.photo" alt="Photo de profil" />
+          </ng-container>
+          <ng-template #defaultPhoto>
+            <img src="/assets/images/img-profil.jpg" alt="Image par défaut" />
+          </ng-template>
+          <div class="departement">{{ apprenant?.departement!.name }}</div>
+        </div><!--
+        <div class="profile-photo">
           <img [src]="apprenant.photo ? 'data:image/jpeg;base64,' + apprenant.photo : '/assets/images/img-profil.jpg'"
             alt="Photo de profil" />
           <div class="departement">{{ apprenant.departement!.name }}</div>
-        </div>
+        </div>-->
       </div>
       <div class="profile-right">
         <div class="field">

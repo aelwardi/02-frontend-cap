@@ -17,7 +17,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   styleUrls: ['./apprenant-add-edit.component.css']
 })
 export class ApprenantAddEditComponent implements OnInit {
-
+  isLoading: boolean = false;
   departement: any;
   password: string = '';
   apprenantForm!: FormGroup;
@@ -54,12 +54,12 @@ export class ApprenantAddEditComponent implements OnInit {
   }
 
   handleApprenantById(): void {
-    if (this.data && this.data.id) { // Check if this.data and this.data.id are not null or undefined
+    if (this.data && this.data.id) { 
       this.apprenantService.getApprenantById(this.data.id).subscribe(
         data => {
           this.apprenant = data;
           this.apprenantForm.patchValue(this.apprenant);
-          console.log(this.apprenant);
+          //console.log(this.apprenant);
         },
         error => {
           console.log('Error occurred while fetching apprenant:', error);
@@ -67,7 +67,6 @@ export class ApprenantAddEditComponent implements OnInit {
       );
     } else {
       console.log('Data or ID is null or undefined.');
-      // Handle the case when this.data or this.data.id is null or undefined.
     }
   }
 
@@ -75,7 +74,8 @@ export class ApprenantAddEditComponent implements OnInit {
 
 
   onFormSubmit(): void {
-    // if (this.adminForm.valid) {
+    this.isLoading = true;
+    const adminId = 2;
     if (this.data) {
       this.apprenant.firstName = this.apprenantForm.value.firstName;
       this.apprenant.lastName = this.apprenantForm.value.lastName;
@@ -84,20 +84,25 @@ export class ApprenantAddEditComponent implements OnInit {
       this.apprenant.phone = this.apprenantForm.value.phone;
       this.apprenant.sexe = this.apprenantForm.value.sexe;
       this.apprenant.password = this.apprenantForm.value.password;
-      this.apprenantService.updateApprenant(this.apprenant.id, this.apprenant).subscribe(
+      this.apprenantService.updateApprenant(adminId, this.apprenant.id, this.apprenant).subscribe(
         response => {
-          console.log('apprenant updated');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('apprenant updated');
           this.dialogRef.close(true);
+          }, 1000);
         },
         error => {
-          console.log('Error');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Error');
+          }, 1000);
+          
         }
       );
     }
-    //}
 
     else {
-      const admin = new Admin(1);
       const apprenantData: Apprenant = {
         id: null,
         firstName: this.apprenantForm.value.firstName,
@@ -110,24 +115,28 @@ export class ApprenantAddEditComponent implements OnInit {
         password: this.apprenantForm.value.password,
         etat: true,
         role: 'APPRENANT',
-        departement: this.apprenantForm.value.departement,
-        admin: admin
+        departement: this.apprenantForm.value.departement
       };
-      console.log(apprenantData);
-      this.apprenantService.addApprenant(apprenantData).subscribe(
+      //console.log(apprenantData);
+      this.apprenantService.addApprenant(adminId, apprenantData).subscribe(
         response => {
-          console.log('Apprenant added');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Apprenant added');
           //console.log(apprenantData);
           this.dialogRef.close(true);
+          }, 1000);
+          
         },
         error => {
-          console.log('Error');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Error');
+          }, 1000);
         }
       );
-      console.log(apprenantData);
+      //console.log(apprenantData);
     }
-    // }
-
 
   }
 
@@ -150,11 +159,10 @@ export class ApprenantAddEditComponent implements OnInit {
 
   // pour assigner chaque apprenant a une departement
   fetchDepartments(): void {
-    this.adminService.getDepartementByAdmin(+1)
+    this.adminService.getDepartementByAdmin(+2)
       .subscribe(data => {
-
         this.departement = data;
-        console.log(data);
+        //console.log(data);
       },
         error => {
           console.log('Error occurred while loading departments:', error);

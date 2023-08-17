@@ -11,7 +11,7 @@ import { DepartementService } from 'src/app/services/departement.service';
   styleUrls: ['./departement-add-edit.component.css']
 })
 export class DepartementAddEditComponent implements OnInit {
-
+  isLoading: boolean = false;
   departementForm!: FormGroup;
 
   constructor(private _formBuilder: FormBuilder,
@@ -30,26 +30,40 @@ export class DepartementAddEditComponent implements OnInit {
   }
 
   onFormSubmit(): void {
+    this.isLoading = true;
     if (this.departementForm.valid) {
       if (this.data) {
         this.departementService.updateDepartement(this.data.id, this.departementForm.value).subscribe(
           response => {
-            console.log('Department updated');
-            this.dialogRef.close(true);
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log('Department updated');
+              this.dialogRef.close(true);
+            }, 1000);
+
           },
           error => {
-            console.log('Error');
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log('Error');
+            }, 1000);
           }
         );
       }
       else {
         this.departementService.addDepartement(this.departementForm.value).subscribe(
           response => {
-            console.log('Department added');
-            this.dialogRef.close(true);
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log('Department added');
+              this.dialogRef.close(true);
+            }, 1000);
           },
           error => {
-            console.log('Error');
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log('Error');
+            }, 1000);
           }
         );
       }

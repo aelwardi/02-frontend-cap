@@ -18,9 +18,9 @@ export class ApprenantService {
     return this.httpClient.get<any[]>(this.baseUrl);
 
   }
-  addApprenant(theApprenant: Object): Observable<Object> {
-
-    return this.httpClient.post(this.baseUrl, theApprenant);
+  addApprenant(adminId: number, theApprenant: Object): Observable<Object> {
+    const addURL = `${this.baseUrl}?adminId=${adminId}`;
+    return this.httpClient.post(addURL, theApprenant);
 
   }
 
@@ -35,14 +35,10 @@ export class ApprenantService {
   }
 
 
-  updateApprenant(id: number, theApprenant: any): Observable<any> {
-
-    //console.log(theApprenant);
-    return this.httpClient.put(`${this.baseUrl}/${id}`, theApprenant);
-
+  updateApprenant(adminId: number, id: number, theApprenant: any): Observable<any> {
+    const updateAPPRENANT = `${this.baseUrl}/${id}?adminId=${adminId}`;
+    return this.httpClient.put(updateAPPRENANT, theApprenant);
   }
-
-
 
 
   getApprenantDetails(theAdminId: number, theApprenantId: number): Observable<Apprenant> {
@@ -52,8 +48,3 @@ export class ApprenantService {
 
 }
 
-// interface GetResponse {
-//   _embedded: {
-//     apprenants: Apprenant[];
-//  }
-// }

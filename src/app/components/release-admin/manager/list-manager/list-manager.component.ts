@@ -76,9 +76,35 @@ export class ListManagerComponent implements OnInit {
   }
 
   openEditManagerModal(data: any): void {
-    this.dialog.open(ManagerAddEditComponent, {
+    const dialogRef = this.dialog.open(ManagerAddEditComponent, {
       width: '540px',
       data,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.handleListManager();
+      }
+      else {
+        console.log(result);
+      }
+    });
+  }
+
+  openAddManagerModal(): void {
+
+    const dialogRef = this.dialog.open( ManagerAddEditComponent, {
+      width: '540px'
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.handleListManager();
+      }
+      else {
+        console.log(result);
+      }
     });
   }
 

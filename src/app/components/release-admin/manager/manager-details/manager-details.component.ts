@@ -38,14 +38,13 @@ export class ManagerDetailsComponent implements OnInit {
 
   handleManagerDetails() {
 
-    const theAdminId: number = +1;
+    const theAdminId: number = +2;
     const theManagerId: number = +this.route.snapshot.paramMap.get('id')!;
     this.managerService.getManagerDetails(theAdminId, theManagerId).subscribe(
       data => {
         this.manager = data;
         if (this.manager?.departement) {
           this.detailsForm.patchValue(this.manager);
-          //console.log(this.manager);
         }
       }
     );

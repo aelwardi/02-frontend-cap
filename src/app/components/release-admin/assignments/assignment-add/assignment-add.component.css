@@ -25,9 +25,6 @@ h2 {
     background-color: white;
   }
   
-  
-  
-  
   mat-card-actions {
     justify-content: center;
     margin-top: 20px;
@@ -39,3 +36,8 @@ h2 {
     margin-bottom: 20px;
   }
   
+  
+.save-btn-item {
+  background-color: #0070AD!important;
+  color: #FFFFFF;
+}

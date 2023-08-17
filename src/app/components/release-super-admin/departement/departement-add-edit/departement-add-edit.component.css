@@ -2,3 +2,8 @@
     justify-content: flex-end;
     margin: 0 3rem;
 }
+
+.save-btn-item {
+    background-color: #0070AD;
+    color: #FFFFFF;
+}

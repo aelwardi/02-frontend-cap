@@ -6,7 +6,6 @@ export class Projet {
         public name?: string,
         public nameClient?: string,
         public description?: string,
-        public photo?: any,
-        public departement?: any
+        public photo?: any
     ) { }
 }

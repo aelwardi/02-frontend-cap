@@ -13,7 +13,6 @@ import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/d
 })
 export class ListQuizComponent implements OnInit {
   quizDto: QuizDTO[] = [];
-  chapitreId: number = 7;
   constructor(
     private quizService: QuizService,
     private dialog: MatDialog,
@@ -27,10 +26,11 @@ export class ListQuizComponent implements OnInit {
   }
 
   listQuiz() {
-    this.quizService.getQuizWithProspal(this.chapitreId).subscribe(
+    const chapitreId = +this.route.snapshot.paramMap.get('id')!;
+    this.quizService.getQuizWithProspal(chapitreId).subscribe(
       data => {
         this.quizDto = data;
-        console.log(data);
+        //console.log(data);
       }
     )
   }
@@ -65,7 +65,8 @@ export class ListQuizComponent implements OnInit {
   }
 
   deleteQuiz(id: number) {
-    this.quizService.deleteQuizwithProposal(id, this.chapitreId).subscribe({
+    const chapitreId = +this.route.snapshot.paramMap.get('id')!;
+    this.quizService.deleteQuizwithProposal(id, chapitreId).subscribe({
       next: (res) => {
         this.listQuiz();
       },

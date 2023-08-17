@@ -34,7 +34,7 @@ export class SectionService {
 
   updateSection(id: number, chapitreId: number, theSection: any): Observable<any> {
     const updateUrl = `${this.baseUrl}/${chapitreId}/${id}`;
-    console.log(updateUrl);
+    //console.log(updateUrl);
     return this.httpClient.put(updateUrl, theSection);
   }
 }

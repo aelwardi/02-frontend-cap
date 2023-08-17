@@ -13,7 +13,6 @@ export class Manager {
         public password?: string,
         public etat?: boolean,
         public role?: string,
-        public departement?: Departement,
-        public admin?: any
+        public departement?: Departement
     ) { }
 }

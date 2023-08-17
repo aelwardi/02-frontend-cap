@@ -1,4 +1,12 @@
-<app-add-btn></app-add-btn>
+<p class="add-btn">
+    <button mat-stroked-button color="primary" class="add-btn-item" (click)="openAddDepartmentModal()">Add
+        departement</button>
+</p>
+<div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+        <div class="spinners"></div>
+    </div>
+</div>
 <h1>Departements</h1>
 <app-search></app-search>
 <div class="card">
@@ -23,7 +31,7 @@
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                     <td mat-cell *matCellDef="let element">
                         <button mat-icon-button color="primary" (click)="openEditDepartmentModal(element)">
-                            <mat-icon>edit</mat-icon>
+                            <mat-icon class="icon-blue">edit</mat-icon>
                         </button>
                         <button mat-icon-button color="warn" (click)="openConfirmationDialog(element.id)">
                             <mat-icon>delete</mat-icon>

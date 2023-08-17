@@ -1,4 +1,4 @@
-import { Component,  Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -12,10 +12,10 @@ import { ProjetService } from 'src/app/services/projet.service';
   styleUrls: ['./add-edit-project.component.css']
 })
 export class AddEditProjectComponent implements OnInit {
+  isLoading: boolean = false;
   photoFile: File | undefined;
   currentPhotoUrl: string | undefined;
   projectForm!: FormGroup;
-  department!: any;
   panelOpenState = false;
 
   constructor(
@@ -29,20 +29,18 @@ export class AddEditProjectComponent implements OnInit {
       name: ['', Validators.required],
       nameClient: ['', Validators.required],
       description: ['', Validators.maxLength(500)],
-      photo: [''],
-      departement: ['']
+      photo: ['']
     });
   }
   ngOnInit(): void {
-    this.fetchDepartments();
     this.fetchForm();
   }
 
   fetchForm(): void {
-        this.projectForm.patchValue(this.data);
-        if(this.data.photo){
-          this.currentPhotoUrl = `data:image/jpeg;base64,${this.data.photo}`;
-        }
+    this.projectForm.patchValue(this.data);
+    if (this.data.photo) {
+      this.currentPhotoUrl = `data:image/jpeg;base64,${this.data.photo}`;
+    }
   }
 
   uploadPhoto() {
@@ -71,18 +69,27 @@ export class AddEditProjectComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  onFormSubmit():void {
+  onFormSubmit(): void {
+    this.isLoading = true;
+    const managerId = 2;
     if (this.data) {
-      if(this.projectForm.value.photo){
-        this.projectForm.value.photo=this.projectForm.value.photo.substring(this.projectForm.value.photo.indexOf(',') + 1)
+      if (this.projectForm.value.photo) {
+        this.projectForm.value.photo = this.projectForm.value.photo.substring(this.projectForm.value.photo.indexOf(',') + 1)
       }
       this.projetService.updateProject(this.data.id, this.projectForm.value).subscribe(
         response => {
-          console.log('Project updated');
-          this.dialogRef.close(true);
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Project updated');
+            this.dialogRef.close(true);
+          }, 1000);
         },
         error => {
-          console.log('Error');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Error');
+          }, 1000);
+          
         }
       );
     }
@@ -92,30 +99,24 @@ export class AddEditProjectComponent implements OnInit {
         name: this.projectForm.value.name,
         nameClient: this.projectForm.value.nameClient,
         description: this.projectForm.value.description,
-        photo: this.projectForm.value.photo.substring(this.projectForm.value.photo.indexOf(',') + 1),
-        departement: this.department
+        photo: this.projectForm.value.photo.substring(this.projectForm.value.photo.indexOf(',') + 1)
       }
-      this.projetService.addProject(projectData).subscribe(
-          response => {
+      //console.log(projectData);
+      this.projetService.addProject(managerId, projectData).subscribe(
+        response => {
+          setTimeout(() => {
+            this.isLoading = false;
             console.log('project added');
             this.dialogRef.close(true);
-          },
-          error => {
-            console.log(error);
-          });
-    }
-  }
-
-  fetchDepartments(): void {
-    this.adminService.getDepartementByAdmin(+1)
-      .subscribe(data => {
-
-        this.department = data;
-        // console.log(departements);
-      },
+          }, 1000);
+        },
         error => {
-          console.log('Error occurred while loading departments:', error);
-        }
-      );
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log(error);
+          }, 1000);
+
+        });
+    }
   }
 }

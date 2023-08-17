@@ -1,4 +1,9 @@
 <h1>Profil Details</h1>
+<div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+        <div class="spinners"></div>
+    </div>
+</div>
 <mat-card>
     <mat-card-content class="mb-3">
         <form [formGroup]="profileForm" class="row no-gutters" [ngClass]="{'vertical-layout d-flex align-items-center justify-content-center': isMobile}" (ngSubmit)="onFormSubmit()">
@@ -27,7 +32,7 @@
                 <div class="field">
                     <mat-form-field>
                         <mat-label>Date Birth</mat-label>
-                        <input matInput [matDatepicker]="datePicker" formControlName="dateBirth" />
+                        <input matInput [matDatepicker]="datePicker" formControlName="dateOfBirth" />
                         <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
                         <mat-datepicker #datePicker></mat-datepicker>
                     </mat-form-field>

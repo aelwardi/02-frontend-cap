@@ -21,12 +21,13 @@ export class DepartementsComponent implements OnInit {
   searchMode: boolean = false;
   dataSource!: MatTableDataSource<any>;
   noRecordsFound!: boolean;
+  isLoading: boolean = false;
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
-   // this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
   }
 
   constructor(private departementService: DepartementService,
@@ -51,7 +52,7 @@ export class DepartementsComponent implements OnInit {
 
   handleSearchDepartement() {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
-    
+
     // now search for the departements using keyword
     this.departementService.searchDepartement(theKeyword).subscribe(
       data => {
@@ -88,17 +89,49 @@ export class DepartementsComponent implements OnInit {
   }
 
   openEditDepartmentModal(data: any): void {
-    this.dialog.open(DepartementAddEditComponent, {
+    const dialogRef = this.dialog.open(DepartementAddEditComponent, {
       data,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.listDepartement();
+      }
+      else {
+        console.log(result);
+      }
     });
   }
 
   deleteDepartement(id: number): void {
+    this.isLoading = true;
     this.departementService.deleteDepartement(id).subscribe({
       next: (res) => {
-        this.listDepartement();
+        setTimeout(() => {
+          this.isLoading = false;
+          this.listDepartement();
+        }, 1000);
       },
-      error: console.log,
+      error: (err) => {
+        //console.log(err);
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
+      }
     })
+  }
+  openAddDepartmentModal(): void {
+    const dialogRef = this.dialog.open(DepartementAddEditComponent, {
+      width: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.listDepartement();
+      }
+      else {
+        console.log(result);
+      }
+    });
   }
 }

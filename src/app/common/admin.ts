@@ -13,8 +13,7 @@ export class Admin {
         public password?: string,
         public etat?: boolean,
         public role?: string,
-        public departement?: any,
-        public superAdmin?: any) {
+        public departement?: any) {
     }
 
     

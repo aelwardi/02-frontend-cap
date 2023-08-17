@@ -16,3 +16,12 @@
   mat-icon {
     cursor: pointer;
   }
+
+  .save-btn-item {
+    background-color: #0070AD!important;
+    color: #FFFFFF;
+  }
+  
+  .icon-blue {
+    color: #0070AD;
+  }
