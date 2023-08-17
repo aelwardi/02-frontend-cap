@@ -1,23 +1,29 @@
 <mat-card class="container">
-    <mat-card-header>
-      <mat-card-title>Add new assigniation</mat-card-title>
-    </mat-card-header>
-    <mat-divider class="mb-2"></mat-divider>
-    <form [formGroup]="assignmentForm" (ngSubmit)="onFormSubmit()">
-      <mat-card-content>
-        <div mat-dialog-content>
-          <mat-form-field class="w-100 mx-auto">
-            <mat-label> Apprenants </mat-label>
-            <mat-select name="apprenant" formControlName="apprenant">
-              <mat-option *ngFor="let apprenant of apprenantInfo" [value]="apprenant">
-                {{ apprenant.firstName }} {{ apprenant.lastName }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-      <mat-card-actions class="d-flex align-items-center mb-3 justify-content-end">
-        <button mat-raised-button color="primary" type="submit" class="save-btn-item" [disabled]="assignmentForm.invalid"> Submit </button>
-      </mat-card-actions>
-    </form>
-  </mat-card>
+  <div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+      <div class="spinners"></div>
+    </div>
+  </div>
+  <mat-card-header>
+    <mat-card-title>Add new assigniation</mat-card-title>
+  </mat-card-header>
+  <mat-divider class="mb-2"></mat-divider>
+  <form [formGroup]="assignmentForm" (ngSubmit)="onFormSubmit()">
+    <mat-card-content>
+      <div mat-dialog-content>
+        <mat-form-field class="w-100 mx-auto">
+          <mat-label> Apprenants </mat-label>
+          <mat-select name="apprenant" formControlName="apprenant">
+            <mat-option *ngFor="let apprenant of apprenantInfo" [value]="apprenant">
+              {{ apprenant.firstName }} {{ apprenant.lastName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="d-flex align-items-center mb-3 justify-content-end">
+      <button mat-raised-button color="primary" type="submit" class="save-btn-item" [disabled]="assignmentForm.invalid">
+        Submit </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

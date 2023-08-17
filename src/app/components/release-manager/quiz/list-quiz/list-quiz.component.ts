@@ -5,6 +5,7 @@ import { QuizDTO } from 'src/app/common/quiz-dto';
 import { QuizService } from 'src/app/services/quiz.service';
 import { AddEditQuizComponent } from '../add-edit-quiz/add-edit-quiz.component';
 import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/departement/confirm-dialog/confirm-dialog.component';
+import { SharedChapitreService } from 'src/app/services/shared-chapitre.service';
 
 @Component({
   selector: 'app-list-quiz',
@@ -16,7 +17,8 @@ export class ListQuizComponent implements OnInit {
   constructor(
     private quizService: QuizService,
     private dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private sharedChapitreService: SharedChapitreService,
   ){}
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class ListQuizComponent implements OnInit {
   }
 
   openAddQuizModal(): void {
-
+    this.sharedChapitreService.chapitreId = +this.route.snapshot.paramMap.get('id')!;
     const dialogRef = this.dialog.open(AddEditQuizComponent, {
       width: '540px'
 
@@ -44,6 +46,7 @@ export class ListQuizComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.listQuiz();
       }
       else {
         console.log(result);
@@ -58,7 +61,6 @@ export class ListQuizComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // call method delete
         this.deleteQuiz(id);
       }
     });
@@ -75,10 +77,19 @@ export class ListQuizComponent implements OnInit {
   }
 
   openEditQuizModal(data: any): void {
-    this.dialog.open(AddEditQuizComponent, {
+    const dialogRef = this.dialog.open(AddEditQuizComponent, {
       width: '540px',
       data,
-    })
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.listQuiz();
+      }
+      else {
+        console.log(result);
+      }
+    });
   }
 
 }

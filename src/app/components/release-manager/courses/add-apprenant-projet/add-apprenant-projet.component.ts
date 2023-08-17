@@ -12,6 +12,7 @@ import { AddManagerCoursComponent } from '../../chapitre/add-manager-cours/add-m
   styleUrls: ['./add-apprenant-projet.component.css']
 })
 export class AddApprenantProjetComponent implements OnInit {
+  isLoading: boolean = false;
   apprenantInfo: ManagerInfo[] = [];
   assignmentForm!: FormGroup;
 
@@ -41,13 +42,23 @@ export class AddApprenantProjetComponent implements OnInit {
   }
 
   onFormSubmit(): void{
+    this.isLoading = true;
     if(this.assignmentForm.valid){
       this.apprenantProjetService.addApprenantProjet(this.assignmentForm.value.apprenant.id, this.sharedProjetService.projetId).subscribe(
-        data => {
-          console.log("manager assigned");
+        response => {
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log("Apprenant assigned");
           this.dialogRef.close(true);
-        }
-      )
+          }, 1000);
+        },
+        error => {
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log(error);
+          }, 1000);
+
+        });
     }
   }
 

@@ -106,11 +106,20 @@ export class ChapitresComponent implements OnInit {
   removeManager(managerId: number) {
     this.isLoading = true;
     this.managerCoursService.deleteAssignments(managerId, this.gestionChapitreService.coursId).subscribe(
-      data => {
-        console.log("Manager removed");
-        this.getAssignmentManagerCours();
-      }
-    )
+      response => {
+        setTimeout(() => {
+          this.isLoading = false;
+          console.log("Manager removed");
+          this.getAssignmentManagerCours();
+        }, 1000);
+      },
+      error => {
+        setTimeout(() => {
+          this.isLoading = false;
+          console.log(error);
+        }, 1000);
+
+      });
   }
 
   openAddChapitreModal(): void {
@@ -130,7 +139,7 @@ export class ChapitresComponent implements OnInit {
   }
 
   openEditChapitreModal(data: any): void {
-    const dialogRef =  this.dialog.open(AddEditChapitreComponent, {
+    const dialogRef = this.dialog.open(AddEditChapitreComponent, {
       width: '540px',
       data,
     });
@@ -160,11 +169,11 @@ export class ChapitresComponent implements OnInit {
     });
   }
 
-  stratCours(){
+  stratCours() {
     const newId = +this.route.snapshot.paramMap.get('id')!;
     this.router.navigate([`/manager/chapitre/${newId}`]);
   }
-  openQuizModal(chapiteId: number){
+  openQuizModal(chapiteId: number) {
     this.router.navigate([`/manager/quiz/${chapiteId}`]);
   }
 

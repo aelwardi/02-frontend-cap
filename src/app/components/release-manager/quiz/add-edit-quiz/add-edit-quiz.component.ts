@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/departement/confirm-dialog/confirm-dialog.component';
 import { PropositionService } from 'src/app/services/proposition.service';
 import { QuizService } from 'src/app/services/quiz.service';
+import { SharedChapitreService } from 'src/app/services/shared-chapitre.service';
 
 @Component({
   selector: 'app-add-edit-quiz',
@@ -20,7 +21,8 @@ export class AddEditQuizComponent implements OnInit {
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private quizService: QuizService,
-    private propositionService: PropositionService
+    private propositionService: PropositionService,
+    private sharedChapitreService: SharedChapitreService,
     ) { }
 
     ngOnInit(): void {
@@ -96,7 +98,7 @@ export class AddEditQuizComponent implements OnInit {
   }
   
   submitQuiz(): void {
-    const chapitreId= +17;
+    const chapitreId = this.sharedChapitreService.chapitreId;
     const quizQuestion = this.quizForm.value.question;
     const proposals = this.quizForm.value.propositions;
     if (this.quizForm.invalid) {
@@ -157,13 +159,6 @@ export class AddEditQuizComponent implements OnInit {
         }
       );
     }
-/*
-    this.quizService.addQuizwithProposition(quizData, chapitreId).subscribe(
-      data => {
-        console.log(data);
-        this.dialogRef.close(true);
-      }
-    )*/
     
   }
 }

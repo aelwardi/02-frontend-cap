@@ -1,4 +1,9 @@
 <mat-card class="container">
+  <div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+      <div class="spinners"></div>
+    </div>
+  </div>
   <mat-card-header>
     <mat-card-title>Add new assigniation</mat-card-title>
   </mat-card-header>
@@ -17,7 +22,8 @@
       </div>
     </mat-card-content>
     <mat-card-actions class="d-flex align-items-center mb-3 justify-content-end">
-      <button mat-raised-button color="primary" type="submit" [disabled]="assignmentForm.invalid"> Submit </button>
+      <button mat-raised-button color="primary" type="submit" class="save-btn-item" [disabled]="assignmentForm.invalid">
+        Submit </button>
     </mat-card-actions>
   </form>
 </mat-card>
