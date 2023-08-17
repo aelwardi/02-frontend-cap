@@ -14,13 +14,18 @@ export class ProjetService {
     private tokenStorage: TokenStorageService
   ) { }
 
-  addProject(theProject: Object): Observable<Object> {
-    console.log(theProject);
-    return this.httpClient.post(this.baseUrl, theProject);
+  getProjetsByDepartement(managerId: number): Observable<Projet[]>{
+    const projetURL = `${this.baseUrl}?managerId=${managerId}`
+    return this.httpClient.get<Projet[]>(projetURL);
+  }
+
+  addProject(managerId: number, theProject: Object): Observable<Object> {
+    const addProjet = `${this.baseUrl}?managerId=${managerId}`
+    return this.httpClient.post(addProjet, theProject);
   }
 
   updateProject(id: number, theProject: any): Observable<any> {
-    console.log(theProject);
+    //console.log(theProject);
     return this.httpClient.put(`${this.baseUrl}/${id}`, theProject);
   }
 
@@ -30,7 +35,11 @@ export class ProjetService {
     return this.httpClient.delete(deleteUrl);
   }
 
-  searchProjects(searchTerm: string, departementid: number): Observable<Projet[]> {
-    return this.httpClient.get<Projet[]>(`${this.baseUrl}/search?term=${searchTerm}&departementId=${departementid}`);
+  searchProjects(searchTerm: string, managerId: number): Observable<Projet[]> {
+    return this.httpClient.get<Projet[]>(`${this.baseUrl}/search?term=${searchTerm}&managerId=${managerId}`);
+  }
+  getProjetsAndCoursByManagerId(managerId: number): Observable<any> {
+    const projetCoursURL = `${this.baseUrl}/${managerId}/cours`;
+    return this.httpClient.get<any>(projetCoursURL);
   }
 }

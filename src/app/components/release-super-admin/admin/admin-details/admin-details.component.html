@@ -2,14 +2,18 @@
 <mat-card class="profile-card">
   <mat-card-content>
     <button mat-icon-button color="primary" routerLink="/super-admin/admins">
-      <mat-icon>arrow_back</mat-icon>
+      <mat-icon class="icon-blue">arrow_back</mat-icon>
     </button>
     <form [formGroup]="detailsForm" class="profile-container">
       <div class="profile-left">
         <div class="profile-photo">
-          <img [src]="admin.photo ? 'data:image/jpeg;base64,' + admin.photo : '/assets/images/img-profil.jpg'"
-            alt="Photo de profil" />
-          <div class="departement">{{ admin.departement!.name }}</div>
+          <ng-container *ngIf="admin?.photo; else defaultPhoto">
+            <img [src]="'data:image/jpeg;base64,' + admin.photo" alt="Photo de profil" />
+          </ng-container>
+          <ng-template #defaultPhoto>
+            <img src="/assets/images/img-profil.jpg" alt="Image par défaut" />
+          </ng-template>
+          <div class="departement">{{ admin?.departement.name }}</div>
         </div>
       </div>
       <div class="profile-right">

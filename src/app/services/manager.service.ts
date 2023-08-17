@@ -18,9 +18,9 @@ export class ManagerService {
     return this.httpClient.get<Manager[]>(this.baseUrl);
   }
 
-  addManager(theAdmin: Object): Observable<Object> {
-
-    return this.httpClient.post(this.baseUrl, theAdmin);
+  addManager(adminId: number, theAdmin: Object): Observable<Object> {
+    const addURL = `${this.baseUrl}?adminId=${adminId}`;
+    return this.httpClient.post(addURL, theAdmin);
   }
   
   searchManager(adminId: number, theKeyword: string): Observable<Manager[]> {
@@ -34,9 +34,9 @@ export class ManagerService {
     return this.httpClient.get<Manager>(managerUrl);
   }
 
-  updateManager(id: number, theManager: any): Observable<any> {
-    //console.log(theManager);
-    return this.httpClient.put(`${this.baseUrl}/${id}`, theManager);
+  updateManager(adminId: number, id: number, theManager: any): Observable<any> {
+    const updateMANAGER = `${this.baseUrl}/${id}?adminId=${adminId}`;
+    return this.httpClient.put(updateMANAGER, theManager);
   }
 
   getManagerDetails(theAdminId: number ,theManagerId: number): Observable<Manager> {

@@ -54,7 +54,7 @@ export class ApprenantsComponent implements OnInit {
   handleSearchApprenant() {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
     // now search for the departements using keyword
-    this.apprenantService.searchApprenant(1, theKeyword).subscribe(
+    this.apprenantService.searchApprenant(2, theKeyword).subscribe(
       data => {
         this.apprenents = data;
         this.dataSource = new MatTableDataSource(data);
@@ -76,9 +76,34 @@ export class ApprenantsComponent implements OnInit {
   }
 
   openEditAdminModal(data: any): void {
-    this.dialog.open(ApprenantAddEditComponent, {
+    const dialogRef = this.dialog.open(ApprenantAddEditComponent, {
       width: '540px',
       data,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.handleListApprenant();
+      }
+      else {
+        console.log(result);
+      }
+    });
+  }
+
+  openAddApprenantModal(): void {
+
+    const dialogRef = this.dialog.open(ApprenantAddEditComponent, {
+      width: '540px'
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.handleListApprenant();
+      }
+      else {
+        console.log(result);
+      }
     });
   }
 

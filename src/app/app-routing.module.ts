@@ -22,13 +22,12 @@ import { ListProjetComponent } from './components/release-manager/projects/list-
 
 import { ProfilManagerComponent } from './components/release-manager/profil/profil-manager/profil-manager.component';
 
-import { ListCoursComponent } from './components/release-manager/cours/list-cours/list-cours.component';
-
 import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/list-quiz.component';
-import {ChapitreComponent} from "./components/release-manager/chapitre/chapitre/chapitre.component";
 import { SidNavChapitreComponent } from './components/release-manager/sections/sid-nav-chapitre/sid-nav-chapitre.component';
 import { ListSectionComponent } from './components/release-manager/sections/list-section/list-section.component';
 import { AddEditSectionComponent } from './components/release-manager/sections/add-edit-section/add-edit-section.component';
+import { ChapitresComponent } from './components/release-manager/chapitre/chapitres/chapitres.component';
+import { CoursComponent } from './components/release-manager/courses/cours/cours.component';
 
 
 
@@ -115,6 +114,10 @@ const routes: Routes = [
         component: ListProjetComponent,
       },
       {
+        path: 'projects/:id',
+        component: CoursComponent,
+      },
+      {
         path: 'projects/search/:keyword',
         component: ListProjetComponent,
       },
@@ -124,15 +127,7 @@ const routes: Routes = [
 
       },
       {
-        path: 'cours',
-        component: ListCoursComponent,
-      },
-      {
-        path: 'cours/search/:keyword',
-        component: ListCoursComponent,
-      },
-      {
-        path: 'quiz',
+        path: 'quiz/:id',
         component: ListQuizComponent,
       },
       {
@@ -145,7 +140,11 @@ const routes: Routes = [
             path: ':id', component: ListSectionComponent
           }
         ]
-      }/*
+      },
+      {
+        path: 'cours/:id', component: ChapitresComponent,
+      }
+      /*
       {
         path: 'chapitre',
         component: SidNavChapitreComponent,
@@ -163,14 +162,6 @@ const routes: Routes = [
 
     ],
   },
-  { path: 'cours', component: ListCoursComponent, },
-  { path: 'project/:idProject/cours', component: ListCoursComponent },
-  { path: 'project/:idProject/cours/search/:keyword', component: ListCoursComponent },
-
-
-
-
-
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }

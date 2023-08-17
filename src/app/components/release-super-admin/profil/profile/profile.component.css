@@ -27,7 +27,7 @@ label {
 
 .save-btn-item {
   width: 100%;
-  background-color: #0070AD;
+  background-color: #0070AD!important;
   color: #FFFFFF;
 }
 

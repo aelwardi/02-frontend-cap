@@ -11,7 +11,7 @@ import { ManagerApprenantService } from 'src/app/services/manager-apprenant.serv
   styleUrls: ['./assignment-add.component.css']
 })
 export class AssignmentAddComponent implements OnInit {
-
+  isLoading: boolean = false;
   assignmentForm!: FormGroup;
   apprenants: any[] = [];
 
@@ -37,7 +37,7 @@ export class AssignmentAddComponent implements OnInit {
   fetchApprenants(): void {
     const theAdminId: number = +2;
     if (this.data && this.data.id) {
-      this.managerApprenantService.getApprenantsCleans(theAdminId, this.data.id)
+      this.managerApprenantService.getManagerApprenantNoAssigned(theAdminId, this.data.id)
         .subscribe(apprenant => {
           this.apprenants = apprenant;
         },
@@ -58,19 +58,30 @@ export class AssignmentAddComponent implements OnInit {
   }
 
   onFormSubmit(): void {
-
+    this.isLoading = true;
     if (this.assignmentForm.valid) {
       const theApprenantId = this.assignmentForm.value.apprenant.id;
       const theManagerId = this.data.id;
       this.managerApprenantService.addNewAssignment(theManagerId, theApprenantId).subscribe(
         response => {
-          console.log('Assignment added');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Assignment added');
           this.dialogRef.close(true);
+          }, 1000);
         },
         error => {
-          console.log('Error', error);
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Error', error);
+          }, 1000);
         }
       );
+    }else{
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
+
     }
   }
 

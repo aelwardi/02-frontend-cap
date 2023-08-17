@@ -1,0 +1,14 @@
+.add-btn {
+    display: flex;
+    justify-content: flex-end;
+  
+    .add-btn-item {
+      color: #0070AD;
+      border: 2px solid #0070AD;
+      background-color: #ffffff;
+    }
+  }
+
+  .icon-blue {
+    color: #0070AD;
+  }

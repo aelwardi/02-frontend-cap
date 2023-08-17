@@ -38,33 +38,12 @@ mat-icon {
   cursor: pointer;
 }
 
-/*
-form {
-  width: 900px;
-  height: 400px;
-
-} */
+.icon-blue {
+  color: #0070AD;
+}
 
 
-/* .mat-dialog-actions-align-end {
-  justify-content: flex-end;
-  margin: 0 3rem;
-
-
-
-} */
-
-/* .custom-form-field {
-  width: 100px;
-  height: 100px;
-} */
-
-/* .mdc-text-field {
-  background-color: white;
-} */
-
-/* .ng-star-inserted {
-  width: 100px;
-  height: 100px;
-
-} */
+.save-btn-item {
+    background-color: #0070AD;
+    color: #FFFFFF;
+  }

@@ -13,6 +13,7 @@
 
 .profile-left {
   width: 25%;
+  text-align: center;
 }
 
 .profile-photo {
@@ -49,4 +50,17 @@ label {
 
 .save-btn-item {
   width: 100%;
+}
+
+.department {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.icon-blue {
+  color: #0070AD;
 }

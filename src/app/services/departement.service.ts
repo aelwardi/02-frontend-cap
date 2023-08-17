@@ -43,10 +43,8 @@ export class DepartementService {
 
   searchDepartement(theKeyword: string): Observable<Departement[]> {
     // need build URL based on the keyword
-    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
-    return this.httpClient.get<GetResponse>(searchUrl).pipe(
-      map(response => response._embedded.departements)
-    )
+    const searchUrl = `${this.baseUrl}/search?name=${theKeyword}`;
+    return this.httpClient.get<Departement[]>(searchUrl);
     /*
     const token = this.tokenStorage.getTokenValue();
 

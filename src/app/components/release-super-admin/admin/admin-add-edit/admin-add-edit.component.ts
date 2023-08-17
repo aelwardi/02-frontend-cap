@@ -15,7 +15,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   styleUrls: ['./admin-add-edit.component.css']
 })
 export class AdminAddEditComponent implements OnInit {
-
+  isLoading: boolean = false;
   departements: any[] = [];
   password: string = '';
   adminForm!: FormGroup;
@@ -50,6 +50,8 @@ export class AdminAddEditComponent implements OnInit {
   }
 
   onFormSubmit(): void {
+    this.isLoading = true;
+    const superAdminId = 1;
     // if (this.adminForm.valid) {
     if (!this.admin) {
       this.admin = new Admin(1);
@@ -63,19 +65,25 @@ export class AdminAddEditComponent implements OnInit {
     this.admin.sexe = this.adminForm.value.sexe;
     this.admin.password = this.adminForm.value.password;
     if (this.data) {
-      this.adminService.updateAdmin(this.admin.id, this.admin).subscribe(
+      console.log(this.admin);
+      this.adminService.updateAdmin(superAdminId, this.data.id, this.admin).subscribe(
         response => {
-          console.log('Admins updated');
-          this.dialogRef.close(true);
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Admins updated');
+            this.dialogRef.close(true);
+          }, 1000);
         },
         error => {
-          console.log('Error');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Error');
+          }, 1000);
         }
       );
     }
 
     else {
-      const superAdmin = new SuperAdmin(1);
       //const json = JSON.stringify(superAdmin.toJSON());
       const adminData: Admin = {
         id: null,
@@ -89,19 +97,24 @@ export class AdminAddEditComponent implements OnInit {
         etat: true,
         role: 'ADMIN',
         departement: this.adminForm.value.departement,
-        superAdmin: superAdmin
       };
-      console.log(adminData);
-      this.adminService.addAdmin(adminData).subscribe(
+      //console.log(adminData);
+      this.adminService.addAdmin(superAdminId, adminData).subscribe(
         response => {
-          console.log('Admin added');
-          this.dialogRef.close(true);
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Admin added');
+            this.dialogRef.close(true);
+          }, 1000);
         },
         error => {
-          console.log('Error');
+          setTimeout(() => {
+            this.isLoading = false;
+            console.log('Error');
+          }, 1000);
         }
       );
-      console.log(adminData);
+      //console.log(adminData);
     }
     // }
 

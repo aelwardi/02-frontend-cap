@@ -78,7 +78,7 @@ export class ProfilManagerComponent implements OnInit {
         this.manager.sexe = this.profileForm.value.sexe;
         this.manager.photo = this.profileForm.value.photo.substring(this.profileForm.value.photo.indexOf(',') + 1);;
         //console.log(this.superAdmin.photo);
-        
+        /*
         this.managerService.updateManager(this.manager.id, this.manager).subscribe(
           response => {
             this.handleManagerDetails();
@@ -87,7 +87,7 @@ export class ProfilManagerComponent implements OnInit {
           error => {
             console.log('Error');
           }
-        );
+        );*/
       }
     });
   }

@@ -1,0 +1,152 @@
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar" [ngClass]="{'active': isSidebarActive}">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars" (click)="toggleSidebar()"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4 pt-5">
+            <h1> <span>Projects</span></h1>
+            <ul class="list-unstyled components mb-5" *ngIf="projetCours">
+                <li *ngFor="let projet of projetCours" class="active">
+                    <a href="manager/projects/{{projet.projetInfo.id}}">
+                        {{ projet.projetInfo.name }}
+                        <!--<i class="fas fa-chevron-down"></i>-->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div *ngIf="isLoading" class="spinners-overlay">
+        <div class="spinners-container">
+            <div class="spinners"></div>
+        </div>
+    </div>
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5 container">
+        <mat-card class="container">
+            <mat-card-title class="d-flex justify-content-between align-items-center">
+                <div > {{ currentProjetCourses.projetInfo.name }} </div>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="list of manager" class="menu-item">
+                    <mat-icon class="icon-blue">groups</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="custom-menu ">
+                    <div *ngIf="apprenantInfo">
+                        <button mat-menu-item *ngFor="let apprenant of apprenantInfo">
+                            <span>{{ apprenant.firstName }} {{ apprenant.lastName }}</span>
+                            <button mat-icon-button (click)="openRemoveApprenant(apprenant.id)">
+                                <mat-icon color="warn">do_not_disturb_on</mat-icon>
+                            </button>
+                        </button>
+                    </div>
+                    <button mat-menu-item (click)="openAddAssignmentModal()">
+                        <mat-icon>add</mat-icon>
+                        <span> Add new apprenant </span>
+                    </button>
+                </mat-menu>
+            </mat-card-title>
+            <mat-card-content>
+                <div class="container" style="margin-top:50px;">
+                    <div class="row">
+                        <div class="col-md-3 ">
+                            <mat-card class="d-flex h-100" (click)="openAddCoursModal()">
+                                <div class="card-sl flex-fill">
+                                    <mat-card-content>
+                                        <img src="assets/images/logos/imgPlusss.png" alt="Image description"
+                                            class="card-image">
+                                    </mat-card-content>
+                                </div>
+                            </mat-card>
+                        </div>
+                        <div class="col-md-3" *ngFor="let cours of currentProjetCourses.coursInfos">
+                            <mat-card class="d-flex h-100">
+                                <div class="card-sl flex-fill">
+                                    <mat-card-header class="d-flex justify-content-between align-items-center">
+                                        <button mat-icon-button [matMenuTriggerFor]="menu"
+                                            aria-label="Example icon-button with a menu" class="menu-item">
+                                            <mat-icon>more_vert</mat-icon>
+                                        </button>
+                                        <mat-menu #menu="matMenu" class="custom-menu ">
+                                            <button mat-menu-item (click)="openEditCoursModal(cours)">
+                                                <mat-icon >edit</mat-icon>
+                                                <span>Edit</span>
+                                            </button>
+                                            <button mat-menu-item [routerLink]="['/manager/cours', cours.id]">
+                                                <mat-icon>list</mat-icon>
+                                                <span>View Details</span>
+                                            </button>
+                                            <button mat-menu-item>
+                                                <mat-icon>quiz</mat-icon>
+                                                <span>Add Contraint</span>
+                                            </button>
+                                        </mat-menu>
+                                        <mat-card-title> {{ cours.title }}</mat-card-title>
+                                        <mat-card-subtitle>{{ cours.dateMAJ | date }}</mat-card-subtitle>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <div class="card-text flex-fill">
+                                            <p> {{ cours.description }} </p>
+                                            <p>Actor: {{ cours.actor }} </p>
+                                        </div>
+                                    </mat-card-content>
+                                    <mat-card-actions class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-primary save-btn-item"
+                                        (click)="openConfirmationDialog(cours.id)">Delete</button>
+                                    </mat-card-actions>
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+
+                </div>
+                <!--
+                <div class="card-deck">
+
+                    <mat-card class="card">
+                        <mat-card-content class="center-image">
+                            <button mat-button >
+                                +
+                                <img src="assets/images/logos/imgPlusss.png" alt="Image description" class="card-image">
+                            </button>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="card">
+                        <mat-card-header>
+                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                                aria-label="Example icon-button with a menu" class="menu-item">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu" class="custom-menu ">
+                                <button mat-menu-item >
+                                    <mat-icon>edit</mat-icon>
+                                    <span>Edit</span>
+                                </button>
+                                <button mat-menu-item [routerLink]="['/manager/cours', 8]">
+                                    <mat-icon>list</mat-icon>
+                                    <span>View Details</span>
+                                </button>
+                                <button mat-menu-item>
+                                    <mat-icon>quiz</mat-icon>
+                                    <span>Add Contraint</span>
+                                </button>
+                            </mat-menu>
+                            <mat-card-title>cours 1</mat-card-title>
+                            <mat-card-subtitle>{{ 01/04/2023 | date }}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p>description 1</p>
+                            <p>Actor: abderrazzak</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button type="button" class="btn btn-primary btn-custom"
+                                >Delete</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>-->
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -15,11 +15,24 @@ export class ManagerApprenantService {
     private tokenStorage: TokenStorageService
   ) { }
 
-  getAssignmentManagerApprenant(theManagerId: number): Observable<ManagerApprenant> {
-
-    const managerApprenantUrl = `${this.baseUrl}/${theManagerId}/apprenants`;
-    return this.httpClient.get<ManagerApprenant>(managerApprenantUrl);
+  getAssignmentManagerApprenant(theadminId: number): Observable<ManagerApprenant[]> {
+    const managerApprenantUrl = `${this.baseUrl}/${theadminId}`;
+    return this.httpClient.get<ManagerApprenant[]>(managerApprenantUrl);
   }
+  deleteAssignments(theApprenantId: number, theManagerId:number): Observable<any> {
+    const deleteUrl = `${this.baseUrl}/${theApprenantId}/${theManagerId}`;
+    return this.httpClient.delete(deleteUrl);
+  }
+
+  getManagerApprenantNoAssigned(theAdminId: number, theManagerId: number){
+    const managerApprenantnotAsURL = `${this.baseUrl}/${theAdminId}/${theManagerId}`;
+    return this.httpClient.get<ManagerApprenant[]>(managerApprenantnotAsURL); 
+  }
+  addNewAssignment(theManagerId: number, theApprenantId: number) {
+    const assignmentUrl = `${this.baseUrl}?apprenantId=${theApprenantId}&managerId=${theManagerId}`;
+    return this.httpClient.post(assignmentUrl, null);
+  }
+  /*
 
   getApprenantsCleans(theAdminId: number, theManagerId: number): Observable<Apprenant[]> {
 
@@ -27,14 +40,8 @@ export class ManagerApprenantService {
     return this.httpClient.get<Apprenant[]>(apprenantUrl);
   }
 
-  addNewAssignment(theManagerId: number, theApprenantId: number) {
-    const assignmentUrl = `${this.baseUrl}?apprenantId=${theApprenantId}&managerId=${theManagerId}`;
-    return this.httpClient.post(assignmentUrl, null);
-  }
+  
 
-  deleteAssignments(theApprenantId: number, theManagerId:number): Observable<any> {
-    const deleteUrl = `${this.baseUrl}/${theApprenantId}/${theManagerId}`;
-    return this.httpClient.delete(deleteUrl);
-  }
+  */
 
 }

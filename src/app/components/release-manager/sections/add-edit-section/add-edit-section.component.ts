@@ -10,6 +10,7 @@ import { SectionService } from 'src/app/services/section.service';
   styleUrls: ['./add-edit-section.component.css']
 })
 export class AddEditSectionComponent implements OnInit {
+  isLoading: boolean = false;
   sectionForm!: FormGroup;
   file: any;
 
@@ -52,6 +53,7 @@ export class AddEditSectionComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isLoading = true;
     this.uploadFile(this.file);
   }
 
@@ -63,17 +65,28 @@ export class AddEditSectionComponent implements OnInit {
       (response) => {
         //console.log('Fichier enregistré dans le répertoire:', response);
         this.sectionForm.patchValue({ file: response.message });
-        console.log(this.sectionForm.value);
+        //console.log(this.sectionForm.value);
         this.sectionService.addSection(this.data.id, this.sectionForm.value).subscribe(
           response => {
-            console.log('Section added');
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log('Section added')
+            this.dialogRef.close(true);
+            }, 1000);
           },
           error => {
-            console.log('Error');
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log('Error');
+            }, 1000);
+            
           });
       },
       (error) => {
-        console.error('Erreur lors de l\'envoi du fichier:', error);
+        setTimeout(() => {
+          this.isLoading = false;
+          console.error('Erreur lors de l\'envoi du fichier:', error);
+        }, 1000);
       }
     );
   }

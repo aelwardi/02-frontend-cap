@@ -1,4 +1,9 @@
 <mat-card [formGroup]="projectForm">
+  <div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+      <div class="spinners"></div>
+    </div>
+  </div>
   <mat-card-header>
     <mat-card-title>{{ data ? 'Edit' : 'Add new' }} Project</mat-card-title>
   </mat-card-header>

@@ -23,10 +23,8 @@ export interface PeriodicElement {
   styleUrls: ['./list-assignment.component.css']
 })
 export class ListAssignmentComponent implements OnInit {
-
+  isLoading: boolean = false;
   displayedColumns: string[] = ['Manager', 'Apprenants', 'Action'];
-  managers: Manager[] = [];
-  datas: any;
   managerApprenant: ManagerApprenant[] = [];
   dataSource!: MatTableDataSource<any>;
   noRecordsFound!: boolean;
@@ -51,32 +49,19 @@ export class ListAssignmentComponent implements OnInit {
   }
 
   handleListManager(): void {
-    this.adminService.getManagerList(2).subscribe(
+    this.managerApprenantService.getAssignmentManagerApprenant(2).subscribe(
       data => {
-        data.forEach((element: Manager) => {
-          //console.log(element);
-          this.managerApprenantService.getAssignmentManagerApprenant(element.id).subscribe(
-            data => {
-              //console.log(data.manager);
-              this.datas=data;
-              this.managerApprenant.push(data);
-              this.dataSource = new MatTableDataSource<any>(this.managerApprenant);
-              this.noRecordsFound = this.dataSource.data.length === 0;
-              this.dataSource.paginator = this.paginator;
-            }
-          )
-        })
+        this.managerApprenant = data;
+        //console.log(this.managerApprenant);
+        this.dataSource = new MatTableDataSource(data);
+        this.noRecordsFound = this.dataSource.data.length === 0;
+        this.dataSource.paginator = this.paginator;
       }
     )
   }
-  
-  openAddAssignmentModal(data: any): void {
-    this.dialog.open(AssignmentAddComponent, {
-      data,
-    });
-  }
 
   deleteAssignment(apprenantId: number, managerId: number): void {
+
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px'
     });
@@ -89,16 +74,42 @@ export class ListAssignmentComponent implements OnInit {
 
   }
 
+
   deleteAssignmentAM(apprenantId: number, managerId: number): void {
+    this.isLoading = true;
     this.managerApprenantService.deleteAssignments(apprenantId, managerId).subscribe({
       next: (res) => {
-        console.log('assignment deleted');
+        this.handleListManager();
+        setTimeout(() => {
+          this.isLoading = false;
+          console.log('assignment deleted');
+        }, 1000);
+
       },
-      error: console.log,
+      error: (err) => {
+        setTimeout(() => {
+          this.isLoading = false;
+          console.log('errur');
+        }, 1000);
+      },
     })
   }
+  openAddAssignmentModal(data: any): void {
+    const dialogRef = this.dialog.open(AssignmentAddComponent, {
+      data,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.handleListManager();
+      }
+    });
+  }
+  /*
+  
 
-  /* handleListManagerApprenant(): void {
+  
+
+   handleListManagerApprenant(): void {
      this.managers.forEach((element: Manager) => {
        this.managerApprenantService.getAssignmentManagerApprenant(element.id).subscribe(
          data => {

@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  isLoading: boolean = false;
   profileForm!: FormGroup;
   superAdmin!: SuperAdmin;
   photoFile!: File | null;
@@ -32,17 +33,17 @@ export class ProfileComponent implements OnInit {
     private superAdminService: SuperAdminService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder) {
-      this.profileForm = this.formBuilder.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        dateOfBirth: ['', Validators.required],
-        phone: ['', Validators.required],
-        sexe: ['', Validators.required],
-        email: ['', Validators.required],
-        etat: ['', Validators.required],
-        photo: ['']
-      });
-     }
+    this.profileForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      phone: ['', Validators.required],
+      sexe: ['', Validators.required],
+      email: ['', Validators.required],
+      etat: ['', Validators.required],
+      photo: ['']
+    });
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
@@ -58,13 +59,13 @@ export class ProfileComponent implements OnInit {
       data => {
         this.superAdmin = data;
         this.profileForm.patchValue(this.superAdmin);
-        console.log(this.superAdmin);
+        //console.log(this.superAdmin);
       }
     );
   }
 
   onFormSubmit(): void {
-
+    this.isLoading = true;
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px'
     });
@@ -77,14 +78,20 @@ export class ProfileComponent implements OnInit {
         this.superAdmin.sexe = this.profileForm.value.sexe;
         this.superAdmin.photo = this.profileForm.value.photo.substring(this.profileForm.value.photo.indexOf(',') + 1);
         //console.log(this.superAdmin.photo);
-        
+
         this.superAdminService.updateSuperAdmin(this.superAdmin.id, this.superAdmin).subscribe(
           response => {
-            this.handleSuperAdminDetails();
-            console.log('Super Admin updated');
+            setTimeout(() => {
+              this.isLoading = false;
+              this.handleSuperAdminDetails();
+              console.log('Super Admin updated');
+            }, 1000);
           },
           error => {
-            console.log('Error');
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log('Error');
+            }, 1000);
           }
         );
       }
@@ -94,7 +101,7 @@ export class ProfileComponent implements OnInit {
   uploadPhoto() {
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
-  
+
     // Utilisez une fonction fléchée pour capturer correctement la valeur de this.photoFile
     fileInput.addEventListener('change', (event: any) => {
       this.photoFile = event.target.files[0];
@@ -103,21 +110,21 @@ export class ProfileComponent implements OnInit {
         this.handleImageUpload(this.photoFile);
       }
     });
-  
+
     fileInput.click();
   }
 
   handleImageUpload(file: File) {
     const reader = new FileReader();
-  
+
     reader.onload = () => {
       const imageData = reader.result as string;
       this.currentPhotoUrl = imageData; // Mettez à jour la variable currentPhotoUrl avec la nouvelle image
       this.profileForm.patchValue({ photo: imageData });
     };
-  
+
     reader.readAsDataURL(file);
   }
-  
-  
+
+
 }

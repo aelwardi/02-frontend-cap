@@ -1,4 +1,9 @@
 <mat-card class="container">
+    <div *ngIf="isLoading" class="spinners-overlay">
+        <div class="spinners-container">
+            <div class="spinners"></div>
+        </div>
+    </div>    
     <mat-card-title class="mb-2">{{ data.titre }}</mat-card-title>
     <mat-divider class="mb-2"></mat-divider>
     <form (ngSubmit)="onSubmit()" [formGroup]="sectionForm">
@@ -30,7 +35,7 @@
         </mat-card-content>
         <mat-divider class="mb-2"></mat-divider>
         <mat-card-actions class="btn-container">
-            <button mat-raised-button class="submit-button" type="submit">
+            <button mat-raised-button class="submit-button save-btn-item" type="submit">
                 Submit
             </button>
         </mat-card-actions>

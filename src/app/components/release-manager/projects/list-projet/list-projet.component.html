@@ -1,4 +1,10 @@
 <h1>Pharma - All projects</h1>
+<div *ngIf="isLoading" class="spinners-overlay">
+  <div class="spinners-container">
+      <div class="spinners"></div>
+  </div>
+</div>
+
 <div class="card">
   <div class="card-body">
     <div class="d-flex justify-content-end">
@@ -27,13 +33,13 @@
       </div>
     </mat-card>
     -->
-    <mat-card *ngFor="let projet of projects" class="mb-3">
+    <mat-card *ngFor="let projet of projects" class="mb-3" >
       <div class="row no-gutters">
         <div class="col-md-2">
           <img [src]="projet?.photo ? 'data:image/jpeg;base64,' + projet.photo : '/assets/images/covers/img-03.png'"
             class="card-img image-container" alt="Photo entreprise" />
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8" (click)="redirectToProject(projet.id)">
           <div class="card-body">
             <h1 class="card-title">{{ projet.name }}</h1>
             <p class="card-text">{{ projet.nameClient }}</p>

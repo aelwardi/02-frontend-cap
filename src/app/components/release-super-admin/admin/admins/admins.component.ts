@@ -73,9 +73,35 @@ export class AdminsComponent implements OnInit {
   }
 
   openEditAdminModal(data: any): void {
-    this.dialog.open(AdminAddEditComponent, {
+    const dialogRef = this.dialog.open(AdminAddEditComponent, {
       width: '540px',
       data,
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.handleListAdmin();
+      }
+      else {
+        console.log(result);
+      }
+    });
+  }
+
+  openAddAdminModal(): void {
+
+    const dialogRef = this.dialog.open(AdminAddEditComponent, {
+      width: '540px'
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.handleListAdmin();
+      }
+      else {
+        console.log(result);
+      }
     });
   }
 

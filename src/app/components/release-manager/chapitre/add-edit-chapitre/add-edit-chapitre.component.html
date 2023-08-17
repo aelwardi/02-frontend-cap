@@ -1,0 +1,32 @@
+<mat-card class="container" [formGroup]="chapitreForm">
+  <div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+        <div class="spinners"></div>
+    </div>
+</div>
+    <mat-card-header>
+      <mat-card-title>{{ data ? 'Edit' : 'Add new' }} Chapitre</mat-card-title>
+    </mat-card-header>
+    <mat-divider class="mb-2"></mat-divider>
+    <mat-card-content>
+  
+      <!-- Champ pour le nom du projet -->
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <mat-icon matPrefix>create</mat-icon>
+          <input matInput placeholder="Enter project name" formControlName="titre" required>
+        </mat-form-field>
+      </div>
+      <!-- Champ pour la description -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Write a description of project</mat-label>
+        <textarea matInput placeholder="..." formControlName="description"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button class="submit-button" (click)="onFormSubmit()">
+        {{ data ? 'Update' : 'Submit' }}
+      </button>
+    </mat-card-actions>
+  </mat-card>

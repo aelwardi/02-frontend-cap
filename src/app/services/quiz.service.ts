@@ -20,14 +20,13 @@ export class QuizService {
     const quizURL = `${this.baseUrl}_proposal?chapitreId=${chapitreId}`;
     return this.httpClient.post(quizURL, quizData);
   }
+  updateQuiz(chapitreId: number, quizId: number, theQuiz: any){
+    const updateURL = `${this.baseUrl}/${chapitreId}/${quizId}`;
+    return this.httpClient.put(updateURL, theQuiz);
+  }
 
   deleteQuizwithProposal(theId: number, chapitreId: number){
     const deleteURL = `${this.baseUrl}/${theId}/${chapitreId}`;
     return this.httpClient.delete(deleteURL);
-  }
-
-  updateQuiz(chapitreId: number, quizId: number, theQuiz: any){
-    const updateURL = `${this.baseUrl}/${chapitreId}/${quizId}`;
-    return this.httpClient.put(updateURL, theQuiz);
   }
 }
