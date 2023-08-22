@@ -8,6 +8,7 @@ import { AddEditSectionComponent } from '../add-edit-section/add-edit-section.co
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/departement/confirm-dialog/confirm-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sid-nav-chapitre',
@@ -34,7 +35,8 @@ export class SidNavChapitreComponent implements OnInit {
     private router: Router,
     private navigationSection: NavigationSectionService,
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private _snackBar: MatSnackBar
   ) {
     this.sectionForm = this.formBuilder.group({
       titre: ['', Validators.required],
@@ -151,12 +153,20 @@ export class SidNavChapitreComponent implements OnInit {
               this.editMode = false;
               this.listChapitre();
               console.log('Section updated');
+              this._snackBar.open('Section updated successfully.', '', {
+                duration: 3000,
+                panelClass: ['green-snackbar'],
+              });
             }, 1000);
           },
           error => {
             setTimeout(() => {
               this.isLoading = false;
               console.log('Error');
+              this._snackBar.open('Section Update unsuccessful.', '', {
+                duration: 3000,
+                panelClass: ['red-snackbar'],
+              });
             }, 1000);
           });
       },
@@ -169,12 +179,20 @@ export class SidNavChapitreComponent implements OnInit {
               this.editMode = false;
               this.listChapitre();
               console.log('Section updated');
+              this._snackBar.open('Section updated successfully.', '', {
+                duration: 3000,
+                panelClass: ['green-snackbar'],
+              });
             }, 1000);
           },
           error => {
             setTimeout(() => {
               this.isLoading = false;
               console.log('Error');
+              this._snackBar.open('Section Update unsuccessful.', '', {
+                duration: 3000,
+                panelClass: ['red-snackbar'],
+              });
             }, 1000);
           });
       }
@@ -218,11 +236,19 @@ export class SidNavChapitreComponent implements OnInit {
               this.isLoading = false;
               console.log("section deleted: " + id);
               this.listChapitre();
+              this._snackBar.open('Section deleted successfully.', '', {
+                duration: 3000,
+                panelClass: ['green-snackbar'],
+              });
             }, 1000);
           },
           error: (err) => {
             setTimeout(() => {
               this.isLoading = false;
+              this._snackBar.open('Not deleted section.', '', {
+                duration: 3000,
+                panelClass: ['red-snackbar'],
+              });
             }, 1000);
           }
         }

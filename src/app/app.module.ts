@@ -76,20 +76,23 @@ import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/l
 import { MatDividerModule } from '@angular/material/divider';
 import { AddEditQuizComponent } from './components/release-manager/quiz/add-edit-quiz/add-edit-quiz.component';
 import { NavBarBlueComponent } from './components/release-manager/template/nav-bar-blue/nav-bar-blue.component';
-import { ListSectionComponent } from './components/release-manager/sections/list-section/list-section.component';
 import { SidNavChapitreComponent } from './components/release-manager/sections/sid-nav-chapitre/sid-nav-chapitre.component';
 import {VgCoreModule} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { AddEditSectionComponent } from './components/release-manager/sections/add-edit-section/add-edit-section.component';
-import { EditSectionComponent } from './components/release-manager/sections/edit-section/edit-section.component';
 import { ChapitresComponent } from './components/release-manager/chapitre/chapitres/chapitres.component';
 import { AddEditChapitreComponent } from './components/release-manager/chapitre/add-edit-chapitre/add-edit-chapitre.component';
 import { AddManagerCoursComponent } from './components/release-manager/chapitre/add-manager-cours/add-manager-cours.component';
 import { CoursComponent } from './components/release-manager/courses/cours/cours.component';
 import { AddApprenantProjetComponent } from './components/release-manager/courses/add-apprenant-projet/add-apprenant-projet.component';
 import {MatTreeModule} from '@angular/material/tree';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ContraintComponent } from './components/release-manager/courses/contraint/contraint.component';
+import { PageNotFoundComponent } from './components/release-super-admin/template/page-not-found/page-not-found.component';
+import { HelpsComponent } from './components/release-manager/helps/helps/helps.component';
+
 
 @NgModule({
   declarations: [
@@ -139,15 +142,16 @@ import {MatTreeModule} from '@angular/material/tree';
     ListQuizComponent,
     AddEditQuizComponent,
     NavBarBlueComponent,
-    ListSectionComponent,
     SidNavChapitreComponent,
     AddEditSectionComponent,
-    EditSectionComponent,
     ChapitresComponent,
     AddEditChapitreComponent,
     AddManagerCoursComponent,
     CoursComponent,
     AddApprenantProjetComponent,
+    ContraintComponent,
+    PageNotFoundComponent,
+    HelpsComponent,
 
   ],
   imports: [
@@ -188,6 +192,7 @@ import {MatTreeModule} from '@angular/material/tree';
     VgOverlayPlayModule,
     VgBufferingModule,
     MatTreeModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

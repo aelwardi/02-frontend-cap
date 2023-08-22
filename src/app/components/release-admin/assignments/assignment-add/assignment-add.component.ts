@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Apprenant } from 'src/app/common/apprenant';
 import { ManagerApprenantService } from 'src/app/services/manager-apprenant.service';
@@ -19,7 +20,8 @@ export class AssignmentAddComponent implements OnInit {
     public dialogRef: MatDialogRef<AssignmentAddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private managerApprenantService: ManagerApprenantService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar,
   ) {
     this.assignmentForm = this._formBuilder.group({
       apprenant: ['', Validators.required]
@@ -67,17 +69,25 @@ export class AssignmentAddComponent implements OnInit {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Assignment added');
-          this.dialogRef.close(true);
+            this._snackBar.open('Assignment added successfully.', '', {
+              duration: 3000,
+              panelClass: ['green-snackbar'],
+            });
+            this.dialogRef.close(true);
           }, 1000);
         },
         error => {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Error', error);
+            this._snackBar.open('Assignment addition unsuccessful.', '', {
+              duration: 3000,
+              panelClass: ['red-snackbar'],
+            });
           }, 1000);
         }
       );
-    }else{
+    } else {
       setTimeout(() => {
         this.isLoading = false;
       }, 1000);

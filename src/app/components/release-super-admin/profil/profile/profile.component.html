@@ -4,8 +4,8 @@
         <div class="spinners"></div>
     </div>
 </div>
-<mat-card>
-    <mat-card-content class="mb-3">
+<mat-card class="container card-with-shadow">
+    <mat-card-content class="mb-3 container">
         <form [formGroup]="profileForm" class="row no-gutters" [ngClass]="{'vertical-layout d-flex align-items-center justify-content-center': isMobile}" (ngSubmit)="onFormSubmit()">
             <div class="col-md-3 col-6 mb-4">
                 <div class="profile-photo" *ngIf="superAdmin || currentPhotoUrl">

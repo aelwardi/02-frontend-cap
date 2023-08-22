@@ -20,8 +20,9 @@
             </div>
         </div>
         <div class="buttons-container">
-            <button mat-button>Home</button>
-            <button mat-button>Helps</button>
+            <button mat-button (click)="redirectToProjects()">Projects</button>
+            <button mat-button >Consultants</button>
+            <button mat-button (click)="redirectToHelps()">Helps</button>
         </div>
     </div>
     <span class="spacer"></span>
@@ -67,10 +68,13 @@
         </a>
     </button>
     <button mat-menu-item>
-        <a class="dropdown-item" href="">Home</a>
+        <a class="dropdown-item" (click)="redirectToProjects()">Projects</a>
     </button>
     <button mat-menu-item>
-        <a class="dropdown-item" href="">Helps</a>
+        <a class="dropdown-item">Consultants</a>
+    </button>
+    <button mat-menu-item>
+        <a class="dropdown-item" (click)="redirectToHelps()">Helps</a>
     </button>
 </mat-menu>
 

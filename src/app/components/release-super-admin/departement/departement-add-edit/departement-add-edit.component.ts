@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Departement } from 'src/app/common/departement';
 import { DepartementService } from 'src/app/services/departement.service';
@@ -18,7 +19,8 @@ export class DepartementAddEditComponent implements OnInit {
     public dialogRef: MatDialogRef<DepartementAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private departementService: DepartementService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar,
   ) {
     this.departementForm = this._formBuilder.group({
       name: ['', Validators.required],
@@ -38,6 +40,10 @@ export class DepartementAddEditComponent implements OnInit {
             setTimeout(() => {
               this.isLoading = false;
               console.log('Department updated');
+              this._snackBar.open('Department successfully updated.', '', {
+                duration: 2000,
+                panelClass: ['green-snackbar'],
+              });
               this.dialogRef.close(true);
             }, 1000);
 
@@ -46,6 +52,10 @@ export class DepartementAddEditComponent implements OnInit {
             setTimeout(() => {
               this.isLoading = false;
               console.log('Error');
+              this._snackBar.open('Department update unsuccessful.', '', {
+                duration: 2000,
+                panelClass: ['red-snackbar'],
+              });
             }, 1000);
           }
         );
@@ -56,6 +66,10 @@ export class DepartementAddEditComponent implements OnInit {
             setTimeout(() => {
               this.isLoading = false;
               console.log('Department added');
+              this._snackBar.open('Department added successfully.', '', {
+                duration: 2000,
+                panelClass: ['green-snackbar'],
+              });
               this.dialogRef.close(true);
             }, 1000);
           },
@@ -63,6 +77,10 @@ export class DepartementAddEditComponent implements OnInit {
             setTimeout(() => {
               this.isLoading = false;
               console.log('Error');
+              this._snackBar.open('Department addition not completed.', '', {
+                duration: 2000,
+                panelClass: ['red-snackbar'],
+              });
             }, 1000);
           }
         );

@@ -6,9 +6,21 @@
   </div>
   <mat-card [formGroup]="coursForm">
     <mat-card-header>
-      <mat-card-title>{{ data.dataUpdated ? 'Edit' : 'Add new' }} Cours</mat-card-title>
+      <mat-card-title>{{ data.dataUpdated ? 'Edit' : 'Add a new' }} Cours</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+      <!-- Champs Images -->
+      <div class="image-upload" (click)="uploadPhoto()">
+        <ng-container *ngIf="currentPhotoUrl">
+          <div class="image-container d-flex align-items-center justify-content-center">
+            <img [src]="currentPhotoUrl" alt="Entreprise Image" class="img-fluid">
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!currentPhotoUrl">
+          <mat-icon>filter</mat-icon>
+          <div>Add an illustrative image</div>
+        </ng-container>
+      </div>
       <!-- Champ pour le titre de cours -->
       <div class="form-group">
         <mat-form-field>

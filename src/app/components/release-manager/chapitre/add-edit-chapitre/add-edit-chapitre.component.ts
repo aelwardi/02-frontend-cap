@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { ChapitreService } from 'src/app/services/chapitre.service';
 import { GestionChapitreService } from 'src/app/services/gestion-chapitre.service';
@@ -21,7 +22,8 @@ export class AddEditChapitreComponent {
     private chapitreService: ChapitreService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private gestionChapitreService: GestionChapitreService
+    private gestionChapitreService: GestionChapitreService,
+    private _snackBar: MatSnackBar,
   ) {
     this.chapitreForm = this.formBuilder.group({
       titre: ['', Validators.required],
@@ -46,6 +48,10 @@ export class AddEditChapitreComponent {
             setTimeout(() => {
               this.isLoading = false;
               console.log("Chapitre updated!");
+              this._snackBar.open('Chapter updated successfully.', '', {
+                duration: 3000,
+                panelClass: ['green-snackbar'],
+              });
               this.dialogRef.close(true);
             }, 1000);
           },
@@ -53,6 +59,10 @@ export class AddEditChapitreComponent {
             setTimeout(() => {
               this.isLoading = false;
               console.log("erreur");
+              this._snackBar.open('chapter update unsuccessful.', '', {
+                duration: 3000,
+                panelClass: ['red-snackbar'],
+              });
             }, 1000);
            },
         }
@@ -64,6 +74,10 @@ export class AddEditChapitreComponent {
             setTimeout(() => {
               this.isLoading = false;
               console.log("Chapitre added!");
+              this._snackBar.open('Chapter added successfully.', '', {
+                duration: 3000,
+                panelClass: ['green-snackbar'],
+              });
               this.dialogRef.close(true);
             }, 1000);
           },
@@ -71,6 +85,10 @@ export class AddEditChapitreComponent {
             setTimeout(() => {
               this.isLoading = false;
               console.log("erreur");
+              this._snackBar.open('Chapter addition successful.', '', {
+                duration: 3000,
+                panelClass: ['red-snackbar'],
+              });
             }, 1000);
            },
         }

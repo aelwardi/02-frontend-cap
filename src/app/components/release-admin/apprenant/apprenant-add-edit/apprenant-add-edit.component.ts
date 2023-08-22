@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Admin } from 'src/app/common/admin';
 import { Apprenant } from 'src/app/common/apprenant';
@@ -31,7 +32,8 @@ export class ApprenantAddEditComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private adminService: AdminService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private _snackBar: MatSnackBar,
   ) {
     this.apprenantForm = this._FormBuilder.group({
       firstName: ['', Validators.required],
@@ -54,7 +56,7 @@ export class ApprenantAddEditComponent implements OnInit {
   }
 
   handleApprenantById(): void {
-    if (this.data && this.data.id) { 
+    if (this.data && this.data.id) {
       this.apprenantService.getApprenantById(this.data.id).subscribe(
         data => {
           this.apprenant = data;
@@ -88,16 +90,23 @@ export class ApprenantAddEditComponent implements OnInit {
         response => {
           setTimeout(() => {
             this.isLoading = false;
-            console.log('apprenant updated');
-          this.dialogRef.close(true);
+            console.log('consultant updated');
+            this._snackBar.open('Consultant updated successful.', '', {
+              duration: 3000,
+              panelClass: ['green-snackbar'],
+            });
+            this.dialogRef.close(true);
           }, 1000);
         },
         error => {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Error');
+            this._snackBar.open('Consultant update unsuccessful.', '', {
+              duration: 3000,
+              panelClass: ['red-snackbar'],
+            });
           }, 1000);
-          
         }
       );
     }
@@ -122,16 +131,23 @@ export class ApprenantAddEditComponent implements OnInit {
         response => {
           setTimeout(() => {
             this.isLoading = false;
-            console.log('Apprenant added');
-          //console.log(apprenantData);
-          this.dialogRef.close(true);
+            console.log('Consultant added');
+            this.dialogRef.close(true);
+            this._snackBar.open('Consultant added successfully.', '', {
+              duration: 3000,
+              panelClass: ['green-snackbar'],
+            });
           }, 1000);
-          
+
         },
         error => {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Error');
+            this._snackBar.open('Consultant not added successfully.', '', {
+              duration: 3000,
+              panelClass: ['red-snackbar'],
+            });
           }, 1000);
         }
       );

@@ -1,4 +1,4 @@
-<h2>{{ data ? 'Edit' : 'Add' }} Admin</h2>
+<h2>{{ data ? 'Edit' : 'Add a new' }} administrator</h2>
 <div *ngIf="isLoading" class="spinners-overlay">
   <div class="spinners-container">
       <div class="spinners"></div>
@@ -51,7 +51,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Department:</mat-label>
+        <mat-label>Departement:</mat-label>
         <mat-select name="department" formControlName="departement">
           <mat-option *ngFor="let departement of departements" [value]="departement">{{ departement.name }}</mat-option>
         </mat-select>

@@ -34,4 +34,11 @@ export class NavBarComponent {
     this.router.navigateByUrl(`manager/projects/search/${searchTerm}`);
   }
 
+  redirectToProjects() {
+    this.router.navigateByUrl(`manager/projects`);
+  }
+  redirectToHelps() {
+    this.router.navigateByUrl(`manager/help`);
+  }
+
 }

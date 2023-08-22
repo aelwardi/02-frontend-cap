@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Admin } from 'src/app/common/admin';
 import { SuperAdmin } from 'src/app/common/super-admin';
@@ -29,7 +30,8 @@ export class AdminAddEditComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private departmentService: DepartementService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private _snackBar: MatSnackBar
   ) {
     this.adminForm = this._FormBuilder.group({
       firstName: ['', Validators.required],
@@ -71,6 +73,10 @@ export class AdminAddEditComponent implements OnInit {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Admins updated');
+            this._snackBar.open('Administrator updated successfully.', '', {
+              duration: 3000,
+              panelClass: ['green-snackbar'],
+            });
             this.dialogRef.close(true);
           }, 1000);
         },
@@ -78,6 +84,10 @@ export class AdminAddEditComponent implements OnInit {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Error');
+            this._snackBar.open('Administrator update unsuccessful..', '', {
+              duration: 3000,
+              panelClass: ['red-snackbar'],
+            });
           }, 1000);
         }
       );
@@ -104,6 +114,10 @@ export class AdminAddEditComponent implements OnInit {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Admin added');
+            this._snackBar.open('Administrator added successfully.', '', {
+              duration: 3000,
+              panelClass: ['green-snackbar'],
+            });
             this.dialogRef.close(true);
           }, 1000);
         },
@@ -111,12 +125,14 @@ export class AdminAddEditComponent implements OnInit {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Error');
+            this._snackBar.open('Administrator addition unsuccessful.', '', {
+              duration: 3000,
+              panelClass: ['red-snackbar'],
+            });
           }, 1000);
         }
       );
-      //console.log(adminData);
     }
-    // }
 
 
   }

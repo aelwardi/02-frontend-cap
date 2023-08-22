@@ -36,5 +36,10 @@ export class NavBarBlueComponent {
     this.router.navigateByUrl(`/project/${this.idProject}/cours/search/${term}`)
   }
 
-
+  redirectToProjects() {
+    this.router.navigateByUrl(`manager/projects`);
+  }
+  redirectToHelps() {
+    this.router.navigateByUrl(`manager/help`);
+  }
 }

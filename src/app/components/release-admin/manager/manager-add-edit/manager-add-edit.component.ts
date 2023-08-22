@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Admin } from 'src/app/common/admin';
 import { Manager } from 'src/app/common/manager';
@@ -29,7 +30,8 @@ export class ManagerAddEditComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private adminService: AdminService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private _snackBar: MatSnackBar
   ) {
     this.managerForm = this._FormBuilder.group({
       firstName: ['', Validators.required],
@@ -73,20 +75,28 @@ export class ManagerAddEditComponent implements OnInit {
       this.manager.phone = this.managerForm.value.phone;
       this.manager.sexe = this.managerForm.value.sexe;
       this.manager.password = this.managerForm.value.password;
-      this.managerService.updateManager(adminId ,this.manager.id, this.manager).subscribe(
+      this.managerService.updateManager(adminId, this.manager.id, this.manager).subscribe(
         response => {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Manager updated');
-          this.dialogRef.close(true);
+            this._snackBar.open('Manager updated successfully.', '', {
+              duration: 3000,
+              panelClass: ['green-snackbar'],
+            });
+            this.dialogRef.close(true);
           }, 1000);
         },
         error => {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Error');
+            this._snackBar.open('Profile updated unsuccessfully.', '', {
+              duration: 3000,
+              panelClass: ['red-snackbar'],
+            });
           }, 1000);
-          
+
         }
       );
     }
@@ -111,15 +121,23 @@ export class ManagerAddEditComponent implements OnInit {
         response => {
           setTimeout(() => {
             this.isLoading = false;
-            console.log('Admin added');
-          this.dialogRef.close(true);
+            console.log('Manager added');
+            this._snackBar.open('Manager added successfully.', '', {
+              duration: 3000,
+              panelClass: ['green-snackbar'],
+            });
+            this.dialogRef.close(true);
           }, 1000);
-          
+
         },
         error => {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Error');
+            this._snackBar.open('Manager addition unsuccessful.', '', {
+              duration: 3000,
+              panelClass: ['red-snackbar'],
+            });
           }, 1000);
         }
       );

@@ -24,10 +24,10 @@ import { ProfilManagerComponent } from './components/release-manager/profil/prof
 
 import { ListQuizComponent } from './components/release-manager/quiz/list-quiz/list-quiz.component';
 import { SidNavChapitreComponent } from './components/release-manager/sections/sid-nav-chapitre/sid-nav-chapitre.component';
-import { ListSectionComponent } from './components/release-manager/sections/list-section/list-section.component';
-import { AddEditSectionComponent } from './components/release-manager/sections/add-edit-section/add-edit-section.component';
 import { ChapitresComponent } from './components/release-manager/chapitre/chapitres/chapitres.component';
 import { CoursComponent } from './components/release-manager/courses/cours/cours.component';
+import { PageNotFoundComponent } from './components/release-super-admin/template/page-not-found/page-not-found.component';
+import { HelpsComponent } from './components/release-manager/helps/helps/helps.component';
 
 
 
@@ -38,31 +38,42 @@ const routes: Routes = [
       {
         path: 'departements',
         component: DepartementsComponent,
+        data: { pageTitle: 'List Departements' }
       },
       {
         path: 'departements/search/:keyword',
         component: DepartementsComponent,
+        data: { pageTitle: 'Search Departement' }
       },
       {
         path: 'admins',
         component: AdminsComponent,
+        data: { pageTitle: 'List Administrators' }
       },
       {
         path: 'admins/search/:keyword',
         component: AdminsComponent,
+        data: { pageTitle: 'Search Administrator' }
       },
       {
         path: 'admins/details/:id',
         component: AdminDetailsComponent,
+        data: { pageTitle: 'Details Administrator' }
       },
       {
         path: 'settings',
         component: ProfileComponent,
+        data: { pageTitle: 'Profile' }
       },
       {
         path: 'help',
         component: HelpComponent,
+        data: { pageTitle: 'Help' }
       },
+      {
+        path: '**', component: PageNotFoundComponent,
+        data: { pageTitle: 'Page not found' }
+      }
     ],
   },
   {
@@ -71,39 +82,52 @@ const routes: Routes = [
       {
         path: 'managers',
         component: ListManagerComponent,
+        data: { pageTitle: 'List Managers' }
       },
       {
         path: 'managers/search/:keyword',
         component: ListManagerComponent,
+        data: { pageTitle: 'Search Manager' }
       },
       {
         path: 'managers/details/:id',
         component: ManagerDetailsComponent,
+        data: { pageTitle: 'Details Manager' }
       },
       {
         path: 'apprenants',
         component: ApprenantsComponent,
+        data: { pageTitle: 'List Consultants' }
       },
       {
         path: 'apprenants/search-apprenant/:keyword',
         component: ApprenantsComponent,
+        data: { pageTitle: 'Search Consultant' }
       },
       {
         path: 'apprenants/details/:id',
         component: ApprenantDetailsComponent,
+        data: { pageTitle: 'Details Consultant' }
       },
       {
         path: 'assignments',
         component: ListAssignmentComponent,
+        data: { pageTitle: 'Assignments' }
       },
       {
         path: 'settings',
         component: ProfilComponent,
+        data: { pageTitle: 'Profile' }
       },
       {
         path: 'help',
         component: HelpComponent,
+        data: { pageTitle: 'Help' }
       },
+      {
+        path: '**', component: PageNotFoundComponent,
+        data: { pageTitle: 'Page not found' }
+      }
     ],
   },
   {
@@ -112,43 +136,51 @@ const routes: Routes = [
       {
         path: 'projects',
         component: ListProjetComponent,
+        data: { pageTitle: 'List projects' }
       },
       {
         path: 'projects/:id',
         component: CoursComponent,
+        data: { pageTitle: 'List Courses' }
       },
       {
         path: 'projects/search/:keyword',
         component: ListProjetComponent,
+        data: { pageTitle: 'Search project' }
       },
       {
         path: 'settings',
         component: ProfilManagerComponent,
+        data: { pageTitle: 'Profile' }
 
       },
       {
         path: 'quiz/:id',
         component: ListQuizComponent,
+        data: { pageTitle: 'List Quiz' }
       },
       {
         path: 'chapitre/:id', component: SidNavChapitreComponent,
-        children: [
-          {
-            path: 'addSection', component: AddEditSectionComponent
-          },
-          {
-            path: ':id', component: ListSectionComponent
-          }
-        ]
+        data: { pageTitle: 'List Sections' }
       },
       {
         path: 'cours/:id', component: ChapitresComponent,
+        data: { pageTitle: 'List chapters' }
+      },
+      {
+        path: 'help',
+        component: HelpsComponent,
+        data: { pageTitle: 'Help' }
+      },
+      {
+        path: '**', component: PageNotFoundComponent,
+        data: { pageTitle: 'Page not found' }
       }
     ],
   },
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home', pathMatch: 'full' }
+  { path: 'home', component: HomeComponent, data: { pageTitle: 'Home Page' } },
+  { path: '', redirectTo: '/home', pathMatch: 'full', data: { pageTitle: 'Home' }},
+  { path: '**', redirectTo: '/home', pathMatch: 'full', data: { pageTitle: 'Home' } }
 ];
 
 @NgModule({

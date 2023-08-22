@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { SectionService } from 'src/app/services/section.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-edit-section',
@@ -20,7 +21,8 @@ export class AddEditSectionComponent implements OnInit {
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private sectionService: SectionService
+    private sectionService: SectionService,
+    private _snackBar: MatSnackBar
   ) {
     this.sectionForm = this.formBuilder.group({
       titre: ['', Validators.required],
@@ -70,16 +72,24 @@ export class AddEditSectionComponent implements OnInit {
           response => {
             setTimeout(() => {
               this.isLoading = false;
-              console.log('Section added')
-            this.dialogRef.close(true);
+              console.log('Section added');
+              this._snackBar.open('Section deleted successfully.', '', {
+                duration: 3000,
+                panelClass: ['green-snackbar'],
+              });
+              this.dialogRef.close(true);
             }, 1000);
           },
           error => {
             setTimeout(() => {
               this.isLoading = false;
               console.log('Error');
+              this._snackBar.open('Section addition unsuccessful.', '', {
+                duration: 3000,
+                panelClass: ['red-snackbar'],
+              });
             }, 1000);
-            
+
           });
       },
       (error) => {
@@ -90,7 +100,4 @@ export class AddEditSectionComponent implements OnInit {
       }
     );
   }
-
-  
-
 }

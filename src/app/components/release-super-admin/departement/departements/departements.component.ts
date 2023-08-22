@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { DepartementAddEditComponent } from '../departement-add-edit/departement-add-edit.component';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-departements',
@@ -32,7 +33,8 @@ export class DepartementsComponent implements OnInit {
 
   constructor(private departementService: DepartementService,
     private dialog: MatDialog,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -110,12 +112,19 @@ export class DepartementsComponent implements OnInit {
         setTimeout(() => {
           this.isLoading = false;
           this.listDepartement();
+          this._snackBar.open('Department deleted successfully.', '', {
+            duration: 2000,
+            panelClass: ['green-snackbar'],
+          });
         }, 1000);
       },
       error: (err) => {
-        //console.log(err);
         setTimeout(() => {
           this.isLoading = false;
+          this._snackBar.open('Not deleted department.', '', {
+            duration: 3000,
+            panelClass: ['red-snackbar'],
+          });
         }, 1000);
       }
     })

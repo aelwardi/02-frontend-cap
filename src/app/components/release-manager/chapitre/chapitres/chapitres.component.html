@@ -20,7 +20,7 @@
             </div>
             <button mat-menu-item (click)="openAddAssignmentModal()">
                 <mat-icon>add</mat-icon>
-                <span> Add new manager </span>
+                <span> Add a new manager </span>
             </button>
         </mat-menu>
     </mat-card-title>
@@ -28,7 +28,7 @@
     <mat-card-subtitle class="mb-4" *ngIf="coursDTO"> {{coursDTO.cours.description}} </mat-card-subtitle>
     <mat-card-content>
         <div *ngIf="coursDTO">
-            <mat-card class="mb-3 container" *ngFor="let chapitre of coursDTO.chapitres">
+            <mat-card class="mb-3 container card-with-shadow" *ngFor="let chapitre of coursDTO.chapitres">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="ml-2"> {{chapitre.titre}} </div>
                     <button mat-icon-button [matMenuTriggerFor]="menu1" aria-label="list of manager">
@@ -37,47 +37,23 @@
                 </div>
                 <mat-menu #menu1="matMenu" class="custom-menu ">
                     <button mat-menu-item  (click)="openQuizModal(chapitre.id)">
-                        <span>Gestion des Quiz</span>
+                        <span>Quiz Management</span>
                     </button>
                     <button mat-menu-item>
-                        <span>Support de cours</span>
+                        <span>Course ressources</span>
                     </button>
                     <button mat-menu-item (click)="openEditChapitreModal(chapitre)">
-                        <span>Modifier chapitre</span>
+                        <span>Edit Chapter</span>
                     </button>
                     <button mat-menu-item (click)="openConfirmModal(chapitre.id)">
-                        <span>Supprimer chapitre</span>
+                        <span>Delete Chapter</span>
                     </button>
                 </mat-menu>
             </mat-card>
         </div>
-        <!--
-        <div *ngIf="coursDTO">
-            <mat-card class="mb-3 container" *ngFor="let chapitre of coursDTO.chapitres">
-                <div> {{chapitre.titre}} </div>
-                <button mat-icon-button [matMenuTriggerFor]="menu1" aria-label="list of manager" class="menu-item">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
-                <mat-menu #menu1="matMenu" class="custom-menu ">
-                    <button mat-menu-item>
-                        <span>Gestion des Quiz</span>
-                    </button>
-                    <button mat-menu-item>
-                        <span>Support de cours</span>
-                    </button>
-                    <button mat-menu-item (click)="openEditChapitreModal(chapitre)">
-                        <span>Modifier chapitre</span>
-                    </button>
-                    <button mat-menu-item (click)="openConfirmModal(chapitre.id)">
-                        <span>Supprimer chapitre</span>
-                    </button>
-                </mat-menu>
-            </mat-card>
-        </div>
-        -->
         <div class="d-flex align-items-center mb-3" (click)="openAddChapitreModal()">
             <mat-icon class="mr-2 icon-blue">add_circle</mat-icon>
-            <span>Add a chapitre</span>
+            <span>Add a New Chapter</span>
         </div>
     </mat-card-content>
     <mat-divider class="mb-2"></mat-divider>

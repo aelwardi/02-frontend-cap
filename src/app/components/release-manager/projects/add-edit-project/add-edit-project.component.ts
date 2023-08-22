@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Projet } from 'src/app/common/projet';
 import { AdminService } from 'src/app/services/admin.service';
@@ -24,7 +25,8 @@ export class AddEditProjectComponent implements OnInit {
     private route: ActivatedRoute,
     private adminService: AdminService,
     private projetService: ProjetService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar) {
     this.projectForm = this.formBuilder.group({
       name: ['', Validators.required],
       nameClient: ['', Validators.required],
@@ -81,12 +83,20 @@ export class AddEditProjectComponent implements OnInit {
           setTimeout(() => {
             this.isLoading = false;
             console.log('Project updated');
+            this._snackBar.open('Project updated successfully.', '', {
+              duration: 3000,
+              panelClass: ['green-snackbar'],
+            });
             this.dialogRef.close(true);
           }, 1000);
         },
         error => {
           setTimeout(() => {
             this.isLoading = false;
+            this._snackBar.open('Project update successful.', '', {
+              duration: 3000,
+              panelClass: ['red-snackbar'],
+            });
             console.log('Error');
           }, 1000);
           
@@ -107,6 +117,10 @@ export class AddEditProjectComponent implements OnInit {
           setTimeout(() => {
             this.isLoading = false;
             console.log('project added');
+            this._snackBar.open('Project added successfully.', '', {
+              duration: 3000,
+              panelClass: ['green-snackbar'],
+            });
             this.dialogRef.close(true);
           }, 1000);
         },
@@ -114,6 +128,10 @@ export class AddEditProjectComponent implements OnInit {
           setTimeout(() => {
             this.isLoading = false;
             console.log(error);
+            this._snackBar.open('Project addition unsuccessful.', '', {
+              duration: 3000,
+              panelClass: ['red-snackbar'],
+            });
           }, 1000);
 
         });

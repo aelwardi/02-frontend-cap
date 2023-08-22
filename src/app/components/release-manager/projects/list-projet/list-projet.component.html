@@ -1,7 +1,7 @@
 <h1>Pharma - All projects</h1>
 <div *ngIf="isLoading" class="spinners-overlay">
   <div class="spinners-container">
-      <div class="spinners"></div>
+    <div class="spinners"></div>
   </div>
 </div>
 
@@ -9,31 +9,11 @@
   <div class="card-body">
     <div class="d-flex justify-content-end">
       <button mat-button class="btn-add" (click)="openAddProjectModal()">
-        <mat-icon>add</mat-icon> Add new project
+        <mat-icon>add</mat-icon> Add a new project
       </button>
     </div>
     <hr>
-    <!--
-    <mat-card class="mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-2">
-          <img src="assets/images/covers/img-02.png" class="card-img image-container" alt="Logo">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h1 class="card-title">Add new project.</h1>
-            <p class="card-text">Clicking to add a new project...</p>
-          </div>
-        </div>
-        <div class="col-md-2 d-flex align-items-center justify-content-center">
-          <button mat-icon-button color="primary" class="large-icon-button" (click)="openAddProjectModal()">
-            <mat-icon class="large-icon icon-blue">add</mat-icon>
-          </button>
-        </div>
-      </div>
-    </mat-card>
-    -->
-    <mat-card *ngFor="let projet of projects" class="mb-3" >
+    <mat-card *ngFor="let projet of projects" class="mb-3 card-with-shadow">
       <div class="row no-gutters">
         <div class="col-md-2">
           <img [src]="projet?.photo ? 'data:image/jpeg;base64,' + projet.photo : '/assets/images/covers/img-03.png'"
@@ -43,7 +23,11 @@
           <div class="card-body">
             <h1 class="card-title">{{ projet.name }}</h1>
             <p class="card-text">{{ projet.nameClient }}</p>
-            <p>{{projet.description}}</p>
+            <div *ngIf="projet.description">
+              <p [matTooltip]="projet.description">
+                {{projet.description | slice: 0: 200}}...
+              </p>
+            </div>
           </div>
         </div>
         <div class="col-md-2 d-flex align-items-center justify-content-center">
@@ -57,10 +41,7 @@
         </div>
       </div>
     </mat-card>
-    <mat-paginator 
-        [pageSizeOptions]="[3, 5]" 
-        showFirstLastButtons 
-        aria-label="Select page of periodic elements">
+    <mat-paginator [pageSizeOptions]="[3, 5]" showFirstLastButtons aria-label="Select page of periodic elements">
     </mat-paginator>
   </div>
 </div>

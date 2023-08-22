@@ -6,6 +6,7 @@ import { QuizService } from 'src/app/services/quiz.service';
 import { AddEditQuizComponent } from '../add-edit-quiz/add-edit-quiz.component';
 import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/departement/confirm-dialog/confirm-dialog.component';
 import { SharedChapitreService } from 'src/app/services/shared-chapitre.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-quiz',
@@ -13,12 +14,14 @@ import { SharedChapitreService } from 'src/app/services/shared-chapitre.service'
   styleUrls: ['./list-quiz.component.css']
 })
 export class ListQuizComponent implements OnInit {
+  isLoading: boolean = false;
   quizDto: QuizDTO[] = [];
   constructor(
     private quizService: QuizService,
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private sharedChapitreService: SharedChapitreService,
+    private _snackBar: MatSnackBar,
   ){}
 
   ngOnInit(): void {
@@ -67,12 +70,28 @@ export class ListQuizComponent implements OnInit {
   }
 
   deleteQuiz(id: number) {
+    this.isLoading = true;
     const chapitreId = +this.route.snapshot.paramMap.get('id')!;
     this.quizService.deleteQuizwithProposal(id, chapitreId).subscribe({
       next: (res) => {
-        this.listQuiz();
+        setTimeout(() => {
+          this.isLoading = false;
+          this.listQuiz();
+          this._snackBar.open('Quiz deleted successfully.', '', {
+            duration: 3000,
+            panelClass: ['green-snackbar'],
+          });
+        }, 1000);
       },
-      error: console.log,
+      error: (err) => {
+        setTimeout(() => {
+          this.isLoading = false;
+          this._snackBar.open('Not deleted Quiz.', '', {
+            duration: 3000,
+            panelClass: ['red-snackbar'],
+          });
+        }, 1000);
+      } 
     })
   }
 
