@@ -5,6 +5,7 @@ import { SuperAdmin } from 'src/app/common/super-admin';
 import { SuperAdminService } from 'src/app/services/super-admin.service';
 import { ConfirmDialogComponent } from '../../departement/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -25,14 +26,15 @@ export class ProfileComponent implements OnInit {
   }
 
   checkScreenSize() {
-    this.isMobile = window.innerWidth < 768; // Modifier la valeur de 768 selon votre besoin
+    this.isMobile = window.innerWidth < 768; 
   }
 
   constructor(
     private dialog: MatDialog,
     private superAdminService: SuperAdminService,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar) {
     this.profileForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -59,7 +61,6 @@ export class ProfileComponent implements OnInit {
       data => {
         this.superAdmin = data;
         this.profileForm.patchValue(this.superAdmin);
-        //console.log(this.superAdmin);
       }
     );
   }
@@ -77,20 +78,26 @@ export class ProfileComponent implements OnInit {
         this.superAdmin.phone = this.profileForm.value.phone;
         this.superAdmin.sexe = this.profileForm.value.sexe;
         this.superAdmin.photo = this.profileForm.value.photo.substring(this.profileForm.value.photo.indexOf(',') + 1);
-        //console.log(this.superAdmin.photo);
-
         this.superAdminService.updateSuperAdmin(this.superAdmin.id, this.superAdmin).subscribe(
           response => {
             setTimeout(() => {
               this.isLoading = false;
               this.handleSuperAdminDetails();
               console.log('Super Admin updated');
+              this._snackBar.open('Profile updated successfully.', '', {
+                duration: 2000,
+                panelClass: ['green-snackbar'],
+              });
             }, 1000);
           },
           error => {
             setTimeout(() => {
               this.isLoading = false;
               console.log('Error');
+              this._snackBar.open('Profile update unsuccessful.', '', {
+                duration: 2000,
+                panelClass: ['green-snackbar'],
+              });
             }, 1000);
           }
         );

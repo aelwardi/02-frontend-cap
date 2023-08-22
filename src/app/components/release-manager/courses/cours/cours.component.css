@@ -325,3 +325,8 @@ a:hover {
 .icon-blue {
   color: #0070AD;
 }
+.btn-add {
+  background-color: #0070AD;
+  border-radius: 8px;
+  color: #FFFFFF;
+}

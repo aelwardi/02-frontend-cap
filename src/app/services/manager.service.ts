@@ -39,6 +39,10 @@ export class ManagerService {
     return this.httpClient.put(updateMANAGER, theManager);
   }
 
+  updateProfile(id: number, theManager: any): Observable<any> {
+    const updateMANAGER = `${this.baseUrl}/profile/${id}`;
+    return this.httpClient.put(updateMANAGER, theManager);
+  }
   getManagerDetails(theAdminId: number ,theManagerId: number): Observable<Manager> {
     // need to build URL based on product id
     const managerUrl = `${this.baseUrl}/details?adminId=${theAdminId}&id=${theManagerId}`;

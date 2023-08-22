@@ -9,6 +9,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { ManagerApprenantService } from 'src/app/services/manager-apprenant.service';
 import { AssignmentAddComponent } from '../assignment-add/assignment-add.component';
 import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/departement/confirm-dialog/confirm-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 export interface PeriodicElement {
@@ -39,7 +40,9 @@ export class ListAssignmentComponent implements OnInit {
     private managerApprenantService: ManagerApprenantService,
     private dialog: MatDialog,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private _snackBar: MatSnackBar
+    ) {
   }
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -82,7 +85,11 @@ export class ListAssignmentComponent implements OnInit {
         this.handleListManager();
         setTimeout(() => {
           this.isLoading = false;
-          console.log('assignment deleted');
+          console.log('Assignment deleted successfully.');
+          this._snackBar.open('Assignment deleted successfully.', '', {
+            duration: 3000,
+            panelClass: ['green-snackbar'],
+          });
         }, 1000);
 
       },
@@ -90,6 +97,10 @@ export class ListAssignmentComponent implements OnInit {
         setTimeout(() => {
           this.isLoading = false;
           console.log('errur');
+          this._snackBar.open('Assignment deletion unsuccessful.', '', {
+            duration: 3000,
+            panelClass: ['red-snackbar'],
+          });
         }, 1000);
       },
     })
@@ -104,19 +115,5 @@ export class ListAssignmentComponent implements OnInit {
       }
     });
   }
-  /*
-  
-
-  
-
-   handleListManagerApprenant(): void {
-     this.managers.forEach((element: Manager) => {
-       this.managerApprenantService.getAssignmentManagerApprenant(element.id).subscribe(
-         data => {
-           this.managerApprenant.push(data);
-         }
-       )
-     });
-   }*/
 
 }

@@ -1,13 +1,13 @@
 <p class="add-btn">
     <button mat-stroked-button color="primary" class="add-btn-item"
     (click)="openAddAdminModal()">
-    Add Admin</button>
+    Add a new administrator</button>
 </p>
-<h1>Admins</h1>
+<h1>Administrators</h1>
 <app-search-admin></app-search-admin>
 <div class="card">
-    <div class="card-body">
-        <div class="mat-elevation-z8">
+    <div class="card-body card-with-shadow">
+        <div >
             <table mat-table [dataSource]="dataSource">
 
                 <!-- Id Column -->

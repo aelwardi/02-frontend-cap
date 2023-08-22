@@ -9,6 +9,9 @@ import { AddEditProjectComponent } from '../add-edit-project/add-edit-project.co
 import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/departement/confirm-dialog/confirm-dialog.component';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-projet',
@@ -30,7 +33,9 @@ export class ListProjetComponent implements OnInit {
     private projetService: ProjetService,
     private dialog: MatDialog,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private breakpointObserver: BreakpointObserver,
+    private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -38,6 +43,9 @@ export class ListProjetComponent implements OnInit {
       this.listProjet();
     });
   }
+  numberOfColumns = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(result => result.matches ? 1 : 2) 
+  );
 
   redirectToProject(projetId: number) {
     this.router.navigate([`/manager/projects/${projetId}`]);
@@ -72,21 +80,19 @@ export class ListProjetComponent implements OnInit {
     const managerId = 2;
     this.projetService.getProjetsByDepartement(managerId).subscribe(
       data => {
-        //console.log(data);
         this.projets = data;
         this.projects = data.slice(0, 3);
-        this.initializePaginator(); // Appel de la méthode ici
+        this.initializePaginator(); 
       }
     )
   }
 
   initializePaginator() {
-    this.paginator.pageSize = 3; // Nombre d'éléments par page
-    this.paginator.pageIndex = 0; // Page actuelle (commence à 0)
-    this.paginator.length = this.projets.length; // Nombre total d'éléments
+    this.paginator.pageSize = 3; 
+    this.paginator.pageIndex = 0; 
+    this.paginator.length = this.projets.length; 
 
     this.paginator.page.subscribe(() => {
-      // Lorsque l'utilisateur change de page
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       const endIndex = startIndex + this.paginator.pageSize;
       this.projects = this.projets.slice(startIndex, endIndex);
@@ -115,7 +121,6 @@ export class ListProjetComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // call method delete
         this.deleteProject(id);
       }
     });
@@ -128,11 +133,19 @@ export class ListProjetComponent implements OnInit {
         setTimeout(() => {
           this.isLoading = false;
           this.listProjet();
+          this._snackBar.open('Project deleted successfully.', '', {
+            duration: 3000,
+            panelClass: ['green-snackbar'],
+          });
         }, 1000);
       },
       error: (err) => {
         setTimeout(() => {
           this.isLoading = false;
+          this._snackBar.open('Not deleted Project.', '', {
+            duration: 3000,
+            panelClass: ['red-snackbar'],
+          });
         }, 1000);
       }
     })

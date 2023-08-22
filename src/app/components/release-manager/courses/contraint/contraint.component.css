@@ -1,0 +1,19 @@
+mat-form-field {
+    width: 100%;
+    background-color: white;
+    margin-bottom: 20px;
+  }
+  .btn-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .btn-nav {
+    background-color: #CFD1D3!important;
+    color: #F8F8F8!important;
+    border-radius: 5px;
+    margin-left: 5px;
+  }
+  .save-btn-item {
+    background-color: #0070AD!important;
+    color: #FFFFFF;
+  }

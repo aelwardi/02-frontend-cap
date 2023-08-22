@@ -1,4 +1,4 @@
-<h2>{{ data ? 'Edit' : 'Add' }} Apprenant</h2>
+<h2>{{ data ? 'Edit' : 'Add a New' }} Consultant</h2>
 <div *ngIf="isLoading" class="spinners-overlay">
   <div class="spinners-container">
       <div class="spinners"></div>
@@ -23,7 +23,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Date Birth</mat-label>
+        <mat-label>Date of Birth</mat-label>
         <input matInput [matDatepicker]="datePicker" formControlName="dateBirth" />
         <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
         <mat-datepicker #datePicker></mat-datepicker>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ManagerInfo } from 'src/app/common/manager-info';
 import { GestionChapitreService } from 'src/app/services/gestion-chapitre.service';
 import { ManagerCoursService } from 'src/app/services/manager-cours.service';
@@ -20,7 +21,8 @@ export class AddManagerCoursComponent implements OnInit {
     private managerCoursService: ManagerCoursService,
     private dialog: MatDialog,
     private _formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<AddManagerCoursComponent> 
+    private dialogRef: MatDialogRef<AddManagerCoursComponent>,
+    private _snackBar: MatSnackBar,
   ){
     this.assignmentForm = this._formBuilder.group({
       manager: ['', Validators.required]
@@ -35,7 +37,6 @@ export class AddManagerCoursComponent implements OnInit {
     this.managerCoursService.getNoAssignmentManagerCours(this.gestionChapitreService.coursId).subscribe(
       data => {
         this.managerInfo = data;
-        //console.log(this.managerInfo);
       }
     )
   }
@@ -48,6 +49,10 @@ export class AddManagerCoursComponent implements OnInit {
           setTimeout(() => {
             this.isLoading = false;
             console.log("Apprenant assigned");
+            this._snackBar.open('Manager added successfully.', '', {
+              duration: 3000,
+              panelClass: ['green-snackbar'],
+            });
           this.dialogRef.close(true);
           }, 1000);
         },
@@ -55,6 +60,10 @@ export class AddManagerCoursComponent implements OnInit {
           setTimeout(() => {
             this.isLoading = false;
             console.log(error);
+            this._snackBar.open('Manager addition unsuccessfully.', '', {
+              duration: 3000,
+              panelClass: ['red-snackbar'],
+            });
           }, 1000);
 
         });

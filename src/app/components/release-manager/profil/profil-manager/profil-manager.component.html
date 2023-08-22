@@ -1,5 +1,10 @@
 <h1>Profil Details</h1>
-<mat-card>
+<div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+        <div class="spinners"></div>
+    </div>
+</div>
+<mat-card class="card-with-shadow">
     <mat-card-content class="mb-3">
         <form [formGroup]="profileForm" class="row no-gutters" [ngClass]="{'vertical-layout d-flex align-items-center justify-content-center': isMobile}" (ngSubmit)="onFormSubmit()">
             <div class="col-md-3 col-6 mb-4">

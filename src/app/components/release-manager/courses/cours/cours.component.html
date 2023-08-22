@@ -27,8 +27,8 @@
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5 container">
         <mat-card class="container">
-            <mat-card-title class="d-flex justify-content-between align-items-center">
-                <div > {{ currentProjetCourses.projetInfo.name }} </div>
+            <mat-card-title class="d-flex justify-content-between align-items-center container">
+                <div > {{ currentProjetCourses?.projetInfo?.name }} </div>
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="list of manager" class="menu-item">
                     <mat-icon class="icon-blue">groups</mat-icon>
                 </button>
@@ -43,26 +43,26 @@
                     </div>
                     <button mat-menu-item (click)="openAddAssignmentModal()">
                         <mat-icon>add</mat-icon>
-                        <span> Add new apprenant </span>
+                        <span> Add a new Consultant </span>
                     </button>
                 </mat-menu>
             </mat-card-title>
+            <mat-divider class="mb-3"></mat-divider>
             <mat-card-content>
+                <div class="d-flex justify-content-end">
+                    <button mat-button class="btn-add" (click)="openAddCoursModal()">
+                      <mat-icon>add</mat-icon> Add new course
+                    </button>
+                  </div>
                 <div class="container" style="margin-top:50px;">
                     <div class="row">
-                        <div class="col-md-3 ">
-                            <mat-card class="d-flex h-100" (click)="openAddCoursModal()">
+                        <div class="col-md-4 mb-3" *ngFor="let cours of currentProjetCourses?.coursInfos">
+                            <mat-card class="d-flex h-100 card-with-shadow">
                                 <div class="card-sl flex-fill">
-                                    <mat-card-content>
-                                        <img src="assets/images/logos/imgPlusss.png" alt="Image description"
-                                            class="card-image">
-                                    </mat-card-content>
-                                </div>
-                            </mat-card>
-                        </div>
-                        <div class="col-md-3" *ngFor="let cours of currentProjetCourses.coursInfos">
-                            <mat-card class="d-flex h-100">
-                                <div class="card-sl flex-fill">
+                                    <div class="card-image">
+                                        <img
+                                        [src]="cours?.photo ? 'data:image/jpeg;base64,' + cours.photo : '/assets/images/covers/img-04.png'">
+                                    </div>
                                     <mat-card-header class="d-flex justify-content-between align-items-center">
                                         <button mat-icon-button [matMenuTriggerFor]="menu"
                                             aria-label="Example icon-button with a menu" class="menu-item">
@@ -77,9 +77,9 @@
                                                 <mat-icon>list</mat-icon>
                                                 <span>View Details</span>
                                             </button>
-                                            <button mat-menu-item>
+                                            <button mat-menu-item (click)="openAddEditContraint(cours.id)">
                                                 <mat-icon>quiz</mat-icon>
-                                                <span>Add Contraint</span>
+                                                <span>Contraint Management</span>
                                             </button>
                                         </mat-menu>
                                         <mat-card-title> {{ cours.title }}</mat-card-title>
@@ -87,7 +87,11 @@
                                     </mat-card-header>
                                     <mat-card-content>
                                         <div class="card-text flex-fill">
-                                            <p> {{ cours.description }} </p>
+                                            <div *ngIf="cours.description">
+                                                <p [matTooltip]="cours.description">
+                                                  {{cours.description | slice: 0: 200}}...
+                                                </p>
+                                              </div>
                                             <p>Actor: {{ cours.actor }} </p>
                                         </div>
                                     </mat-card-content>
@@ -99,53 +103,7 @@
                             </mat-card>
                         </div>
                     </div>
-
                 </div>
-                <!--
-                <div class="card-deck">
-
-                    <mat-card class="card">
-                        <mat-card-content class="center-image">
-                            <button mat-button >
-                                +
-                                <img src="assets/images/logos/imgPlusss.png" alt="Image description" class="card-image">
-                            </button>
-                        </mat-card-content>
-                    </mat-card>
-
-                    <mat-card class="card">
-                        <mat-card-header>
-                            <button mat-icon-button [matMenuTriggerFor]="menu"
-                                aria-label="Example icon-button with a menu" class="menu-item">
-                                <mat-icon>more_vert</mat-icon>
-                            </button>
-                            <mat-menu #menu="matMenu" class="custom-menu ">
-                                <button mat-menu-item >
-                                    <mat-icon>edit</mat-icon>
-                                    <span>Edit</span>
-                                </button>
-                                <button mat-menu-item [routerLink]="['/manager/cours', 8]">
-                                    <mat-icon>list</mat-icon>
-                                    <span>View Details</span>
-                                </button>
-                                <button mat-menu-item>
-                                    <mat-icon>quiz</mat-icon>
-                                    <span>Add Contraint</span>
-                                </button>
-                            </mat-menu>
-                            <mat-card-title>cours 1</mat-card-title>
-                            <mat-card-subtitle>{{ 01/04/2023 | date }}</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <p>description 1</p>
-                            <p>Actor: abderrazzak</p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <button type="button" class="btn btn-primary btn-custom"
-                                >Delete</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>-->
             </mat-card-content>
         </mat-card>
     </div>

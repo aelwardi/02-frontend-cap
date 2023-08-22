@@ -10,6 +10,8 @@ import { SharedProjetService } from 'src/app/services/shared-projet.service';
 import { ApprenantInfo } from 'src/app/common/apprenant-info';
 import { ApprenantProjetService } from 'src/app/services/apprenant-projet.service';
 import { AddApprenantProjetComponent } from '../add-apprenant-projet/add-apprenant-projet.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ContraintComponent } from '../contraint/contraint.component';
 
 @Component({
   selector: 'app-cours',
@@ -31,6 +33,7 @@ export class CoursComponent implements OnInit {
     private coursService: CoursService,
     private sharedProjetService: SharedProjetService,
     private apprenantProjetService: ApprenantProjetService,
+    private _snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -56,7 +59,6 @@ export class CoursComponent implements OnInit {
   getCurrentProjetsCours(projetId: number) {
     this.currentProjetCourses = this.projetCours.find((projet: any) => projet.projetInfo.id === projetId);
     this.getAssignmentApprenantProjet();
-    //console.log(this.currentProjetCourses);
   }
 
   getAssignmentApprenantProjet() {
@@ -64,7 +66,6 @@ export class CoursComponent implements OnInit {
     this.apprenantProjetService.getAssignmentApprenantProjet(newId).subscribe(
       data => {
         this.apprenantInfo = data;
-        //console.log(this.apprenantInfo);
       }
     )
   }
@@ -89,12 +90,20 @@ export class CoursComponent implements OnInit {
         setTimeout(() => {
           this.isLoading = false;
           this.getProjetsAndCours();
+          this._snackBar.open('Course deleted successfully.', '', {
+            duration: 3000,
+            panelClass: ['green-snackbar'],
+          });
         }, 1000);
       },
       error: () => {
         setTimeout(() => {
           this.isLoading = false;
           console.log("erreur");
+          this._snackBar.open('Not deleted Course.', '', {
+            duration: 3000,
+            panelClass: ['red-snackbar'],
+          });
         }, 1000);
       },
     })
@@ -168,14 +177,38 @@ export class CoursComponent implements OnInit {
           this.isLoading = false;
           console.log("Apprenant removed");
           this.getAssignmentApprenantProjet();
+          this._snackBar.open('Assignment deleted successfully.', '', {
+            duration: 3000,
+            panelClass: ['green-snackbar'],
+          });
         }, 1000);
       },
       error: (err) => {
         setTimeout(() => {
           console.log("Apprenant removed");
           this.isLoading = false;
+          this._snackBar.open('Assignment deletion unsuccessful.', '', {
+            duration: 3000,
+            panelClass: ['red-snackbar'],
+          });
         }, 1000);
       }
     })
+  }
+
+  openAddEditContraint(coursId: number): void {
+    const dialogRef = this.dialog.open(ContraintComponent, {
+      width: '540px',
+      data: { coursId: coursId }
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+      }
+      else {
+
+      }
+    });
   }
 }

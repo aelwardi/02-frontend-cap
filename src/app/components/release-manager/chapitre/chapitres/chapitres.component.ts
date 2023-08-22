@@ -11,6 +11,7 @@ import { GestionChapitreService } from 'src/app/services/gestion-chapitre.servic
 import { ManagerInfo } from 'src/app/common/manager-info';
 import { ManagerCoursService } from 'src/app/services/manager-cours.service';
 import { AddManagerCoursComponent } from '../add-manager-cours/add-manager-cours.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-chapitres',
@@ -31,6 +32,7 @@ export class ChapitresComponent implements OnInit {
     private http: HttpClient,
     private gestionChapitreService: GestionChapitreService,
     private managerCoursService: ManagerCoursService,
+    private _snackBar: MatSnackBar,
   ) {
   }
 
@@ -79,12 +81,20 @@ export class ChapitresComponent implements OnInit {
           this.isLoading = false;
           console.log("chapitre deleted");
           this.getCoursWithChapiter();
+          this._snackBar.open('Chapter deleted successfully.', '', {
+            duration: 3000,
+            panelClass: ['green-snackbar'],
+          });
         }, 1000);
       },
       error: () => {
         setTimeout(() => {
           this.isLoading = false;
           console.log("erreur");
+          this._snackBar.open('Not deleted Chapter.', '', {
+            duration: 3000,
+            panelClass: ['red-snackbar'],
+          });
         }, 1000);
       },
     }
@@ -111,12 +121,20 @@ export class ChapitresComponent implements OnInit {
           this.isLoading = false;
           console.log("Manager removed");
           this.getAssignmentManagerCours();
+          this._snackBar.open('Manager removed successfully.', '', {
+            duration: 3000,
+            panelClass: ['green-snackbar'],
+          });
         }, 1000);
       },
       error => {
         setTimeout(() => {
           this.isLoading = false;
           console.log(error);
+          this._snackBar.open('Manager removal unsuccessful.', '', {
+            duration: 3000,
+            panelClass: ['red-snackbar'],
+          });
         }, 1000);
 
       });

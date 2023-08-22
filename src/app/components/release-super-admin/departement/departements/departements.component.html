@@ -1,6 +1,5 @@
 <p class="add-btn">
-    <button mat-stroked-button color="primary" class="add-btn-item" (click)="openAddDepartmentModal()">Add
-        departement</button>
+    <button mat-stroked-button color="primary" class="add-btn-item" (click)="openAddDepartmentModal()">Add a new department</button>
 </p>
 <div *ngIf="isLoading" class="spinners-overlay">
     <div class="spinners-container">
@@ -10,8 +9,8 @@
 <h1>Departements</h1>
 <app-search></app-search>
 <div class="card">
-    <div class="card-body">
-        <div class="mat-elevation-z8">
+    <div class="card-with-shadow card-body">
+        <div >
             <table mat-table [dataSource]="dataSource">
 
                 <!-- Id Column -->

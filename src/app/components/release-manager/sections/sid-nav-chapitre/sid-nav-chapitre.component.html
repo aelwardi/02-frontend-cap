@@ -26,7 +26,7 @@
                         </li>
                         <li class="d-flex align-items-center" (click)="addSection(chapitredto.chapitre)">
                             <mat-icon class="icon-blue">add</mat-icon>
-                            <a class="ml-2">add new section</a>
+                            <a class="ml-2">Add a new section</a>
                         </li>
                     </mat-expansion-panel>
                 </li>
@@ -100,7 +100,6 @@
                             <input matInput placeholder="Enter the description" formControlName="description" required>
                         </mat-form-field>
                     </div>
-                    <!-- Remove the mat-form-field wrapper for the file input -->
                     <div class="form-group mb-4">
                         <input type="file" (change)="onFileSelected($event)" required>
                     </div>
@@ -126,46 +125,3 @@
         </mat-card>
     </div>
 </div>
-<!--
-<div class="wrapper d-flex align-items-stretch">
-    <nav id="sidebar" [ngClass]="{'active': isSidebarActive}">
-        <div class="custom-menu">
-            <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                <i class="fa fa-bars" (click)="toggleSidebar()"></i>
-                <span class="sr-only">Toggle Menu</span>
-            </button>
-        </div>
-        <div class="p-4 pt-5">
-            <ul class="list-unstyled components mb-5">
-                <li *ngFor="let chapitredto of chapitreDTO" class="active">
-                    <a href="manager/chapitre/{{chapitredto.chapitre!.id}}">
-                        {{ chapitredto.chapitre!.titre }}
-                        <i class="fas fa-chevron-down" (click)="toggleHomeSubmenu($event)"></i>
-                    </a>
-                    <ul class="collapse list-unstyled" [ngClass]="{'show': showSections}" id="homeSubmenu">
-                        <li *ngFor="let section  of chapitredto.sections">
-                            <a href="manager/chapitre/{{chapitredto.chapitre!.id}}/{{section!.id}}">{{ section!.titre }}</a>
-                        </li>
-                        <li class="d-flex align-items-center">
-                            <mat-icon>add</mat-icon>
-                            <a class="ml-2" (click)="addSection(chapitredto.chapitre)">add new section</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div id="content" class="p-4 p-md-5 pt-5 container">
-        <mat-card class="container">
-            <router-outlet></router-outlet>
-            <mat-card-actions class="btn-container">
-                <div mat-dialog-actions>
-                    <button mat-button [ngClass]="'btn-nav'" (click)="prev()">previous</button>
-                    <button mat-button [ngClass]="'btn-nav'" (click)="next()">Next</button>
-                </div>
-            </mat-card-actions>
-        </mat-card>
-    </div>
-</div>
--->

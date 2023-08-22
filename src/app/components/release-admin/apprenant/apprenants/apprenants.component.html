@@ -1,12 +1,12 @@
 <p class="add-btn">
   <button mat-stroked-button color="primary" class="add-btn-item" (click)="openAddApprenantModal()">
-    Add Apprenant</button>
+    Add a New Consultant</button>
 </p>
-<h1>Apprenants</h1>
+<h1>Consultants</h1>
 <app-search-apprenant></app-search-apprenant>
 <div class="card">
-  <div class="card-body">
-    <div class="mat-elevation-z8">
+  <div class="card-body card-with-shadow">
+    <div >
       <table mat-table [dataSource]="dataSource">
 
         <!-- Id Column -->
@@ -45,11 +45,6 @@
             <button mat-icon-button color="primary" (click)="openEditAdminModal(element)">
               <mat-icon class="icon-blue">edit</mat-icon>
             </button>
-            <!--
-                        <button mat-icon-button color="warn">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        -->
           </td>
         </ng-container>
 

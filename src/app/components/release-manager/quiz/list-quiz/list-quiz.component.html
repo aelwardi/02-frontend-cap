@@ -1,5 +1,9 @@
 <h1>Pharma - Name Projects...</h1>
-
+<div *ngIf="isLoading" class="spinners-overlay">
+  <div class="spinners-container">
+      <div class="spinners"></div>
+  </div>
+</div>
 <mat-card class="shadow">
   <mat-card-header>
     <mat-card-title class="mb-0">Chapter - name....</mat-card-title>
@@ -11,7 +15,7 @@
     </div>
   </mat-card-header><br/>
   <mat-card-content>
-    <mat-card *ngFor="let quizer of quizDto" class="mb-3 shadow">
+    <mat-card *ngFor="let quizer of quizDto" class="mb-3 card-with-shadow" >
       <mat-card-header>
         <mat-card-title>{{ quizer.quiz!.question}}</mat-card-title>
       </mat-card-header>

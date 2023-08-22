@@ -1,38 +1,43 @@
 <mat-card>
-    <mat-card-header>
-      <mat-card-title>{{ data ? 'Edit' : 'Add new' }} Quiz</mat-card-title>
-    </mat-card-header>
-    <mat-card-content [formGroup]="quizForm">
-      <mat-form-field class="example-full-width mb-3">
-        <mat-label>Write a quiz question</mat-label>
-        <input matInput formControlName="question" placeholder="...">
-      </mat-form-field>
-      <div class="d-flex align-items-center">
-        <mat-icon class="mr-2" color="warn">warning</mat-icon>
-        <span class="color-warn">Several correct answers possible</span>
+  <div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+      <div class="spinners"></div>
+    </div>
+  </div>
+  <mat-card-header>
+    <mat-card-title>{{ data ? 'Edit' : 'Add a new' }} Quiz</mat-card-title>
+  </mat-card-header>
+  <mat-card-content [formGroup]="quizForm">
+    <mat-form-field class="example-full-width mb-3">
+      <mat-label>Write a quiz question</mat-label>
+      <input matInput formControlName="question" placeholder="...">
+    </mat-form-field>
+    <div class="d-flex align-items-center">
+      <mat-icon class="mr-2" color="warn">warning</mat-icon>
+      <span class="color-warn">Several correct answers possible</span>
+    </div>
+    <div class="d-flex align-items-center mb-3 justify-content-end mb-3" (click)="addProposition()">
+      <mat-icon class="mr-2">add_circle</mat-icon>
+      <span>Add a proposal</span>
+    </div>
+    <div formArrayName="propositions">
+      <div class="d-flex align-items-center flex-grow-1"
+        *ngFor="let proposition of propositionControls.controls; let i = index" [formGroupName]="i">
+        <input type="hidden" formControlName="id">
+        <mat-checkbox class="mr-2" color="primary" formControlName="correcte"></mat-checkbox>
+        <mat-form-field class="form-group flex-grow-1">
+          <mat-label>Proposal</mat-label>
+          <input matInput formControlName="response" placeholder="Enter the proposal" required>
+        </mat-form-field>
+        <button mat-icon-button (click)="removeProposition(i)">
+          <mat-icon class="ml-auto" color="warn">remove_circle</mat-icon>
+        </button>
       </div>
-      <div class="d-flex align-items-center mb-3 justify-content-end mb-3" (click)="addProposition()">
-        <mat-icon class="mr-2">add_circle</mat-icon>
-        <span>Add a proposal</span>
-      </div>
-      <div  formArrayName="propositions">
-        <div class="d-flex align-items-center flex-grow-1" *ngFor="let proposition of propositionControls.controls; let i = index" [formGroupName]="i">
-          <input type="hidden" formControlName="id">
-          <mat-checkbox class="mr-2" color="primary" formControlName="correcte"></mat-checkbox>
-          <mat-form-field class="form-group flex-grow-1">
-            <mat-label>Proposal</mat-label>
-            <input matInput formControlName="response" placeholder="Enter the proposal" required>
-          </mat-form-field>
-          <button mat-icon-button (click)="removeProposition(i)">
-            <mat-icon class="ml-auto" color="warn">remove_circle</mat-icon>
-          </button>
-        </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button class="submit-button" (click)="submitQuiz()">
-        Submit
-      </button>
-    </mat-card-actions>
-  </mat-card>
-  
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button class="submit-button" (click)="submitQuiz()">
+      Submit
+    </button>
+  </mat-card-actions>
+</mat-card>
