@@ -52,7 +52,7 @@ export class ListAssignmentComponent implements OnInit {
   }
 
   handleListManager(): void {
-    this.managerApprenantService.getAssignmentManagerApprenant(2).subscribe(
+    this.managerApprenantService.getAssignmentManagerApprenant(1).subscribe(
       data => {
         this.managerApprenant = data;
         //console.log(this.managerApprenant);

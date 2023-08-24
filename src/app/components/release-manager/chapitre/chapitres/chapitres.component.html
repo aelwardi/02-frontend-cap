@@ -5,7 +5,7 @@
         </div>
     </div>
     <mat-card-title class="mb-2 d-flex justify-content-between align-items-center">
-        <div *ngIf="coursDTO"> {{coursDTO.cours.title}} </div>
+        <div *ngIf="coursDTO"> Course : {{coursDTO.cours.title}} </div>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="list of manager" class="menu-item">
             <mat-icon class="icon-blue">groups</mat-icon>
         </button>
@@ -30,13 +30,17 @@
         <div *ngIf="coursDTO">
             <mat-card class="mb-3 container card-with-shadow" *ngFor="let chapitre of coursDTO.chapitres">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="ml-2"> {{chapitre.titre}} </div>
+                    <div class="ml-2 mt-2">
+                        <strong> {{chapitre.titre}} </strong>
+                        <p class="container" [matTooltip]="chapitre.description">
+                            {{chapitre.description | slice: 0: 100}}... </p>
+                    </div>
                     <button mat-icon-button [matMenuTriggerFor]="menu1" aria-label="list of manager">
                         <mat-icon>more_vert</mat-icon>
                     </button>
                 </div>
                 <mat-menu #menu1="matMenu" class="custom-menu ">
-                    <button mat-menu-item  (click)="openQuizModal(chapitre.id)">
+                    <button mat-menu-item  (click)="openQuizModal(chapitre.id, chapitre.titre)">
                         <span>Quiz Management</span>
                     </button>
                     <button mat-menu-item>

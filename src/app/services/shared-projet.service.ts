@@ -7,4 +7,5 @@ export class SharedProjetService {
 
   constructor() { }
   public projetId!: number;
+  public nameProject!: string;
 }

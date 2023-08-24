@@ -12,7 +12,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 })
 
 export class LoginPageComponent implements OnInit {
-
+  isLoading: boolean = false;
   form!: FormGroup;
   isLoggedIn = false;
   isLoginFailed = false;
@@ -43,8 +43,12 @@ export class LoginPageComponent implements OnInit {
   }
 
   submit() {
-    this.dialogRef.close(true);
-    this.router.navigateByUrl(`super-admin/departements`);
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+      this.dialogRef.close(true);
+      this.router.navigateByUrl(`manager/projects`);
+    }, 3000);
     /*
     if (this.form.status === 'VALID') {
       

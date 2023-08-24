@@ -1,4 +1,9 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+    <div *ngIf="isLoading" class="spinners-overlay">
+        <div class="spinners-container">
+            <div class="spinners"></div>
+        </div>
+    </div>
     <div class="logo-container">
         <button class="logo" (click)="toggleCollapse()">
             <img class="logo-cap" src="assets/images/logos/capShort.png" alt="logo">
@@ -18,7 +23,7 @@
                 <span class="sidenav-link-text" *ngIf="collapsed" >{{ data.label }}</span>
             </a>
         </li>
-        <li class="sidenav-nav-item" (click)="dologout()">
+        <li class="sidenav-nav-item" (click)="logout()">
             <a class="sidenav-nav-link" routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">
                 <i class="sidenav-link-icon fal fa-sign-out"></i>

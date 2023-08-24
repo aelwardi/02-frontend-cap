@@ -1,4 +1,4 @@
-<h1>Pharma - Name Projects...</h1>
+<h1>Pharma - {{nameProject}}</h1>
 <div *ngIf="isLoading" class="spinners-overlay">
   <div class="spinners-container">
       <div class="spinners"></div>
@@ -6,7 +6,7 @@
 </div>
 <mat-card class="shadow">
   <mat-card-header>
-    <mat-card-title class="mb-0">Chapter - name....</mat-card-title>
+    <mat-card-title class="mb-0">{{ nameChapter }}</mat-card-title>
     <div class="spacer"></div>
     <div>
       <button mat-button class="btn-add" (click)="openAddQuizModal()">

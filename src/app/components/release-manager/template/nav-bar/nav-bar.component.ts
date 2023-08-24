@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
+  isLoading: boolean = false;
   isHandset$: Observable<boolean>;
   showNavbarContent = false;
   showSearchBar = false;
@@ -41,4 +42,11 @@ export class NavBarComponent {
     this.router.navigateByUrl(`manager/help`);
   }
 
+  logout() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+      this.router.navigateByUrl(`home`);
+    }, 3000);
+  }
 }

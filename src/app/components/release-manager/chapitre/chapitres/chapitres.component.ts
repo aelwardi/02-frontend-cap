@@ -12,6 +12,7 @@ import { ManagerInfo } from 'src/app/common/manager-info';
 import { ManagerCoursService } from 'src/app/services/manager-cours.service';
 import { AddManagerCoursComponent } from '../add-manager-cours/add-manager-cours.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SharedChapitreService } from 'src/app/services/shared-chapitre.service';
 
 @Component({
   selector: 'app-chapitres',
@@ -33,6 +34,7 @@ export class ChapitresComponent implements OnInit {
     private gestionChapitreService: GestionChapitreService,
     private managerCoursService: ManagerCoursService,
     private _snackBar: MatSnackBar,
+    private sharedChapitreService: SharedChapitreService,
   ) {
   }
 
@@ -182,16 +184,22 @@ export class ChapitresComponent implements OnInit {
         this.getAssignmentManagerCours();
       }
       else {
-
       }
     });
   }
 
   stratCours() {
-    const newId = +this.route.snapshot.paramMap.get('id')!;
-    this.router.navigate([`/manager/chapitre/${newId}`]);
+    if (this.coursDTO.chapitres.length > 0) {
+      const newId = +this.route.snapshot.paramMap.get('id')!;
+      this.router.navigate([`/manager/chapitre/${newId}`]);
+    }else {
+      this._snackBar.open('You will need to first create at least one chapter.', '', {
+        duration: 3000,
+      });
+    }
   }
-  openQuizModal(chapiteId: number) {
+  openQuizModal(chapiteId: number, nameChapter: string) {
+    this.sharedChapitreService.chapterName = nameChapter;
     this.router.navigate([`/manager/quiz/${chapiteId}`]);
   }
 

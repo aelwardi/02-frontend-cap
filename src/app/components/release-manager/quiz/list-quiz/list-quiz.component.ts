@@ -7,6 +7,7 @@ import { AddEditQuizComponent } from '../add-edit-quiz/add-edit-quiz.component';
 import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/departement/confirm-dialog/confirm-dialog.component';
 import { SharedChapitreService } from 'src/app/services/shared-chapitre.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SharedProjetService } from 'src/app/services/shared-projet.service';
 
 @Component({
   selector: 'app-list-quiz',
@@ -16,12 +17,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ListQuizComponent implements OnInit {
   isLoading: boolean = false;
   quizDto: QuizDTO[] = [];
+  nameProject!: string;
+  nameChapter!: string;
+
   constructor(
     private quizService: QuizService,
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private sharedChapitreService: SharedChapitreService,
     private _snackBar: MatSnackBar,
+    private sharedProjetService: SharedProjetService,
   ){}
 
   ngOnInit(): void {
@@ -35,7 +40,8 @@ export class ListQuizComponent implements OnInit {
     this.quizService.getQuizWithProspal(chapitreId).subscribe(
       data => {
         this.quizDto = data;
-        //console.log(data);
+        this.nameProject = this.sharedProjetService.nameProject;
+        this.nameChapter = this.sharedChapitreService.chapterName;
       }
     )
   }
