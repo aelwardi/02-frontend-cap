@@ -15,7 +15,7 @@ interface SideNavToggle {
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
-
+  isLoading: boolean = false;
   constructor(private tokenStorage: TokenStorageService,
     private router: Router,
     private authService: AuthService) {}
@@ -44,6 +44,13 @@ export class SidenavComponent implements OnInit {
   closeSidenav(): void {
     this.collapsed = false;
     this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWith: this.screenWith });
+  }
+  logout() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+      this.router.navigateByUrl(`home`);
+    }, 3000);
   }
 
   dologout(): void {

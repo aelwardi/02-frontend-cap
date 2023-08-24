@@ -297,3 +297,11 @@ mat-icon {
 .icon-blue {
   color: #0070AD;
 }
+
+.profile-card {
+  width: 80%;
+  margin: 0 auto;
+  width: 75%;
+  padding: 10px auto;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}

@@ -1,4 +1,9 @@
 <div>
+  <div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+        <div class="spinners"></div>
+    </div>
+</div>
   <h2 class="text-center" mat-dialog-title>Sign in</h2>
   <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
     {{errorMessage}}

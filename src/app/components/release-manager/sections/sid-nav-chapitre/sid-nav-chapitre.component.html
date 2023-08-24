@@ -14,28 +14,29 @@
         <div class="p-4 pt-5">
             <h1> <span>Chapters</span></h1>
             <ul class="list-unstyled components mb-5">
-                <li *ngFor="let chapitredto of chapitreDTO" class="active">
+                <li *ngFor="let chapitredto of chapitreDTO">
                     <mat-expansion-panel class="mat-elevation-z0 mat-expansion-panel-flat" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                {{ chapitredto.chapitre!.titre }}
+                            <mat-panel-title [matTooltip]="chapitredto.chapitre!.titre">
+                                {{ chapitredto.chapitre!.titre | slice: 0: 30}}...
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <li *ngFor="let section  of chapitredto.sections">
+                        <div *ngFor="let section  of chapitredto.sections">
                             <a (click)="getSectionCurrent(section)">{{ section!.titre }}</a>
-                        </li>
-                        <li class="d-flex align-items-center" (click)="addSection(chapitredto.chapitre)">
+                        </div>
+                        <div class="d-flex align-items-center" (click)="addSection(chapitredto.chapitre)">
                             <mat-icon class="icon-blue">add</mat-icon>
                             <a class="ml-2">Add a new section</a>
-                        </li>
+                        </div>
                     </mat-expansion-panel>
+                    <mat-divider></mat-divider>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div *ngIf="!editMode" id="content" class="p-4 p-md-5 pt-5 container">
-        <mat-card class="container">
+        <mat-card class="container profile-card">
             <mat-card-title class="mb-2"> {{ chapitredtoCurrent.chapitre.titre }} </mat-card-title>
             <mat-divider class="mb-2"></mat-divider>
             <div *ngIf="sectionCurrent">
@@ -62,11 +63,11 @@
                             <vg-overlay-play></vg-overlay-play>
                             <vg-buffering></vg-buffering>
                             <video [vgMedia]="$any(media)" #media id="singleVideo" controls>
-                                <source [src]="sectionCurrent.file">
+                                <source [src]="'assets/resources/' + sectionCurrent.file">
                             </video>
                         </vg-player>
-                        <img class="img-fluid" *ngIf="sectionCurrent.type == 'img'" [src]="sectionCurrent.file" alt="">
-                        <ngx-extended-pdf-viewer *ngIf="sectionCurrent.type == 'pdf'" [src]="sectionCurrent.file"
+                        <img class="img-fluid" *ngIf="sectionCurrent.type == 'img'" [src]="'assets/resources/' + sectionCurrent.file" alt="">
+                        <ngx-extended-pdf-viewer *ngIf="sectionCurrent.type == 'pdf'" [src]="'assets/resources/' + sectionCurrent.file"
                             [height]="'95 %'" [useBrowserLocale]="true">
                         </ngx-extended-pdf-viewer>
                     </div>
@@ -80,8 +81,8 @@
             </mat-card-actions>
         </mat-card>
     </div>
-    <div *ngIf="editMode" id="content" class="p-4 p-md-5 pt-5 container">
-        <mat-card class="container">
+    <div *ngIf="editMode" id="content" class="p-4 p-md-5 pt-5 container profile-card">
+        <mat-card class="container profile-card">
             <mat-card-title class="mb-2"> {{ chapitredtoCurrent.chapitre.titre }} </mat-card-title>
             <mat-divider class="mb-2"></mat-divider>
             <form (ngSubmit)="onSubmit()" [formGroup]="sectionForm">

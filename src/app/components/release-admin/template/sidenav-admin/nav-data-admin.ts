@@ -7,7 +7,7 @@ export const navbarDataAdmin = [
   {
     routeLink: 'apprenants',
     icon: 'fa-solid fa-chalkboard-user',
-    label: ['Apprenants']
+    label: ['Consultants']
   },
   {
     routeLink: 'assignments',

@@ -58,6 +58,7 @@ export class CoursComponent implements OnInit {
 
   getCurrentProjetsCours(projetId: number) {
     this.currentProjetCourses = this.projetCours.find((projet: any) => projet.projetInfo.id === projetId);
+    this.sharedProjetService.nameProject = this.currentProjetCourses.projetInfo.name;
     this.getAssignmentApprenantProjet();
   }
 

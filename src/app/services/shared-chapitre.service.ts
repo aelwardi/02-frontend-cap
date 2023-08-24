@@ -7,4 +7,5 @@ export class SharedChapitreService {
 
   constructor() { }
   public chapitreId!: number;
+  public chapterName!: string;
 }
