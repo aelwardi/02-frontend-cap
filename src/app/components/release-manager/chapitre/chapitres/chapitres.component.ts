@@ -12,6 +12,8 @@ import { ManagerInfo } from 'src/app/common/manager-info';
 import { ManagerCoursService } from 'src/app/services/manager-cours.service';
 import { AddManagerCoursComponent } from '../add-manager-cours/add-manager-cours.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AddSeeSupportCoursComponent } from '../../supportCours/add-see-support-cours/add-see-support-cours.component';
+import { SupportCoursService } from 'src/app/services/support-cours.service';
 
 @Component({
   selector: 'app-chapitres',
@@ -22,6 +24,8 @@ export class ChapitresComponent implements OnInit {
   isLoading: boolean = false;
   coursDTO!: CoursDTO;
   managerInfo: ManagerInfo[] = [];
+  chapitreId?: number;
+  supportCour: any;
 
   constructor(
     private coursService: CoursService,
@@ -33,12 +37,57 @@ export class ChapitresComponent implements OnInit {
     private gestionChapitreService: GestionChapitreService,
     private managerCoursService: ManagerCoursService,
     private _snackBar: MatSnackBar,
+    private supportCourService: SupportCoursService
   ) {
   }
 
   ngOnInit(): void {
     this.getCoursWithChapiter();
+    this.route.params.subscribe(params => {
+      this.chapitreId = +params['id'];
+      if (!isNaN(this.chapitreId)) {
+        console.log("id ==>", this.chapitreId)
+        this.supportCourseExist(this.chapitreId)
+
+      } else {
+        console.log("there is no chapitre id")
+      }
+    });
+
+    console.log("support =>", this.supportCour)
   }
+  supportCourseExist(idChapitre: number) {
+    this.supportCourService.getChapitreWithSection(idChapitre).subscribe(
+      data => {
+        console.log(data)
+        this.supportCour = data;
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  openAddSupportModal(): void {
+
+    const dialogRef = this.dialog.open(AddSeeSupportCoursComponent, {
+      width: '600px',
+
+      data: this.supportCour ? { support: this.supportCour } : { idChapitre: this.chapitreId }
+    });
+    //console.log("data==>" , this.data.idChapitre)
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result) {
+      }
+      else {
+        //console.log("ddd",result);
+      }
+    });
+  }
+
+
+
 
   getCoursWithChapiter() {
     const newId = +this.route.snapshot.paramMap.get('id')!;
@@ -194,5 +243,6 @@ export class ChapitresComponent implements OnInit {
   openQuizModal(chapiteId: number) {
     this.router.navigate([`/manager/quiz/${chapiteId}`]);
   }
+
 
 }

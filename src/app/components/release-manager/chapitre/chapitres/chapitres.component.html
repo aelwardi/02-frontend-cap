@@ -1,65 +1,68 @@
 <mat-card class="container mt-5">
-    <div *ngIf="isLoading" class="spinners-overlay">
-        <div class="spinners-container">
-            <div class="spinners"></div>
-        </div>
+  <div *ngIf="isLoading" class="spinners-overlay">
+    <div class="spinners-container">
+      <div class="spinners"></div>
     </div>
-    <mat-card-title class="mb-2 d-flex justify-content-between align-items-center">
-        <div *ngIf="coursDTO"> {{coursDTO.cours.title}} </div>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="list of manager" class="menu-item">
-            <mat-icon class="icon-blue">groups</mat-icon>
+  </div>
+  <mat-card-title class="mb-2 d-flex justify-content-between align-items-center">
+    <div *ngIf="coursDTO"> {{coursDTO.cours.title}} </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="list of manager" class="menu-item">
+      <mat-icon class="icon-blue">groups</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" class="custom-menu ">
+      <div *ngIf="managerInfo">
+        <button mat-menu-item *ngFor="let manager of managerInfo">
+          <span> {{ manager.firstName }} {{ manager.lastName }} </span>
+          <button mat-icon-button (click)="openRemoveManager(manager.id)">
+            <mat-icon color="warn">do_not_disturb_on</mat-icon>
+          </button>
         </button>
-        <mat-menu #menu="matMenu" class="custom-menu ">
-            <div *ngIf="managerInfo">
-                <button mat-menu-item *ngFor="let manager of managerInfo">
-                    <span> {{ manager.firstName }} {{ manager.lastName }} </span>
-                    <button mat-icon-button (click)="openRemoveManager(manager.id)">
-                        <mat-icon color="warn">do_not_disturb_on</mat-icon>
-                    </button>
-                </button>
-            </div>
-            <button mat-menu-item (click)="openAddAssignmentModal()">
-                <mat-icon>add</mat-icon>
-                <span> Add a new manager </span>
-            </button>
+      </div>
+      <button mat-menu-item (click)="openAddAssignmentModal()">
+        <mat-icon>add</mat-icon>
+        <span> Add a new manager </span>
+      </button>
+    </mat-menu>
+  </mat-card-title>
+  <mat-divider class="mb-2"></mat-divider>
+  <mat-card-subtitle class="mb-4" *ngIf="coursDTO"> {{coursDTO.cours.description}} </mat-card-subtitle>
+  <mat-card-content>
+    <div *ngIf="coursDTO">
+      <mat-card class="mb-3 container card-with-shadow" *ngFor="let chapitre of coursDTO.chapitres">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="ml-2"> {{chapitre.titre}} </div>
+          <button mat-icon-button [matMenuTriggerFor]="menu1" aria-label="list of manager">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </div>
+        <mat-menu #menu1="matMenu" class="custom-menu ">
+          <button mat-menu-item (click)="openQuizModal(chapitre.id)">
+            <span>Quiz Management</span>
+          </button>
+          <button mat-menu-item *ngIf="!this.supportCour" (click)="openAddSupportModal()">
+            <span> Add Course ressources</span>
+          </button>
+          <button mat-menu-item *ngIf="this.supportCour" (click)="openAddSupportModal()">
+            <span> See Course ressources</span>
+          </button>
+          <button mat-menu-item (click)="openEditChapitreModal(chapitre)">
+            <span>Edit Chapter</span>
+          </button>
+          <button mat-menu-item (click)="openConfirmModal(chapitre.id)">
+            <span>Delete Chapter</span>
+          </button>
         </mat-menu>
-    </mat-card-title>
-    <mat-divider class="mb-2"></mat-divider>
-    <mat-card-subtitle class="mb-4" *ngIf="coursDTO"> {{coursDTO.cours.description}} </mat-card-subtitle>
-    <mat-card-content>
-        <div *ngIf="coursDTO">
-            <mat-card class="mb-3 container card-with-shadow" *ngFor="let chapitre of coursDTO.chapitres">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="ml-2"> {{chapitre.titre}} </div>
-                    <button mat-icon-button [matMenuTriggerFor]="menu1" aria-label="list of manager">
-                        <mat-icon>more_vert</mat-icon>
-                    </button>
-                </div>
-                <mat-menu #menu1="matMenu" class="custom-menu ">
-                    <button mat-menu-item  (click)="openQuizModal(chapitre.id)">
-                        <span>Quiz Management</span>
-                    </button>
-                    <button mat-menu-item>
-                        <span>Course ressources</span>
-                    </button>
-                    <button mat-menu-item (click)="openEditChapitreModal(chapitre)">
-                        <span>Edit Chapter</span>
-                    </button>
-                    <button mat-menu-item (click)="openConfirmModal(chapitre.id)">
-                        <span>Delete Chapter</span>
-                    </button>
-                </mat-menu>
-            </mat-card>
-        </div>
-        <div class="d-flex align-items-center mb-3" (click)="openAddChapitreModal()">
-            <mat-icon class="mr-2 icon-blue">add_circle</mat-icon>
-            <span>Add a New Chapter</span>
-        </div>
-    </mat-card-content>
-    <mat-divider class="mb-2"></mat-divider>
-    <mat-card-actions class="d-flex align-items-center mb-3 justify-content-end">
-        <button mat-raised-button class="save-btn-item" (click)="stratCours()">
-            Start
-        </button>
-    </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="d-flex align-items-center mb-3" (click)="openAddChapitreModal()">
+      <mat-icon class="mr-2 icon-blue">add_circle</mat-icon>
+      <span>Add a New Chapter</span>
+    </div>
+  </mat-card-content>
+  <mat-divider class="mb-2"></mat-divider>
+  <mat-card-actions class="d-flex align-items-center mb-3 justify-content-end">
+    <button mat-raised-button class="save-btn-item" (click)="stratCours()">
+      Start
+    </button>
+  </mat-card-actions>
 </mat-card>

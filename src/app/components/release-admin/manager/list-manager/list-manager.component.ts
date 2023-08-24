@@ -93,7 +93,7 @@ export class ListManagerComponent implements OnInit {
 
   openAddManagerModal(): void {
 
-    const dialogRef = this.dialog.open( ManagerAddEditComponent, {
+    const dialogRef = this.dialog.open(ManagerAddEditComponent, {
       width: '540px'
 
     });
