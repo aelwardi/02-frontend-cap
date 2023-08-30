@@ -57,6 +57,7 @@
     </button> -->
 
     <!-- Show the 'Submit' button if 'data.support' does not exist -->
-    <!-- <button mat-raised-button *ngIf="!data.support" class="submit-button" (click)="submitData()">Submit</button> -->
-  </mat-card-actions>
+    <button mat-raised-button class="submit-button" *ngIf="data.support" (click)="onFormSubmit()">
+      See
+    </button> </mat-card-actions>
 </mat-card>

@@ -43,6 +43,7 @@ export class ChapitresComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCoursWithChapiter();
+
     this.route.params.subscribe(params => {
       this.chapitreId = +params['id'];
       if (!isNaN(this.chapitreId)) {
@@ -54,7 +55,7 @@ export class ChapitresComponent implements OnInit {
       }
     });
 
-    console.log("support =>", this.supportCour)
+    console.log("support =>", this.supportCour.idChapitre)
   }
   supportCourseExist(idChapitre: number) {
     this.supportCourService.getChapitreWithSection(idChapitre).subscribe(
@@ -67,15 +68,21 @@ export class ChapitresComponent implements OnInit {
       }
     )
   }
+  checkSupport(id: number) {
+    console.log("check id:", id);
+    this.supportCourseExist(id);
 
-  openAddSupportModal(): void {
+  }
+
+  openAddSupportModal(id: number): void {
+    const idC: number = 0;
 
     const dialogRef = this.dialog.open(AddSeeSupportCoursComponent, {
       width: '600px',
 
-      data: this.supportCour ? { support: this.supportCour } : { idChapitre: this.chapitreId }
+      data: this.supportCour ? { support: this.supportCour } : { idChapitre: id }
     });
-    //console.log("data==>" , this.data.idChapitre)
+    console.log("data==>", this.chapitreId)
     dialogRef.afterClosed().subscribe(result => {
 
       if (result) {
@@ -84,6 +91,8 @@ export class ChapitresComponent implements OnInit {
         //console.log("ddd",result);
       }
     });
+    console.log("i'm here")
+    console.log(id)
   }
 
 
@@ -110,6 +119,7 @@ export class ChapitresComponent implements OnInit {
   }
 
   openConfirmModal(chapitreId: number): void {
+    console.log(chapitreId);
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px'
     });

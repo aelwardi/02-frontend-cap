@@ -31,7 +31,8 @@
       <mat-card class="mb-3 container card-with-shadow" *ngFor="let chapitre of coursDTO.chapitres">
         <div class="d-flex justify-content-between align-items-center">
           <div class="ml-2"> {{chapitre.titre}} </div>
-          <button mat-icon-button [matMenuTriggerFor]="menu1" aria-label="list of manager">
+          <button mat-icon-button [matMenuTriggerFor]="menu1" (click)="checkSupport(chapitre.id)"
+            aria-label="list of manager">
             <mat-icon>more_vert</mat-icon>
           </button>
         </div>
@@ -39,10 +40,10 @@
           <button mat-menu-item (click)="openQuizModal(chapitre.id)">
             <span>Quiz Management</span>
           </button>
-          <button mat-menu-item *ngIf="!this.supportCour" (click)="openAddSupportModal()">
+          <button mat-menu-item *ngIf="!this.supportCour" (click)="openAddSupportModal(chapitre.id)">
             <span> Add Course ressources</span>
           </button>
-          <button mat-menu-item *ngIf="this.supportCour" (click)="openAddSupportModal()">
+          <button mat-menu-item *ngIf="this.supportCour" (click)="openAddSupportModal(chapitre.id)">
             <span> See Course ressources</span>
           </button>
           <button mat-menu-item (click)="openEditChapitreModal(chapitre)">

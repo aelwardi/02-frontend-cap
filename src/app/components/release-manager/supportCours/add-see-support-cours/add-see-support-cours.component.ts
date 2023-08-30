@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SupportCoursService } from 'src/app/services/support-cours.service';
 import { ConfirmDialogComponent } from 'src/app/components/release-super-admin/departement/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { supportCours } from 'src/app/common/support-cours';
+//import { supportCours } from 'src/app/common/support-cours';
 
 
 @Component({
@@ -93,13 +93,13 @@ export class AddSeeSupportCoursComponent implements OnInit {
     console.log("forms : ", this.supportCoursForm)
 
   }
-  getSupportCoursById(id: number) {
-    this.supportCoursService.getSupportCoursById(id)
-      .subscribe((supportCour: supportCours[]) => {
-        this.supportCour = supportCour;
-        //console.log("##cours :" + JSON.stringify(cours));
-      });
-  }
+  // getSupportCoursById(id: number) {
+  //   this.supportCoursService.getSupportCoursById(id)
+  //     .subscribe((supportCour: supportCours[]) => {
+  //       this.supportCour = supportCour;
+  //       //console.log("##cours :" + JSON.stringify(cours));
+  //     });
+  // }
   openConfirmationDialog(id: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px'
