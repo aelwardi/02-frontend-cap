@@ -1,0 +1,64 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ data.support ? 'See' : 'Add new' }} Support Cours</mat-card-title>
+  </mat-card-header>
+
+  <!-- Champ pour le title du supprort de cours -->
+  <form *ngIf="!data.support" [formGroup]="supportCoursForm">
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <mat-icon matPrefix>create</mat-icon>
+        <input matInput placeholder="Enter support course title" formControlName="title" required>
+      </mat-form-field>
+    </div>
+
+
+    <div class="pdf-upload">
+      <input type="file" accept=".pdf" formControlName="file" style="display: none;" #pdfInput>
+      <!-- <ng-container *ngIf="currentPdfUrl">
+      <div class="pdf-container">
+        <iframe [src]="currentPdfUrl" width="100%" height="500px"></iframe>
+      </div>
+    </ng-container> -->
+      <ng-container *ngIf="!currentPdfUrl">
+        <!-- Display a button to trigger file input click -->
+        <div class="pdf-upload-button d-flex align-items-center justify-content-center" (click)="pdfInput.click()">
+          <mat-icon>insert_drive_file</mat-icon>
+          <div>Add an illustrative PDF</div>
+        </div>
+      </ng-container>
+    </div>
+    <button mat-raised-button class="submit-button" *ngIf="!data.support" (click)="onFormSubmit()">
+      Submit
+    </button>
+  </form>
+  <div *ngIf="data.support">
+    voir le fichier
+    <ng-container *ngIf="data?.support">
+      <ngx-extended-pdf-viewer [src]="'./assets/pdfs/'+getFileName(data.support.pathFile)" [height]="'95%'"
+        [useBrowserLocale]="true"></ngx-extended-pdf-viewer>
+    </ng-container>
+
+
+  </div>
+
+
+
+
+
+  <mat-card-actions>
+    <!-- Show the 'Delete' and 'Cancel' buttons if 'data.support' exists -->
+    <button mat-raised-button *ngIf="data.support" class="delete-button"
+      (click)="deleteSupportCoursById(data.support.id)">Delete</button>
+
+    <!-- <button mat-raised-button class="submit-button" *ngIf="data.support" (click)="onFormSubmit()">
+      See
+    </button> -->
+
+    <!-- Show the 'Submit' button if 'data.support' does not exist -->
+    <!-- <button mat-raised-button class="submit-button" *ngIf="data.support" (click)="onFormSubmit()">
+      See
+    </button>  -->
+  </mat-card-actions>
+</mat-card>

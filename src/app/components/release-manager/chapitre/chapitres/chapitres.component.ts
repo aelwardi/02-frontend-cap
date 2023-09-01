@@ -13,6 +13,8 @@ import { ManagerCoursService } from 'src/app/services/manager-cours.service';
 import { AddManagerCoursComponent } from '../add-manager-cours/add-manager-cours.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SharedChapitreService } from 'src/app/services/shared-chapitre.service';
+import { SupportCoursService } from 'src/app/services/support-cours.service';
+import { AddSeeSupportCoursComponent } from '../../supportCours/add-see-support-cours/add-see-support-cours.component';
 
 @Component({
   selector: 'app-chapitres',
@@ -23,6 +25,8 @@ export class ChapitresComponent implements OnInit {
   isLoading: boolean = false;
   coursDTO!: CoursDTO;
   managerInfo: ManagerInfo[] = [];
+  chapitreId?: number;
+  supportCour: any;
 
   constructor(
     private coursService: CoursService,
@@ -35,12 +39,64 @@ export class ChapitresComponent implements OnInit {
     private managerCoursService: ManagerCoursService,
     private _snackBar: MatSnackBar,
     private sharedChapitreService: SharedChapitreService,
+    private supportCourService: SupportCoursService
   ) {
   }
 
   ngOnInit(): void {
     this.getCoursWithChapiter();
+    this.route.params.subscribe(params => {
+      this.chapitreId = +params['id'];
+      if (!isNaN(this.chapitreId)) {
+        console.log("id ==>", this.chapitreId)
+        this.supportCourseExist(this.chapitreId)
+
+      } else {
+        console.log("there is no chapitre id")
+      }
+    });
+
+    console.log("support =>", this.supportCour.idChapitre)
   }
+  supportCourseExist(idChapitre: number) {
+    this.supportCourService.getChapitreWithSection(idChapitre).subscribe(
+      data => {
+        console.log(data)
+        this.supportCour = data;
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+  checkSupport(id: number) {
+    console.log("check id:", id);
+    this.supportCourseExist(id);
+
+  }
+
+  openAddSupportModal(id: number): void {
+    const idC: number = 0;
+
+    const dialogRef = this.dialog.open(AddSeeSupportCoursComponent, {
+      width: '600px',
+
+      data: this.supportCour ? { support: this.supportCour } : { idChapitre: id }
+    });
+    console.log("data==>", this.chapitreId)
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result) {
+      }
+      else {
+        //console.log("ddd",result);
+      }
+    });
+    console.log("i'm here")
+    console.log(id)
+  }
+
+
 
   getCoursWithChapiter() {
     const newId = +this.route.snapshot.paramMap.get('id')!;
@@ -192,7 +248,7 @@ export class ChapitresComponent implements OnInit {
     if (this.coursDTO.chapitres.length > 0) {
       const newId = +this.route.snapshot.paramMap.get('id')!;
       this.router.navigate([`/manager/chapitre/${newId}`]);
-    }else {
+    } else {
       this._snackBar.open('You will need to first create at least one chapter.', '', {
         duration: 3000,
       });
