@@ -92,6 +92,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ContraintComponent } from './components/release-manager/courses/contraint/contraint.component';
 import { PageNotFoundComponent } from './components/release-super-admin/template/page-not-found/page-not-found.component';
 import { HelpsComponent } from './components/release-manager/helps/helps/helps.component';
+import { AddSeeSupportCoursComponent } from './components/release-manager/supportCours/add-see-support-cours/add-see-support-cours.component';
 
 
 @NgModule({
@@ -152,6 +153,7 @@ import { HelpsComponent } from './components/release-manager/helps/helps/helps.c
     ContraintComponent,
     PageNotFoundComponent,
     HelpsComponent,
+    AddSeeSupportCoursComponent,
 
   ],
   imports: [
